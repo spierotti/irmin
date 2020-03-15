@@ -42,24 +42,43 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('RequestHandler', [
-            'enableBeforeRedirect' => false,
+            'enableBeforeRedirect' => false
         ]);
 
         $this->loadComponent('Flash');
 
         $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'authenticate' => [
+                'Form' => [
+                    'finder' => 'role',
+                    'fields' => ['username' => 'email', 'password' => 'password']
+                ]
+            ],
+            'authError' => 'Did you really think you are allowed to see that?',
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'home'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'storage' => 'Session'
+        ]);
+
+        /* 
+            // redireccion al loguearse
+
             'loginAction' => [
                 'controller' => 'Users',
                 'action' => 'login'
             ],
-            'authError' => 'Did you really think you are allowed to see that?',
-            'authenticate' => [
-                'Form' => [
-                    'fields' => ['username' => 'email', 'password' => 'password']
-                ]
+            'unauthorizedRedirect' => [
+                'controller' => 'Users',
+                'action' => 'home'
             ],
-            'storage' => 'Session'
-        ]);
+        */
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -71,5 +90,15 @@ class AppController extends Controller
     public function beforeRender(Event $event){
 
         $this->set('auth', $this->request->session()->read('Auth'));
+    }
+
+    public function isAuthorized($user){
+
+        if(isset($user['role']) and $user['role']['id'] == 1)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -11,8 +11,8 @@
     <h3><?= h($cliente->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Razon Social') ?></th>
-            <td><?= h($cliente->razon_social) ?></td>
+            <th scope="row"><?= __('Nombre') ?></th>
+            <td><?= h($cliente->name) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CUIT / DNI') ?></th>

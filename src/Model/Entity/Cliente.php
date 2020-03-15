@@ -29,7 +29,7 @@ class Cliente extends Entity
      * @var array
      */
     protected $_accessible = [
-        'razon_social' => true,
+        'name' => true,
         'cuit' => true,
         'email' => true,
         'telefono' => true,

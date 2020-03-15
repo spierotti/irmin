@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('razon_social') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Nombre') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cuit / DNI') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('telefono') ?></th>
@@ -26,7 +26,7 @@
             <?php foreach ($clientes as $cliente): ?>
             <tr>
                 <td><?= $this->Number->format($cliente->id) ?></td>
-                <td><?= h($cliente->razon_social) ?></td>
+                <td><?= h($cliente->name) ?></td>
                 <td><?= h($cliente->cuit) ?></td>
                 <td><?= h($cliente->email) ?></td>
                 <td><?= h($cliente->telefono) ?></td>

@@ -13,13 +13,51 @@ use App\Controller\AppController;
 class ClientesController extends AppController
 {
     /**
+     * Is Authorized Method
+     * 
+     */
+    public function isAuthorized($user){
+
+        if(isset($user['role']) and $user['role']['id'] > 1)
+        {
+            if($this->request->action == 'index' and $user['role']['ver_clientes'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'add' and $user['role']['nuevo_cliente'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'edit' and $user['role']['modificar_cliente'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'delete' and $user['role']['eliminar_cliente'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'view')
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return parent::isAuthorized($user);
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
      */
     public function index()
     {
-        $clientes = $this->paginate($this->Clientes);
+        //$clientes = $this->paginate($this->Clientes);
+        $clientes = $this->paginate($this->Clientes->find()->where(['borrado' => false]));
+        
+        //$clientes = $this->Clientes->find()->where(['borrado' => false]);
 
         $this->set(compact('clientes'));
     }
@@ -93,12 +131,23 @@ class ClientesController extends AppController
      */
     public function delete($id = null)
     {
+        // BORRADO LÓGICO
+
         $this->request->allowMethod(['post', 'delete']);
+
         $cliente = $this->Clientes->get($id);
-        if ($this->Clientes->delete($cliente)) {
+
+        $cliente->borrado = true;
+
+        //if ($this->Clientes->delete($cliente)) {
+        if($this->Clientes->save($cliente)){
+            
             $this->Flash->success(__('The cliente has been deleted.'));
+
         } else {
+
             $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+            
         }
 
         return $this->redirect(['action' => 'index']);

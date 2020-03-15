@@ -30,6 +30,27 @@ class Role extends Entity
         'descripcion' => true,
         'created' => true,
         'modified' => true,
-        'users' => true
+        'users' => true,
+        'ver_pedidos' => true,
+        'nuevo_pedido' => true,
+        'modificar_pedido' => true,
+        'eliminar_pedido' => true,
+        'evaluar_pedido' => true,
+        'ver_clientes' => true,
+        'nuevo_cliente' => true,
+        'modificar_cliente' => true,
+        'eliminar_cliente' => true,
+        'ver_imagenes' => true,
+        'nueva_imagen' => true,
+        'modificar_imagen' => true,
+        'eliminar_imagen' => true,
+        'ver_roles' => true,
+        'nueva_rol' => true,
+        'modificar_rol' => true,
+        'eliminar_rol' => true,
+        'ver_usuarios' => true,
+        'nueva_usuario' => true,
+        'modificar_usuario' => true,
+        'eliminar_usuario' => true
     ];
 }

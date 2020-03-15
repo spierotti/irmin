@@ -45,21 +45,30 @@ class PedidosTable extends Table
 
         $this->belongsTo('Clientes', [
             'foreignKey' => 'cliente_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'experto_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->belongsTo('Estados', [
             'foreignKey' => 'estado_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
+        $this->belongsToMany('Images', [
+            'foreignKey' => 'pedido_id',
+            'targetForeignKey' => 'fecha_hora_imagen',
+            'joinTable' => 'pedidos_images'
+        ]);
+
+        /*
+        version anterior
         $this->belongsToMany('Images', [
             'foreignKey' => 'pedido_id',
             'targetForeignKey' => 'image_id',
             'joinTable' => 'pedidos_images'
         ]);
+        */
     }
 
     /**

@@ -12,7 +12,9 @@
     <fieldset>
         <legend><?= __('Nuevo Pedido') ?></legend>
         <?php
-            echo $this->Form->control('cliente_id', ['options' => $clientes]);
+            //echo $this->Form->control('razon_social', ['type'=>'select','options' => $clientes]);
+            echo $this->Form->control('razon_social', ['label' => false, 'div' => false, 'id' => 's' , 'class' => 'form-class s' , 'autocomplete' => 'off' , 'placeholder' => 'Buscar Cliente']);
+            
             //echo $this->Form->control('cliente_id', ['options' => $clientes,'type' => 'text']);
             //echo $this->Form->control('experto_id', ['options' => $users]);
             //echo $this->Form->control('fecha_solicitud');
@@ -29,3 +31,4 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+<?= $this->Html->script('search.js') ?>

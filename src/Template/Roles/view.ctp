@@ -8,7 +8,7 @@
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 
 <div class="roles view large-9 medium-8 columns content">
-    <h3><?= h($role->name) ?></h3>
+    <h3><?= h($this->Number->format($role->id)) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Name') ?></th>
@@ -17,10 +17,6 @@
         <tr>
             <th scope="row"><?= __('Descripcion') ?></th>
             <td><?= h($role->descripcion) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($role->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
@@ -38,22 +34,14 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Username') ?></th>
-                <th scope="col"><?= __('Password') ?></th>
-                <th scope="col"><?= __('Role Id') ?></th>
                 <th scope="col"><?= __('Email') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($role->users as $users): ?>
             <tr>
                 <td><?= h($users->id) ?></td>
                 <td><?= h($users->username) ?></td>
-                <td><?= h($users->password) ?></td>
-                <td><?= h($users->role_id) ?></td>
                 <td><?= h($users->email) ?></td>
-                <td><?= h($users->created) ?></td>
-                <td><?= h($users->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>

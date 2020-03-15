@@ -13,6 +13,41 @@ use App\Controller\AppController;
 class RolesController extends AppController
 {
     /**
+     * Is Authorized Method
+     * 
+     */
+    public function isAuthorized($user){
+
+        if(isset($user['role']) and $user['role']['id'] > 1)
+        {
+            if($this->request->action == 'index' and $user['role']['ver_roles'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'add' and $user['role']['nueva_rol'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'edit' and $user['role']['modificar_rol'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'delete' and $user['role']['eliminar_rol'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'view')
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return parent::isAuthorized($user);
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
@@ -73,11 +108,19 @@ class RolesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $role = $this->Roles->patchEntity($role, $this->request->getData());
-            if ($this->Roles->save($role)) {
-                $this->Flash->success(__('The role has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+            if ($this->Roles->save($role)) {
+
+                if ($this->Auth->user('role_id') == $id){
+
+                    $this->Auth->session->write($this->Auth->sessionKey . '.role', $role->toArray());
+
+                    $this->Flash->success(__('The role has been saved.'));
+    
+                    return $this->redirect(['action' => 'index']);
+                }
             }
             $this->Flash->error(__('The role could not be saved. Please, try again.'));
         }

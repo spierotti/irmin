@@ -18,13 +18,8 @@
                 <th scope="col"><?= $this->Paginator->sort('fecha_solicitud') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fecha_inicio') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fecha_fin') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fecha_evaluacion') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fecha_cancelacion') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('estado_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('descripcion') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('conclusion') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -32,18 +27,13 @@
             <?php foreach ($pedidos as $pedido): ?>
             <tr>
                 <td><?= $this->Number->format($pedido->id) ?></td>
-                <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
-                <td><?= $pedido->has('user') ? $this->Html->link($pedido->user->id, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '' ?></td>
-                <td><?= h($pedido->fecha_solicitud) ?></td>
-                <td><?= h($pedido->fecha_inicio) ?></td>
-                <td><?= h($pedido->fecha_fin) ?></td>
-                <td><?= h($pedido->fecha_evaluacion) ?></td>
-                <td><?= h($pedido->fecha_cancelacion) ?></td>
-                <td><?= $pedido->has('estado') ? $this->Html->link($pedido->estado->id, ['controller' => 'Estados', 'action' => 'view', $pedido->estado->id]) : '' ?></td>
-                <td><?= h($pedido->descripcion) ?></td>
-                <td><?= h($pedido->conclusion) ?></td>
-                <td><?= h($pedido->created) ?></td>
-                <td><?= h($pedido->modified) ?></td>
+                <td><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?></td>
+                <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td>
+                <td><?= $pedido->fecha_solicitud ?></td>
+                <td><?= $pedido->fecha_inicio ?></td>
+                <td><?= $pedido->fecha_fin ?></td>
+                <td><?= ($pedido->has('estado') and !is_null($pedido->estado)) ? $pedido->estado->descripcion : '-' ?></td>
+                <td><?= $pedido->descripcion ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedido->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedido->id]) ?>

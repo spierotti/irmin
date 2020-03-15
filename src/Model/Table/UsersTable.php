@@ -91,7 +91,7 @@ class UsersTable extends Table
             ->add('viejo_password','custom',[  
                 'rule'=>  function($value, $context){ 
                     $user = $this->get($context['data']['id']);
-                    debug($user) ;
+                    //debug($user) ;
                     if ($user) {  
                         if ((new DefaultPasswordHasher)->check($value, $user->password)) { 
                             return true;  
@@ -149,4 +149,11 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function findRole(\Cake\ORM\Query $query, array $options)
+{
+    $query->contain(['Roles']);
+
+    return $query;
+}
 }

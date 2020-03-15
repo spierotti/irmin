@@ -52,10 +52,10 @@ class ClientesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('razon_social')
-            ->maxLength('razon_social', 50)
-            ->requirePresence('razon_social', 'create')
-            ->notEmptyString('razon_social');
+            ->scalar('name')
+            ->maxLength('name', 50)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
             ->scalar('cuit')

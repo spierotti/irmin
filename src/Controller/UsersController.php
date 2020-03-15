@@ -17,6 +17,70 @@ use Cake\ORM\Query;
  */
 class UsersController extends AppController
 {
+
+    /**
+     * Is Authorized Method
+     * 
+     */
+    public function isAuthorized($user){
+
+        if(isset($user['role']) and $user['role']['id'] > 1)
+        {
+            if($this->request->action == 'index' and $user['role']['ver_usuarios'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'add' and $user['role']['nueva_usuario'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'edit' and $user['role']['modificar_usuario'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'delete' and $user['role']['eliminar_usuario'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'view' and $user['role']['modificar_usuario'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'editPerfil')
+            {
+                return true;
+            }
+            elseif($this->request->action == 'viewPerfil')
+            {
+                return true;
+            }
+            elseif($this->request->action == 'logout')
+            {
+                return true;
+            }
+            elseif($this->request->action == 'changePassword')
+            {
+                return true;
+            }
+            elseif($this->request->action == 'home')
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return parent::isAuthorized($user);
+    }
+
+    /**
+     * Before Filter Method
+     * 
+     */
+    public function beforeFilter(Event $event){
+        $this->Auth->allow(['forgotPassword','resetPassword']);
+    }
+
     /**
      * Index method
      *
@@ -47,6 +111,22 @@ class UsersController extends AppController
     }
 
     /**
+     * View Perfil method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function viewPerfil()
+    {
+        $user = $this->Users->get($this->Auth->user('id'), [
+            'contain' => ['Roles']
+        ]);
+
+        $this->set('user', $user);
+    }
+
+    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -68,6 +148,7 @@ class UsersController extends AppController
         $roles = $this->Users->Roles->find('list');
 
         //debug($roles);
+        //print_r($roles);
 
         // Set tags to the view context
         $this->set('roles', $roles);
@@ -109,7 +190,7 @@ class UsersController extends AppController
 
             $this->Flash->warning(__('¡Ya estas Loggueado!'));
 
-            return $this->redirect(['controller' => 'Images', 'action' => 'index']);
+            return $this->redirect(['controller' => 'Users', 'action' => 'home']);
 
         }else{
     
@@ -125,7 +206,7 @@ class UsersController extends AppController
 
                     $this->Flash->success(__('¡Login Exitoso!'));
 
-                    return $this->redirect(['controller' => 'Images', 'action' => 'index']);
+                    return $this->redirect(['controller' => 'Users', 'action' => 'home']);
                 }
 
                 //error al loguearse
@@ -180,6 +261,39 @@ class UsersController extends AppController
     }
 
     /**
+     * Edit method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function editPerfil()
+    {
+        $user = $this->Users->get($this->Auth->user('id'), [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+
+        // Get a list of tags.
+        $roles = $this->Users->Roles->find('list');
+
+        //debug($roles);
+
+        // Set tags to the view context
+        $this->set('roles', $roles);
+
+        $this->set(compact('user'));
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id User id.
@@ -203,14 +317,6 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
-
-    /**
-     * Before Filter Method
-     * 
-     */
-    public function beforeFilter(Event $event){
-        $this->Auth->allow(['forgotPassword','resetPassword']);
     }
 
     /**
@@ -268,7 +374,7 @@ class UsersController extends AppController
                 if (!empty($this->request->data)) {
                     // Clear passkey and timeout
 
-                    debug($this->request->data);
+                    //debug($this->request->data);
 
                     $this->request->data['passkey'] = null;
                     $this->request->data['timeout'] = null;
@@ -384,4 +490,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
+    public function home(){
+        $this->render();
+    }
 }

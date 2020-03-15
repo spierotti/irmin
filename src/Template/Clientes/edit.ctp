@@ -12,7 +12,7 @@
     <fieldset>
         <legend><?= __('Edit Cliente') ?></legend>
         <?php
-            echo $this->Form->control('razon_social');
+            echo $this->Form->control('name');
             echo $this->Form->control('cuit');
             echo $this->Form->control('email');
             echo $this->Form->control('telefono');

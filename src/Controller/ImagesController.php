@@ -31,7 +31,18 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    
+    /*public function view($fecha_hora_imagen = null)
+    {
+        $query = $images->find('all')
+                        ->where('Images.fecha_hora_imagen = ' => $fecha_hora_imagen);
+
+        $image = $query->first();
+
+        $this->set('image', $image);
+    }*/
+    
+     public function view($id = null)
     {
         $image = $this->Images->get($id, [
             'contain' => []

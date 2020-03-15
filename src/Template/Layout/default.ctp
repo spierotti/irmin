@@ -26,8 +26,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css(['base.css','style.css','bootstrap.min.css','jquery-ui.min.css']) ?>
+    <?= $this->Html->script(['jquery-3.4.1.min.js', 'bootstrap.min.js', 'jquery-ui.min.js']) ?> <!-- , 'search.js' -->
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -48,7 +48,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <!--<a target="_blank" href="https://book.cakephp.org/3.0/">
                     <?php //echo $this->request->session()->read('Auth.User.email'); ?>
                 </a>-->
-                    <?php echo $this->Html->link($this->request->session()->read('Auth.User.email'), ['controller' => 'Users', 'action' => 'view', $auth['User']['id']]); ?>
+                    <?php echo $this->Html->link($this->request->session()->read('Auth.User.email'), ['controller' => 'Users', 'action' => 'viewPerfil']); ?>
                 </li>
 
                 <li>
@@ -70,8 +70,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-
+    <div class="container clearfix" >
+   
         <?php /* if($auth){
             echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=> $this->name]);
         }else{
