@@ -14,7 +14,6 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('photo_dir') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('ACCIONES') ?></th>
             </tr>
@@ -24,10 +23,10 @@
             <tr>
                 <td><?= h($image->fecha_hora_imagen) ?></td>
                 <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/square_' . $image->get('photo')); ?></td>
-                <td><?= h($image->photo_dir) ?></td>
                 <td><?= h($image->created) ?></td>
                 <td class="actions">
-                    <?= $this->Form->postLink(__('Borrar Imagen'), ['action' => 'delete', $image->fecha_hora_imagen], ['confirm' => __('¿Seguro que desea eliminar la imagen:  {0}?', $image->fecha_hora_imagen)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]) ?>
+                    <?= $this->Form->postLink(__('Borrar Imagen'), ['action' => 'delete', $image->id], ['confirm' => __('¿Seguro que desea eliminar la imagen: #{0}?', $image->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

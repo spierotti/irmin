@@ -33,8 +33,10 @@ class ImagesTable extends Table
         parent::initialize($config);
 
         $this->setTable('images');
-        $this->setDisplayField('fecha_hora_imagen');
-        $this->setPrimaryKey('fecha_hora_imagen');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
         
         $this->addBehavior('Proffer.Proffer', [
             'photo' => [	// The name of your upload field
@@ -50,8 +52,10 @@ class ImagesTable extends Table
                 'thumbnailMethod' => 'gd'	// Options are Imagick or Gd
             ]
         ]);
-
-        $this->addBehavior('Timestamp');
+        
+        $this->belongsToMany('Pedidos', [
+            'joinTable' => 'images_pedidos'
+        ]);
     }
 
     /**
@@ -62,6 +66,10 @@ class ImagesTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
+            
         $validator
             ->dateTime('fecha_hora_imagen')
             ->requirePresence('fecha_hora_imagen', 'create')

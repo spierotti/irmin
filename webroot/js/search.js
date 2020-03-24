@@ -3,10 +3,11 @@ $(document).ready(function () {
         minLength: 2,
         select: function(event, ui){
             $("#s").val(ui.item.label);
+            $("#c_id").val(ui.item.id);
         },
         source: function(request, response) {
             $.ajax({
-                url: basePath + "pedidos/searchCliente",
+                url: "http://localhost/irmin/clientes/buscarclientes",
                 data: {
                     term: request.term
                 },
@@ -14,8 +15,9 @@ $(document).ready(function () {
                 success: function(data){
                     response($.map(data, function(el, index){
                         return{
-                            value: el.Cliente.name,
-                            nombre: el.Cliente.name
+                            value: el.name,
+                            nombre: el.name,
+                            id: el.id
                         };
                     }));
                 }
@@ -24,7 +26,7 @@ $(document).ready(function () {
     }).data("ui-autocomplete")._renderItem = function(ul, item){
         return $("<li></li>")
         .data("item.autocomplete", item)
-        .append("<a> " + item.nombre + "</a>")
+        .append(" " + item.id + " - " + item.nombre)
         .appendTo(ul)
     };
 });

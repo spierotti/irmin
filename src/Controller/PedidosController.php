@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Pedidos Controller
@@ -89,39 +90,38 @@ class PedidosController extends AppController
     public function add()
     {
         $pedido = $this->Pedidos->newEntity();
+        
         if ($this->request->is('post')) {
 
-            //debug($this->request->getData());
-            
+            // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
+            $query = $this->Pedidos->Images->find('all')->where([
+                'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
+                'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
+            ]);
+
+            // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
             $pedido = $this->Pedidos->patchEntity($pedido, [
-                'cliente_id' => $this->request->data['razon_social'],
+                'cliente_id' => $this->request->data['cliente_id'],
                 'estado_id' => 1,
                 'fecha_solicitud' => date('Y-m-d H:i:s'),
                 'fecha_inicio' => $this->request->data['fecha_inicio'],
-                'fecha_fin' => $this->request->data['fecha_inicio'],
+                'fecha_fin' => $this->request->data['fecha_fin'],
                 'descripcion' => $this->request->data['descripcion'],
+                'images' => array()
             ]);
 
-            debug($pedido);
-            
-            if ($this->Pedidos->save($pedido)) {
-
-                $this->Flash->success(__('The pedido has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $i = 0;
+            foreach ($query as $row) {
+                $pedido->images[$i] = $row;
+                $i++;
             }
 
+            if ($this->Pedidos->save($pedido)) {
+                $this->Flash->success(__('The pedido has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            }
             $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
         }
-        
-        //$clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $this->set('clientes', $clientes);
-
-        //$users = $this->Pedidos->Users->find('list', ['limit' => 200]);
-        $estados = $this->Pedidos->Estados->find('list', ['limit' => 200]);
-        //$images = $this->Pedidos->Images->find('list', ['limit' => 200]);
-        //$this->set(compact('pedido', 'clientes', 'users', 'estados', 'images'));*/
         $this->set(compact('pedido'));
     }
 
@@ -132,7 +132,7 @@ class PedidosController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    /*public function edit($id = null)
     {
         $pedido = $this->Pedidos->get($id, [
             'contain' => ['Images']
@@ -151,7 +151,51 @@ class PedidosController extends AppController
         $estados = $this->Pedidos->Estados->find('list', ['limit' => 200]);
         $images = $this->Pedidos->Images->find('list', ['limit' => 200]);
         $this->set(compact('pedido', 'clientes', 'users', 'estados', 'images'));
-    }
+    } */   
+    
+    /**
+    * Evaluar method
+    *
+    * @param string|null $id Pedido id.
+    * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+    * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+    */
+   public function evaluar($id = null)
+   {
+        $pedido = $this->Pedidos->get($id, [
+           'contain' => ['Images', 'Clientes', 'Estados']
+       ]);
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+
+            $data = $this->request->getData();
+
+            $pedido->conclusion = $data['conclusion'];
+            $pedido->fecha_evaluacion = Time::now();
+            $pedido->estado_id = 3;
+
+           if ($this->Pedidos->save($pedido)) {
+
+               $this->Flash->success(__('The pedido has been saved.'));
+
+               return $this->redirect(['action' => 'index']);
+           }
+
+           $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
+
+        }else{
+
+            $auth = $this->request->session()->read('Auth');
+
+            $pedido->experto_id = $auth['User']['id'];
+            $pedido->estado_id = 2;
+
+            $this->Pedidos->save($pedido);
+        
+            $this->set(compact('pedido'));
+       }
+
+   }
 
     /**
      * Delete method
@@ -162,43 +206,41 @@ class PedidosController extends AppController
      */
     public function delete($id = null)
     {
+
+        $pedido = $this->Pedidos->get($id);
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+
+            $pedido->fecha_cancelacion = Time::now();
+            $pedido->estado_id = 4;
+
+
+            if ($this->Pedidos->save($pedido)) {
+
+                $this->Flash->success(__('The pedido has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
+
+        }
+
+        /* delete original
+        
         $this->request->allowMethod(['post', 'delete']);
 
         $pedido = $this->Pedidos->get($id);
         
         if ($this->Pedidos->delete($pedido)) {
 
-            $this->Flash->success(__('The pedido has been deleted.'));
+            $this->Flash->success(__('El pedido ha sido cancelado!.'));
 
         } else {
 
-            $this->Flash->error(__('The pedido could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El pedido no ha podido ser cancelado. Prueba nuevamente mas tarde.'));
 
         }
 
-        return $this->redirect(['action' => 'index']);
-    }
-
-    public function searchCliente($term = null){
-        
-        debug('entre');
-
-        if(!empty($this->request->query['term'])){
-            
-            $term = $this->request->query['term'];
-            $terms = explode(' ', trim($term));
-            $terms = array_diff($term, array(''));
-            
-            foreach($terms as $term){
-                $condition[] = array('Cliente.razon_social LIKE' => '%' . $term . '%');
-            }
-
-            $clientes = $this->Pedidos->Clientes->find('all', array('recursive' => 1, 'fields' => array('Cliente.id', 'Cliente.name'), 'conditions' => $condition, 'limit' => 20));
-            debug($clientes);
-        }
-        
-        echo json_encode($clientes);
-       
-        $this->autorender = false;
+        return $this->redirect(['action' => 'index']);*/
     }
 }

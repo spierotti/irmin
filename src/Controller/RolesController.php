@@ -108,19 +108,13 @@ class RolesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-
             $role = $this->Roles->patchEntity($role, $this->request->getData());
-
             if ($this->Roles->save($role)) {
-
                 if ($this->Auth->user('role_id') == $id){
-
                     $this->Auth->session->write($this->Auth->sessionKey . '.role', $role->toArray());
-
-                    $this->Flash->success(__('The role has been saved.'));
-    
-                    return $this->redirect(['action' => 'index']);
                 }
+                $this->Flash->success(__('The role has been saved.'));
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The role could not be saved. Please, try again.'));
         }

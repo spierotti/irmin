@@ -16,8 +16,6 @@
                 <th scope="col"><?= $this->Paginator->sort('cliente_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('experto_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fecha_solicitud') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fecha_inicio') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fecha_fin') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('estado_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('descripcion') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -30,14 +28,21 @@
                 <td><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?></td>
                 <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td>
                 <td><?= $pedido->fecha_solicitud ?></td>
-                <td><?= $pedido->fecha_inicio ?></td>
-                <td><?= $pedido->fecha_fin ?></td>
                 <td><?= ($pedido->has('estado') and !is_null($pedido->estado)) ? $pedido->estado->descripcion : '-' ?></td>
                 <td><?= $pedido->descripcion ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $pedido->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedido->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedido->id)]) ?>
+                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true){ ?>    
+                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $pedido->id]) ?>
+                    <?php } ?>    
+                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id']))){ ?>    
+                        <?= $this->Html->link(__('Evaluar'), ['action' => 'evaluar', $pedido->id]) ?>
+                    <?php } ?>
+                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['modificar_pedido'] === true && ($pedido->estado_id == 1)){ ?>    
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $pedido->id]) ?>
+                    <?php } ?>
+                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id']))){ ?>    
+                        <?= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?>
+                    <?php } ?>
                 </td>
             </tr>
             <?php endforeach; ?>

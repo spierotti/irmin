@@ -12,7 +12,7 @@
     <fieldset>
         <legend><?= __('ALTA DE IMAGENES') ?></legend>
         <?php
-            echo $this->Form->control('photo', ['type' => 'file']);
+            echo $this->Form->control('photo', ['type' => 'file', 'label' => 'Agregar Imagen']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('GUARDAR')) ?>

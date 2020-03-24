@@ -56,17 +56,13 @@ class PedidosTable extends Table
             'joinType' => 'LEFT'
         ]);
         $this->belongsToMany('Images', [
-            'foreignKey' => 'pedido_id',
-            'targetForeignKey' => 'fecha_hora_imagen',
-            'joinTable' => 'pedidos_images'
+            'joinTable' => 'images_pedidos'
         ]);
-
         /*
-        version anterior
         $this->belongsToMany('Images', [
             'foreignKey' => 'pedido_id',
-            'targetForeignKey' => 'image_id',
-            'joinTable' => 'pedidos_images'
+            'targetForeignKey' => 'pedido_id',
+            'joinTable' => 'images_pedidos'
         ]);
         */
     }

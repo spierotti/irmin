@@ -74,12 +74,8 @@ class ImagesController extends AppController
                 $img['fecha_hora_imagen']['hour'] = substr($img['photo']['name'], 12,2);
                 $img['fecha_hora_imagen']['minute'] = substr($img['photo']['name'], 14,2);
 
-                debug($img);
-                
                 //$image = $this->Images->patchEntity($image, $this->request->getData());
                 $image = $this->Images->patchEntity($image, $img);
-
-                debug($image);
 
                 if ($this->Images->save($image)) {
 
@@ -106,7 +102,7 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    /*public function edit($id = null)
     {
         $image = $this->Images->get($id, [
             'contain' => []
@@ -121,7 +117,7 @@ class ImagesController extends AppController
             $this->Flash->error(__('The image could not be saved. Please, try again.'));
         }
         $this->set(compact('image'));
-    }
+    }*/
 
     /**
      * Delete method

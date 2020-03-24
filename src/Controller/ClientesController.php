@@ -40,10 +40,12 @@ class ClientesController extends AppController
             {
                 return true;
             }
-
+            elseif($this->request->action == 'buscarclientes')
+            {
+                return true;
+            }
             return false;
         }
-
         return parent::isAuthorized($user);
     }
 
@@ -132,24 +134,34 @@ class ClientesController extends AppController
     public function delete($id = null)
     {
         // BORRADO LÓGICO
-
         $this->request->allowMethod(['post', 'delete']);
-
         $cliente = $this->Clientes->get($id);
-
         $cliente->borrado = true;
-
-        //if ($this->Clientes->delete($cliente)) {
         if($this->Clientes->save($cliente)){
-            
             $this->Flash->success(__('The cliente has been deleted.'));
-
         } else {
-
             $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
-            
         }
-
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Buscar Clientes method
+     * 
+     * @param string|null $term Descripcion parcial de name de cliente
+     */
+    public function buscarclientes(){
+        $term = null;
+        if(!empty($this->request->query['term'])){
+            $term = $this->request->query['term'];
+            $terms = explode(' ', trim($term));
+            $terms = array_diff($terms, array(''));
+            foreach($terms as $t){
+                $conditions[] = array('Clientes.name LIKE' => '%' . $t . '%');
+            }
+            $clientes = $this->Clientes->find('all', array('recursive' => -1, 'conditions' => $conditions, 'limit' => 20));
+        }
+        echo json_encode($clientes);
+        $this->autoRender = false;
     }
 }
