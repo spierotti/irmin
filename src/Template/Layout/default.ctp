@@ -26,8 +26,35 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['base.css','style.css','bootstrap.min.css','jquery-ui.min.css']) ?>
-    <?= $this->Html->script(['jquery-3.4.1.min.js', 'bootstrap.min.js', 'jquery-ui.min.js']) ?> <!-- , 'search.js' -->
+    <?/*= $this->Html->css(['base.css',
+    'style.css',
+    'bootstrap.min.css',
+    'jquery-ui.min.css']) */
+    ?>
+
+    <?php echo $this->Html->css([
+    'bootstrap.min',
+    'bootstrap.icon-large.min',
+    'font-awesome.min',
+    "datepicker.min",
+    'style'
+    //'base.css'
+    ]); ?>
+
+    <?/*= $this->Html->script([
+    'jquery-3.4.1.min.js', 
+    'bootstrap.min.js', 
+    'jquery-ui.min.js']) */
+    ?> 
+
+    <?= $this->Html->script([
+        'jquery-3.4.1.min.js',
+        'bootstrap.min.js',
+        'datepicker.min.js',
+        'jquery-ui.min.js'
+    ]) ?>
+
+    <!-- , 'search.js' -->
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -48,11 +75,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <!--<a target="_blank" href="https://book.cakephp.org/3.0/">
                     <?php //echo $this->request->session()->read('Auth.User.email'); ?>
                 </a>-->
-                    <?php echo $this->Html->link($this->request->session()->read('Auth.User.email'), ['controller' => 'Users', 'action' => 'viewPerfil']); ?>
+                    <?//php echo $this->Html->link($this->request->session()->read('Auth.User.email'), ['controller' => 'Users', 'action' => 'viewPerfil']); ?>
                 </li>
 
                 <li>
-                    <?php echo $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?>
+                    <?//php echo $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?>
                 </li>
 
             <?php } else { ?>
@@ -78,7 +105,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             echo $this->element('Sidemenu\side_menu_logged_out');
         } */?>
 
-        <?= $this->fetch('content') ?>
+        <div id="contenedor-sitio">
+            <div class="container">
+                <?= $this->fetch('content') ?>
+            </div>
+        </div>
 
     </div>
     <footer>
