@@ -40,6 +40,8 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Roles');
+
+        $this->belongsTo('Clientes');
     }
 
     /**
@@ -151,9 +153,9 @@ class UsersTable extends Table
     }
 
     public function findRole(\Cake\ORM\Query $query, array $options)
-{
-    $query->contain(['Roles']);
+    {
+        $query->contain(['Roles','Clientes']);
 
-    return $query;
-}
+        return $query;
+    }
 }

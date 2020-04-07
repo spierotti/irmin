@@ -36,11 +36,15 @@ class ClientesController extends AppController
             {
                 return true;
             }
-            elseif($this->request->action == 'view')
+            elseif($this->request->action == 'view' and $user['role']['ver_clientes'] == true)
             {
                 return true;
             }
-            elseif($this->request->action == 'buscarclientes')
+            elseif($this->request->action == 'buscarclientes' and $user['role']['ver_clientes'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'filtrarclientes'and $user['role']['nuevo_cliente'] == true)
             {
                 return true;
             }
@@ -54,13 +58,14 @@ class ClientesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($borrado = null)
     {
-        //$clientes = $this->paginate($this->Clientes);
-        $clientes = $this->paginate($this->Clientes->find()->where(['borrado' => false]));
+        if($borrado){
+            $clientes = $this->paginate($this->Clientes->find('all')->limit(200));
+        }else{
+            $clientes = $this->paginate($this->Clientes->find()->where(['borrado' => false]));
+        }
         
-        //$clientes = $this->Clientes->find()->where(['borrado' => false]);
-
         $this->set(compact('clientes'));
     }
 
@@ -163,5 +168,49 @@ class ClientesController extends AppController
         }
         echo json_encode($clientes);
         $this->autoRender = false;
+    }
+
+    /**
+     * Filtrar Clientes Method
+     * 
+     * filtro para buscar clientes en index (AJAX)
+     */
+    public function filtrarclientes(){
+        
+        $this->request->allowMethod(['get']);
+        
+        $keyword = $this->request->query('keyword');
+        $activo = $this->request->query('activo');
+
+        if($activo){
+
+            $query = $this->Clientes->find('all', [
+                'conditions' => [
+                    'name like ' => '%'.$keyword.'%',
+                    'borrado = ' => false
+                ],
+                'order' => [
+                    'Clientes.id' => 'ASC'
+                ],
+                'limit' => 10
+            ]);
+
+        }else{
+            
+            $query = $this->Clientes->find('all', [
+                'conditions' => [
+                    'name like ' => '%'.$keyword.'%'
+                ],
+                'order' => [
+                    'Clientes.id' => 'ASC'
+                ],
+                'limit' => 10
+            ]);
+
+        }
+
+        $clientes = $this->paginate($query);
+        $this->set(compact('clientes'));
+        $this->set('_serialize', 'clientes');
     }
 }

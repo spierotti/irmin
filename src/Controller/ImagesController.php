@@ -19,6 +19,16 @@ class ImagesController extends AppController
      */
     public function index()
     {
+        $start_date = $this->request->query('start_date');
+        $end_date = $this->request->query('end_date');
+
+        $this->paginate = [
+            'conditions' => [
+                'DATE(images.fecha_hora_imagen) <= ' => $end_date,
+                'DATE(images.fecha_hora_imagen) >= ' => $start_date
+            ]
+        ];
+
         $images = $this->paginate($this->Images);
 
         $this->set(compact('images'));

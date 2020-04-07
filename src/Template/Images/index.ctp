@@ -9,6 +9,11 @@
 
 <div class="images index large-9 medium-8 columns content">
     <h3><?= __('IMAGENES') ?></h3>
+    <?= $this->Form->create('Images', ['type' => 'get']); ?>
+    <?= $this->Form->control('start_date',['class' => 'datepicker', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
+    <?= $this->Form->control('end_date',['class' => 'datepicker', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
+    <?= $this->Form->button('Buscar'); ?>
+    <?= $this->Form->end(); ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -43,3 +48,4 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<?= $this->Html->script('filtrar-imagen.js') ?>

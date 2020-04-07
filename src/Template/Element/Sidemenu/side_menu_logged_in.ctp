@@ -32,7 +32,7 @@
                 <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $pedido->id]) ?> </li>
             <?php } ?>
             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id']))){ ?>    
-                <li><?= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>
+                <li><?= $this->Html->link(__('Cancelar'), ['action' => 'delete', $pedido->id]) ?> </li>
             <?php } ?>
         <?php } ?>
         <!-------------->
@@ -43,7 +43,7 @@
             <li class="heading"><?= __('Clientes') ?></li>
         <?php } ?>
         <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true)){ ?>
-            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Clientes', 'action' => 'index']) ?> </li>
+            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Clientes', 'action' => 'index', false]) ?> </li>
         <?php } ?>
         <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_cliente'] === true)){ ?>
             <li><?= $this->Html->link(__('Nuevo'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
@@ -128,7 +128,7 @@
         <?php } ?>            
         <li><?= $this->Html->link(__('Nuestra Empresa'), ['controller' => 'Pages', 'action' => 'display', 'nuestra_empresa']) ?></li>
         <li><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'display', 'contacto']) ?></li>
-        <li><?= $this->Html->link(__('Ayuda'), ['controller' => 'Pages', 'action' => 'display', 'ayuda']) ?></li>
+        <li><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
         <!-------------->
     </ul>
 </nav>

@@ -13,11 +13,10 @@
         <legend><?= __('Nuevo Pedido') ?></legend>
         <?php
             echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id']);
-            echo $this->Form->control('razon_social', ['label' => false, 'div' => false, 'id' => 's' , 'class' => 'form-class s' , 'autocomplete' => 'off' , 'placeholder' => 'Cliente']);
+            echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off']);
             echo $this->Form->control('fecha_inicio');
             echo $this->Form->control('fecha_fin');
             echo $this->Form->control('descripcion');
-            //echo $this->Form->control('images._ids', ['options' => $images]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

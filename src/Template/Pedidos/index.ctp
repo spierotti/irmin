@@ -41,7 +41,7 @@
                         <?= $this->Html->link(__('Editar'), ['action' => 'edit', $pedido->id]) ?>
                     <?php } ?>
                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id']))){ ?>    
-                        <?= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?>
+                        <?= $this->Html->link(__('Cancelar'), ['action' => 'delete', $pedido->id]) ?>
                     <?php } ?>
                 </td>
             </tr>
