@@ -36,9 +36,13 @@
                     <td><?= h($cliente->celular) ?></td>
                     <td><?= h($cliente->domicilio) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $cliente->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cliente->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?>
+                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $cliente->id]) ?>
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $cliente->id]) ?>
+                        <?php if($cliente->borrado == true){ ?>
+                            <?= $this->Form->postLink(__('Activar'), ['action' => 'activar', $cliente->id], ['confirm' => __('Are you sure you want to activate # {0}?', $cliente->id)]) ?>
+                        <?php } else {?>
+                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?>
+                        <?php } ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

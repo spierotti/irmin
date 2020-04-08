@@ -21,7 +21,8 @@ $(document).ready(function() {
             activo = 0
         }
 
-        searchTags(searchkey,activo)
+        searchTags(searchkey, activo)
+        
     });
 
     function searchTags( keyword, activo){

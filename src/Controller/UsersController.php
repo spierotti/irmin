@@ -90,15 +90,12 @@ class UsersController extends AppController
      */
     public function index($borrado = null)
     {
-        //$users = $this->paginate($this->Users);
         $users = $this->paginate($this->Users->find()->contain('Roles'));
 
         if($borrado){
             $users = $this->paginate($this->Users->find()->contain('Roles')->limit(200));
-            //$clientes = $this->paginate($this->Clientes->find('all')->limit(200));
         }else{
             $users = $this->paginate($this->Users->find()->contain('Roles')->where(['borrado' => false])->limit(200));
-            //$clientes = $this->paginate($this->Clientes->find()->where(['borrado' => false]));
         }
 
         $this->set(compact('users'));
@@ -276,9 +273,31 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        // BORRADO LOGICO
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         $user->borrado = true;
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('The user has been deleted.'));
+        } else {
+            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Activar method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function activar($id = null)
+    {
+        // VUELVO A ACTIVAR EL USUARIO
+        $this->request->allowMethod(['post', 'delete']);
+        $user = $this->Users->get($id);
+        $user->borrado = false;
         if ($this->Users->save($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {

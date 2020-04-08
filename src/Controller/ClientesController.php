@@ -139,9 +139,30 @@ class ClientesController extends AppController
     public function delete($id = null)
     {
         // BORRADO LÓGICO
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post']);
         $cliente = $this->Clientes->get($id);
         $cliente->borrado = true;
+        if($this->Clientes->save($cliente)){
+            $this->Flash->success(__('The cliente has been deleted.'));
+        } else {
+            $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Activar method
+     *
+     * @param string|null $id Cliente id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function activar($id = null)
+    {
+        // VUELVO A ACTIVAR EL CLIENTE
+        $this->request->allowMethod(['post']);
+        $cliente = $this->Clientes->get($id);
+        $cliente->borrado = false;
         if($this->Clientes->save($cliente)){
             $this->Flash->success(__('The cliente has been deleted.'));
         } else {
@@ -176,7 +197,7 @@ class ClientesController extends AppController
      * filtro para buscar clientes en index (AJAX)
      */
     public function filtrarclientes(){
-        
+
         $this->request->allowMethod(['get']);
         
         $keyword = $this->request->query('keyword');

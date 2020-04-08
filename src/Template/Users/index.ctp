@@ -34,7 +34,12 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                        <?php if($user->borrado == true){ ?>
+                            <?= $this->Form->postLink(__('Activar'), ['action' => 'activar', $user->id], ['confirm' => __('Are you sure you want to activate # {0}?', $user->id)]) ?>
+                        <?php } else {?>
+                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                        <?php } ?>
+                        
                     </td>
                 </tr>
                 <?php endforeach; ?>
