@@ -38,7 +38,9 @@ class PedidosTable extends Table
         parent::initialize($config);
 
         $this->setTable('pedidos');
+
         $this->setDisplayField('id');
+        
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -58,13 +60,12 @@ class PedidosTable extends Table
         $this->belongsToMany('Images', [
             'joinTable' => 'images_pedidos'
         ]);
-        /*
-        $this->belongsToMany('Images', [
-            'foreignKey' => 'pedido_id',
-            'targetForeignKey' => 'pedido_id',
-            'joinTable' => 'images_pedidos'
+        $this->belongsTo('UserCancelacion', [
+            'propertyName' => 'user_cancelacion',
+            'foreignKey' => 'user_cancelacion',
+            'joinType' => 'LEFT',
+            'className' => 'Users'
         ]);
-        */
     }
 
     /**

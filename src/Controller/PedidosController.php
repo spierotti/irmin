@@ -17,7 +17,8 @@ class PedidosController extends AppController
      * Is Authorized Method
      * 
      */
-    public function isAuthorized($user){
+    public function isAuthorized($user)
+    {
 
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
@@ -63,7 +64,13 @@ class PedidosController extends AppController
      */
     public function index()
     {
-        $pedidos = $this->paginate($this->Pedidos->find('all')->contain(['Clientes', 'Users', 'Estados', 'Images']));
+        $auth = $this->request->session()->read('Auth');
+
+        if($auth['User']['role_id'] != 4){
+            $pedidos = $this->paginate($this->Pedidos->find('all')->contain(['Clientes', 'Users', 'Estados', 'Images']));
+        }else{
+            $pedidos = $this->paginate($this->Pedidos->find('all')->where(['Pedidos.cliente_id =' => $auth['User']['cliente_id']])->contain(['Clientes', 'Users', 'Estados', 'Images']));
+        }
 
         $this->set(compact('pedidos'));
     }
@@ -207,40 +214,37 @@ class PedidosController extends AppController
     public function delete($id = null)
     {
 
-        $pedido = $this->Pedidos->get($id);
+        $pedido = $this->Pedidos->get($id, [
+            'contain' => ['Images', 'Clientes', 'Estados']
+        ]);
 
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        $auth = $this->request->session()->read('Auth');
 
-            $pedido->fecha_cancelacion = Time::now();
-            $pedido->estado_id = 4;
+        if (($pedido['estado_id'] == 1 and (($auth['User']['role']['id'] < 4 and $auth['User']['role']['eliminar_pedido'] == true) or ($auth['User']['role_id'] == 4 and $auth['User']['role']['eliminar_pedido'] == true and $auth['User']['cliente']['id'] == $pedido->cliente_id))) or ($pedido['estado_id'] == 2 and ($auth['User']['role_id'] == 1 and $auth['User']['role']['eliminar_pedido'] == true and $auth['User']['id'] == $pedido->experto_id))){
 
+            if ($this->request->is(['patch', 'post', 'put'])) {
 
-            if ($this->Pedidos->save($pedido)) {
+                $data = $this->request->getData();
+    
+                $pedido->fecha_cancelacion = Time::now();
+                $pedido->motivo_cancelacion =  $data['motivo_cancelacion'];
+                $pedido->user_cancelacion = $auth['User']['id'];
+                $pedido->estado_id = 4;
 
-                $this->Flash->success(__('The pedido has been saved.'));
+                if ($this->Pedidos->save($pedido)) {
 
-                return $this->redirect(['action' => 'index']);
+                    $this->Flash->success(__('Pedido Cancelado con exito.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('El pedido no pudo ser guardado. Por favor, pruebas más tarde.'));
             }
-            $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
-
-        }
-
-        /* delete original
         
-        $this->request->allowMethod(['post', 'delete']);
+            $this->set(compact('pedido'));
 
-        $pedido = $this->Pedidos->get($id);
-        
-        if ($this->Pedidos->delete($pedido)) {
+        }else{
 
-            $this->Flash->success(__('El pedido ha sido cancelado!.'));
-
-        } else {
-
-            $this->Flash->error(__('El pedido no ha podido ser cancelado. Prueba nuevamente mas tarde.'));
-
+            $this->Flash->error(__('No puedes eliminar este pedido.'));
         }
-
-        return $this->redirect(['action' => 'index']);*/
     }
 }

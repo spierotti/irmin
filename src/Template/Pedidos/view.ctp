@@ -27,10 +27,6 @@
             <td><?= h($pedido->descripcion) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Conclusion') ?></th>
-            <td><?= h(($pedido->has('conclusion') and !is_null($pedido->conclusion) and strlen($pedido->conclusion)>0) ? $pedido->conclusion : "-" )?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Fecha Solicitud') ?></th>
             <td><?= h($pedido->fecha_solicitud) ?></td>
         </tr>
@@ -43,8 +39,16 @@
             <td><?= h($pedido->fecha_fin) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Conclusion') ?></th>
+            <td><?= h(($pedido->has('conclusion') and !is_null($pedido->conclusion) and strlen($pedido->conclusion)>0) ? $pedido->conclusion : "-" )?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Fecha Evaluacion') ?></th>
             <td><?= h(($pedido->has('fecha_evaluacion') and !is_null($pedido->fecha_evaluacion)) ? $pedido->fecha_evaluacion : '-')?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Motivo de Cancelación') ?></th>
+            <td><?= h(($pedido->has('motivo_cancelacion') and !is_null($pedido->motivo_cancelacion) and strlen($pedido->motivo_cancelacion)>0) ? $pedido->motivo_cancelacion : "-" )?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Fecha Cancelacion') ?></th>

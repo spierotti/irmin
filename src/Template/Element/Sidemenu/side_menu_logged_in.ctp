@@ -7,6 +7,7 @@
 
             <div class="margin-block"></div>
 
+
             <ul class="primary-menu">
                 <!--<li class="child-menu"><a href="#">-->
                     <?/*php/* echo $this->Html->link($this->request->session()->read('Auth.User.email'),
@@ -89,7 +90,6 @@
                     </div>
                 </li>
                 <!--FIN PEDIDOS -->
-
 
                 <!--CLIENTES-->
                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true || $auth['User']['role']['nuevo_cliente'] === true || $auth['User']['role']['modificar_cliente'] === true ||$auth['User']['role']['eliminar_cliente'] === true))
@@ -215,6 +215,7 @@
                 </li>
                 <?php } ?>
                 <!--FIN USUARIOS-->
+
 
                 <div class="margin-block"></div>
 <!--

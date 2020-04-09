@@ -44,6 +44,8 @@ class Pedido extends Entity
         'fecha_fin' => true,
         'fecha_evaluacion' => true,
         'fecha_cancelacion' => true,
+        'motivo_cancelacion' => true,
+        'user_cancelacion' => true,
         'estado_id' => true,
         'descripcion' => true,
         'conclusion' => true,

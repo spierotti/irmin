@@ -76,5 +76,4 @@ class PagesController extends AppController
     public function beforeFilter(Event $event){
         $this->Auth->allow(['display']);
     }
-
 }

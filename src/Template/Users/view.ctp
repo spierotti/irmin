@@ -23,6 +23,10 @@
             <td><?= $user['role']['name'] ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Cliente Asociado') ?></th>
+            <td><?= $user['cliente']['name'] . " (" . $user['cliente']['id'] . ")" ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Fecha Creación') ?></th>
             <td><?= h($user->created) ?></td>
         </tr>

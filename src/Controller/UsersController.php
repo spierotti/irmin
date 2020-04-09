@@ -7,6 +7,7 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Routing\Router;
 use Cake\Mailer\Email;
 use Cake\ORM\Query;
+use Cake\Http\Response;
 
 /**
  * Users Controller
@@ -23,10 +24,13 @@ class UsersController extends AppController
      * 
      */
     public function isAuthorized($user){
-
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
             if($this->request->action == 'index' and $user['role']['ver_usuarios'] == true)
+            {
+                return true;
+            }
+            if($this->request->action == 'filtrarusuarios' and $user['role']['ver_usuarios'] == true)
             {
                 return true;
             }
@@ -66,10 +70,8 @@ class UsersController extends AppController
             {
                 return true;
             }
-
             return false;
         }
-
         return parent::isAuthorized($user);
     }
 
@@ -78,7 +80,7 @@ class UsersController extends AppController
      * 
      */
     public function beforeFilter(Event $event){
-        $this->Auth->allow(['forgotPassword','resetPassword']);
+        $this->Auth->allow(['forgotPassword','resetPassword','ayuda']);
     }
 
     /**
@@ -86,10 +88,15 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($borrado = null)
     {
-        //$users = $this->paginate($this->Users);
         $users = $this->paginate($this->Users->find()->contain('Roles'));
+
+        if($borrado){
+            $users = $this->paginate($this->Users->find()->contain('Roles')->limit(200));
+        }else{
+            $users = $this->paginate($this->Users->find()->contain('Roles')->where(['borrado' => false])->limit(200));
+        }
 
         $this->set(compact('users'));
     }
@@ -104,9 +111,8 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Roles']
+            'contain' => ['Roles','Clientes']
         ]);
-
         $this->set('user', $user);
     }
 
@@ -122,7 +128,6 @@ class UsersController extends AppController
         $user = $this->Users->get($this->Auth->user('id'), [
             'contain' => ['Roles']
         ]);
-
         $this->set('user', $user);
     }
 
@@ -138,21 +143,14 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list');
-
-        //debug($roles);
-        //print_r($roles);
-
         // Set tags to the view context
         $this->set('roles', $roles);
-
         $this->set(compact('user'));
     }
 
@@ -183,36 +181,21 @@ class UsersController extends AppController
      */
     public function login()
     {
-        
         if ($this->Auth->user('id')){
-
             //usuario ya esta logueado
-
             $this->Flash->warning(__('¡Ya estas Loggueado!'));
-
             return $this->redirect(['controller' => 'Users', 'action' => 'home']);
-
         }else{
-    
             if ($this->request->is('post')){
-            
                 //usuario no esta loggueado
-
                 $user = $this->Auth->identify();
-                
                 if($user){
-
                     $this->Auth->setUser($user);
-
                     $this->Flash->success(__('¡Login Exitoso!'));
-
                     return $this->redirect(['controller' => 'Users', 'action' => 'home']);
                 }
-
                 //error al loguearse
-
                 $this->Flash->error(__('¡Email o Contraseña Icorrectas!'));
-
             }
         }
     }
@@ -221,9 +204,7 @@ class UsersController extends AppController
      * Logout method
      */
     public function logout(){
-
         $this->Flash->success(__('¡Logout Existoso!'));
-
         return $this->redirect($this->Auth->logout());
     }
 
@@ -237,7 +218,7 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['Clientes']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -248,15 +229,10 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list');
-
-        //debug($roles);
-
         // Set tags to the view context
         $this->set('roles', $roles);
-
         $this->set(compact('user'));
     }
 
@@ -276,20 +252,15 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list');
-
         //debug($roles);
-
         // Set tags to the view context
         $this->set('roles', $roles);
-
         $this->set(compact('user'));
     }
 
@@ -302,20 +273,36 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        // BORRADO LOGICO
         $this->request->allowMethod(['post', 'delete']);
-
         $user = $this->Users->get($id);
-
-        if ($this->Users->delete($user)) {
-
+        $user->borrado = true;
+        if ($this->Users->save($user)) {
             $this->Flash->success(__('The user has been deleted.'));
-
         } else {
-
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-            
         }
+        return $this->redirect(['action' => 'index']);
+    }
 
+    /**
+     * Activar method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function activar($id = null)
+    {
+        // VUELVO A ACTIVAR EL USUARIO
+        $this->request->allowMethod(['post', 'delete']);
+        $user = $this->Users->get($id);
+        $user->borrado = false;
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('The user has been deleted.'));
+        } else {
+            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+        }
         return $this->redirect(['action' => 'index']);
     }
 
@@ -326,35 +313,22 @@ class UsersController extends AppController
     public function forgotPassword($user = null){
 
         if ($this->request->is('post')) {
-            
             $query = $this->Users->findByEmail($this->request->data['email']);
             $user = $query->first();
-
             if (is_null($user)) {
-
                 $this->Flash->error('¡La cuenta de correo no existe!');
-
             } else {
-
                 $passkey = uniqid();
-
                 $url = Router::Url(['controller' => 'users', 'action' => 'resetPassword'], true) . '/' . $passkey;
-
                 $timeout = time() + DAY;
-
                  if ($this->Users->updateAll(['passkey' => $passkey, 'timeout' => $timeout], ['id' => $user->id])){
-
                     $this->sendResetEmail($url, $user);
                     $this->redirect(['action' => 'login']);
-
                 } else {
-
                     $this->Flash->error('¡Error al guardar!');
-
                 }
             }
         }
-        
         $this->set(compact('user'));
     }
 
@@ -365,57 +339,37 @@ class UsersController extends AppController
     public function resetPassword($passkey = null){
 
         if ($passkey) {
-
             $query = $this->Users->find('all', ['conditions' => ['passkey' => $passkey, 'timeout >' => time()]]);
             $user = $query->first();
-
             if ($user) {
-
                 if (!empty($this->request->data)) {
                     // Clear passkey and timeout
-
                     //debug($this->request->data);
-
                     $this->request->data['passkey'] = null;
                     $this->request->data['timeout'] = null;
-
                     //$user = $this->Users->patchEntity($user, $this->request->data);
-
                     $user = $this->Users->patchEntity($user, [  
                         'password'      => $this->request->data['password'], 
                         'repetir_nuevo_password'     => $this->request->data['repetir_nuevo_password']
                     ],  
                     ['validate' => 'reset']  
                 );
-
                     if ($this->Users->save($user)) {
-
                         $this->Flash->set(__('Your password has been updated.'));
                         return $this->redirect(array('action' => 'login'));
-
                     } else {
-
                         $this->Flash->error(__('The password could not be updated. Please, try again.'));
-
                     }
                 }
-
             } else {
-
                 $this->Flash->error('Invalid or expired passkey. Please check your email or try again');
                 $this->redirect(['action' => 'password']);
-
             }
-
             unset($user->password);
             $this->set(compact('user'));
-
         } else {
-
             $this->redirect('/');
-
         }
-
     }
 
     /**
@@ -490,7 +444,70 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
+    /**
+     * Filtrar Usuarios Method
+     * 
+     */
+    public function filtrarusuarios(){
+
+        $this->request->allowMethod(['get']);
+
+        $keyword = $this->request->query('keyword');
+        $activo = $this->request->query('activo');
+
+        if($activo){
+
+            $query = $this->Users->find('all', [
+                'conditions' => [
+                    'username like ' =>  '%'.$keyword.'%',
+                    'borrado = ' => false
+                ],
+                'order' => [
+                    'Users.id' => 'ASC'
+                ],
+                'contain' => [
+                    'Roles'
+                ],
+                'limit' => 10
+            ]);
+
+        }else{
+
+            $query = $this->Users->find('all', [
+                'conditions' => [
+                    'username like' =>  '%'.$keyword.'%'
+                ],
+                'order' => [
+                    'Users.id' => 'ASC'
+                ],
+                'contain' => [
+                    'Roles'
+                ],
+                'limit' => 10
+            ]);
+        }
+
+        $users = $this->paginate($query);
+        $this->set(compact('users'));
+        $this->set('_serialize', 'users');
+    }
+
+    /**
+     * Home Method
+     * 
+     */
     public function home(){
         $this->render();
+    }
+
+    /**
+     * Ayuda Method
+     * 
+     * ABRE EL ARCHIVO .PDF CON EL MANUAL DE USUARIO
+     */
+    public function ayuda()
+    {
+        $response = $this->response->withFile('C:/xampp/htdocs/irmin/webroot/files/pdf/jai1_0_1-guide.pdf');
+        return $response;
     }
 }
