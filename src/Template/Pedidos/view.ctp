@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="col-sm-12 mt-2">
-        <h4><?= __('Related Images') ?></h4>
+        <legend><?= __('Imágenes relacionadas') ?></legend>
         <?php if (!empty($pedido->images)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
