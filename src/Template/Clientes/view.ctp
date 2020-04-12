@@ -6,41 +6,70 @@
 ?>
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
-
-<div class="clientes view large-9 medium-8 columns content">
-    <h3><?= h($cliente->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Nombre') ?></th>
-            <td><?= h($cliente->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('CUIT / DNI') ?></th>
-            <td><?= h($cliente->cuit) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($cliente->email) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Telefono') ?></th>
-            <td><?= h($cliente->telefono) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Celular') ?></th>
-            <td><?= h($cliente->celular) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Domicilio') ?></th>
-            <td><?= h($cliente->domicilio) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fecha Creación') ?></th>
-            <td><?= h($cliente->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Última Modificación') ?></th>
-            <td><?= h($cliente->modified) ?></td>
-        </tr>
-    </table>
+<legend><?= __('Datos del cliente') ?></legend>
+<div class="row col-sm-12">
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Nombre
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->name) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            CUIT/DNI
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->cuit) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Email
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->email) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Teléfono
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->telefono) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Celular
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->celular) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Domicilio
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->domicilio) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Fecha de creación
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->created) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Última modificación
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($cliente->modified) ?>
+        </div>
+    </div>
 </div>

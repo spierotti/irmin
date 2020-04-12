@@ -6,126 +6,176 @@
 ?>
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
+<legend> Detalles del rol </legend>
+<div class="row col-sm-10">
+    <div class="col-sm-4 border">
+        Nombre
+    </div>
+    <div class="col-sm-6 border">
+        <?= h($role->name) ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-4 border">
+        Descripción
+    </div>
+    <div class="col-sm-6 border">
+        <?= h($role->descripcion) ?>
+    </div>
+</div>
+<legend class="mt-2"> Permisos </legend>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Categoría
+    </div>
+    <div class="col-sm-2 border">
+        Consulta
+    </div>
+    <div class="col-sm-2 border">
+        Alta
+    </div>
+    <div class="col-sm-2 border">
+        Modificación
+    </div>
+    <div class="col-sm-2 border">
+        Baja
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Pedidos
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->ver_pedidos ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->nuevo_pedido ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->modificar_pedido ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->eliminar_pedido ? __('Si') : __('No'); ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Clientes
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->ver_clientes ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->nuevo_cliente ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->modificar_cliente ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->eliminar_cliente ? __('Si') : __('No'); ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Imágenes
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->ver_imagenes ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->nueva_imagen ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->modificar_imagen ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->eliminar_imagen ? __('Si') : __('No'); ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Roles
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->ver_roles ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->nueva_rol ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->modificar_rol ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->eliminar_rol ? __('Si') : __('No'); ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-2 border">
+        Usuarios
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->ver_usuarios ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->nueva_usuario ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->modificar_usuario ? __('Si') : __('No'); ?>
+    </div>
+    <div class="col-sm-2 border">
+        <?= $role->eliminar_usuario ? __('Si') : __('No'); ?>
+    </div>
+</div>
 
-<div class="roles view large-9 medium-8 columns content">
-    <h3><?= h($this->Number->format($role->id)) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($role->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Descripcion') ?></th>
-            <td><?= h($role->descripcion) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Consulta de Pedidos') ?></th>
-            <td><?= $role->ver_pedidos ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Alta de Pedidos') ?></th>
-            <td><?= $role->nuevo_pedido ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificación de Pedidos') ?></th>
-            <td><?= $role->modificar_pedido ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Baja de Pedidos') ?></th>
-            <td><?= $role->eliminar_pedido ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Evaluar Pedidos') ?></th>
-            <td><?= $role->evaluar_pedido ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Consulta de Clientes') ?></th>
-            <td><?= $role->ver_clientes ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('ALta de Clientes') ?></th>
-            <td><?= $role->nuevo_cliente ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificación de Clientes') ?></th>
-            <td><?= $role->modificar_cliente ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Baja de Clientes') ?></th>
-            <td><?= $role->eliminar_cliente ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Consulta de Imagenes') ?></th>
-            <td><?= $role->ver_imagenes ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Alta de Imagenes') ?></th>
-            <td><?= $role->nueva_imagen ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificación de Imagenes') ?></th>
-            <td><?= $role->modificar_imagen ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Baja de Imagenes') ?></th>
-            <td><?= $role->eliminar_imagen ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Consulta de Roles') ?></th>
-            <td><?= $role->ver_roles ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Alta de Roles') ?></th>
-            <td><?= $role->nueva_rol ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificación de Roles') ?></th>
-            <td><?= $role->modificar_rol ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Baja de Roles') ?></th>
-            <td><?= $role->eliminar_rol ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Consulta de Usuario') ?></th>
-            <td><?= $role->ver_usuarios ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Alta de Usuarios') ?></th>
-            <td><?= $role->nueva_usuario ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificación de Usuarios') ?></th>
-            <td><?= $role->modificar_usuario ? __('Si') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Baja de Usuarios') ?></th>
-            <td><?= $role->eliminar_usuario ? __('Si') : __('No'); ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Users') ?></h4>
-        <?php if (!empty($role->users)): ?>
+<legend class="mt-2"> Otros permisos </legend>
+<div class="row col-sm-10">
+    <div class="col-sm-4 border">
+        Evaluar pedidos
+    </div>
+    <div class="col-sm-6 border">
+        <?= $role->evaluar_pedido ? __('Si') : __('No'); ?>
+    </div>
+</div>
+
+<div class="related mt-2">
+    <legend> Usuarios relacionados </legend>
+    <?php if (!empty($role->users)): ?>
         <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Username') ?></th>
-                <th scope="col"><?= __('Email') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+            <div class="row col-sm-10">
+                <div class="col-sm-3 border">
+                    Usuario
+                </div>
+                <div class="col-sm-5 border">
+                    Email
+                </div>
+                <div class="col-sm-2 border">
+                    Acciones
+                </div>
+            </div>
             <?php foreach ($role->users as $users): ?>
-            <tr>
-                <td><?= h($users->id) ?></td>
-                <td><?= h($users->username) ?></td>
-                <td><?= h($users->email) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Users', 'action' => 'delete', $users->id], ['confirm' => __('Are you sure you want to delete # {0}?', $users->id)]) ?>
-                </td>
-            </tr>
+            <div class="row col-sm-10">
+                <div class="col-sm-3 border">
+                    <?= h($users->username) ?>
+                </div>
+                <div class="col-sm-5 border">
+                    <?= h($users->email) ?>
+                </div>
+                <div class="col-sm-2 border">
+                    <?//= $this->Html->link(__(''), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
+                    <a href="/users/view/<?= $users->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
+                    
+                    <?//= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>
+                    <a href="/users/edit/<?= $users->id?>"><i class="fa fa-pencil" title="Modificar usuario"></i></a>
+                    <?//= $this->Form->postLink(__('Delete'), ['controller' => 'Users', 'action' => 'delete', $users->id], ['confirm' => __('Are you sure you want to delete # {0}?', $users->id)]) ?>
+                    <?php
+                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar usuario')),
+                        array('action' => 'delete', $users->id),
+                        array('escape'=>false)
+                        );
+                    ?>
+                </div>
+            </div>
             <?php endforeach; ?>
         </table>
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
 </div>
