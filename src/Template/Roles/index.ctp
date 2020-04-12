@@ -34,7 +34,7 @@
                 <div class="col-sm border"><?= h($role->name) ?></div>
                 <div class="col-sm border"><?= h($role->descripcion) ?></div>
                 <div class="col-sm border"><?= h($role->created) ?></div>
-                <div class="col-sm border"><?= h($role->id) ?></div>
+                <div class="col-sm border"><?= h($role->modified) ?></div>
                 <div class="col-sm border">
                     <td class="actions">
                     <?//= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
