@@ -9,33 +9,33 @@
 <div class="roles index large-9 medium-8 columns content mt-5">
     <legend><?= __('Roles') ?></legend>
     <div class="row">
-        <div class="col-sm-1 border">
+        <!--<div class="col-sm-1 border">
             ID
-        </div>
-        <div class="col-sm border">
+        </div>-->
+        <div class="col-sm-3 border">
             Nombre
         </div>
         <div class="col-sm border">
             Descripción
         </div>
-        <div class="col-sm border">
+        <!--<div class="col-sm border">
             Fecha de creación
         </div>
         <div class="col-sm border">
             Última modificación
-        </div>
-        <div class="col-sm border">
+        </div>-->
+        <div class="col-sm-1 border">
             Acciones
         </div>
     </div>
     <?php foreach ($roles as $role): ?>
         <div class="row">
-                <div class="col-sm-1 border"><?= $this->Number->format($role->id) ?></div>
-                <div class="col-sm border"><?= h($role->name) ?></div>
+                <!--<div class="col-sm-1 border"><?= $this->Number->format($role->id) ?></div>-->
+                <div class="col-sm-3 border"><?= h($role->name) ?></div>
                 <div class="col-sm border"><?= h($role->descripcion) ?></div>
-                <div class="col-sm border"><?= h($role->created) ?></div>
-                <div class="col-sm border"><?= h($role->modified) ?></div>
-                <div class="col-sm border">
+                <!--<div class="col-sm border"><?= h($role->created) ?></div>
+                <div class="col-sm border"><?= h($role->modified) ?></div>-->
+                <div class="col-sm-1 border">
                     <td class="actions">
                     <?//= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
                     <?php

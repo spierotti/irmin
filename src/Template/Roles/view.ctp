@@ -23,6 +23,22 @@
         <?= h($role->descripcion) ?>
     </div>
 </div>
+<div class="row col-sm-10">
+    <div class="col-sm-4 border">
+        Fecha de creación
+    </div>
+    <div class="col-sm-6 border">
+        <?= h($role->created) ?>
+    </div>
+</div>
+<div class="row col-sm-10">
+    <div class="col-sm-4 border">
+        Última modificación
+    </div>
+    <div class="col-sm-6 border">
+        <?= h($role->modified) ?>
+    </div>
+</div>
 <legend class="mt-2"> Permisos </legend>
 <div class="row col-sm-10">
     <div class="col-sm-2 border">
@@ -178,4 +194,12 @@
             <?php endforeach; ?>
         </table>
     <?php endif; ?>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-6">
+    </div>
+    <div class="ml-4">
+        <button onclick="window.location.href = '/roles';" class="btn btn-primary mt-4">Volver</button>
+    </div>
 </div>
