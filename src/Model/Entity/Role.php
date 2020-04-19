@@ -51,6 +51,7 @@ class Role extends Entity
         'ver_usuarios' => true,
         'nueva_usuario' => true,
         'modificar_usuario' => true,
-        'eliminar_usuario' => true
+        'eliminar_usuario' => true,
+        'ver_informes' => true
     ];
 }

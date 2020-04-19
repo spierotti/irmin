@@ -16,7 +16,8 @@ class ClientesController extends AppController
      * Is Authorized Method
      * 
      */
-    public function isAuthorized($user){
+    public function isAuthorized($user)
+    {
 
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
@@ -183,7 +184,7 @@ class ClientesController extends AppController
             $terms = explode(' ', trim($term));
             $terms = array_diff($terms, array(''));
             foreach($terms as $t){
-                $conditions[] = array('Clientes.name LIKE' => '%' . $t . '%');
+                $conditions[] = array('Clientes.cuit LIKE' => '%' . $t . '%');
             }
             $clientes = $this->Clientes->find('all', array('recursive' => -1, 'conditions' => $conditions, 'limit' => 20));
         }
@@ -203,32 +204,21 @@ class ClientesController extends AppController
         $keyword = $this->request->query('keyword');
         $activo = $this->request->query('activo');
 
+        $condiciones = array();
+
+        $condiciones['name like '] = '%'.$keyword.'%';
+
         if($activo){
-
-            $query = $this->Clientes->find('all', [
-                'conditions' => [
-                    'name like ' => '%'.$keyword.'%',
-                    'borrado = ' => false
-                ],
-                'order' => [
-                    'Clientes.id' => 'ASC'
-                ],
-                'limit' => 10
-            ]);
-
-        }else{
-            
-            $query = $this->Clientes->find('all', [
-                'conditions' => [
-                    'name like ' => '%'.$keyword.'%'
-                ],
-                'order' => [
-                    'Clientes.id' => 'ASC'
-                ],
-                'limit' => 10
-            ]);
-
+            $condiciones['borrado = '] = false;
         }
+            
+        $query = $this->Clientes->find('all', [
+            'conditions' => $condiciones,
+            'order' => [
+                'Clientes.id' => 'ASC'
+            ],
+            'limit' => 100
+        ]);
 
         $clientes = $this->paginate($query);
         $this->set(compact('clientes'));

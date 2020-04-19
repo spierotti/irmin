@@ -35,6 +35,7 @@
             echo $this->Form->control('nueva_usuario');
             echo $this->Form->control('modificar_usuario');
             echo $this->Form->control('eliminar_usuario');
+            echo $this->Form->control('ver_informes');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

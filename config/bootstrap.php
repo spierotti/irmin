@@ -82,7 +82,19 @@ try {
  * shared configuration.
  */
 //Configure::load('app_local', 'default');
-
+Configure::write('CakePdf', [
+    'engine' => [
+        'className' => 'CakePdf.WkHtmlToPdf',
+        // 'binary' => '/usr/local/bin/wkhtmltopdf', // Si estas en Mac OS X / Linux
+        'binary' => 'C:\\Progra~1\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+        'options' => [
+            'print-media-type' => false,
+            'outline' => true,
+            'dpi' => 96
+        ],
+    ],
+    'download' => true
+]);
 /*
  * When debug = true the metadata cache should only last
  * for a short time.

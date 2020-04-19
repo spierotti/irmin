@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Time;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Pedidos Controller
@@ -13,6 +15,13 @@ use Cake\I18n\Time;
  */
 class PedidosController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
     /**
      * Is Authorized Method
      * 
@@ -23,6 +32,14 @@ class PedidosController extends AppController
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
             if($this->request->action == 'index' and $user['role']['ver_pedidos'] == true)
+            {
+                return true;
+            }
+            if($this->request->action == 'buscarpedido' and $user['role']['ver_pedidos'] == true)
+            {
+                return true;
+            }
+            if($this->request->action == 'filtrarpedidos' and $user['role']['ver_pedidos'] == true)
             {
                 return true;
             }
@@ -67,9 +84,9 @@ class PedidosController extends AppController
         $auth = $this->request->session()->read('Auth');
 
         if($auth['User']['role_id'] != 4){
-            $pedidos = $this->paginate($this->Pedidos->find('all')->contain(['Clientes', 'Users', 'Estados', 'Images']));
+            $pedidos = $this->paginate($this->Pedidos->find('all')->where(['estado_id = ' => 1])->contain(['Clientes', 'Users', 'Estados', 'Images'])->limit(200));
         }else{
-            $pedidos = $this->paginate($this->Pedidos->find('all')->where(['Pedidos.cliente_id =' => $auth['User']['cliente_id']])->contain(['Clientes', 'Users', 'Estados', 'Images']));
+            $pedidos = $this->paginate($this->Pedidos->find('all')->where(['estado_id = ' => 1, 'Pedidos.cliente_id =' => $auth['User']['cliente_id']])->contain(['Clientes', 'Users', 'Estados', 'Images'])->limit(200));
         }
 
         $this->set(compact('pedidos'));
@@ -85,6 +102,13 @@ class PedidosController extends AppController
     public function view($id = null)
     {
         $pedido = $this->Pedidos->get($id, ['contain' => ['Clientes', 'Users', 'Estados', 'Images']]);
+
+        $this->viewBuilder()->options([
+            'pdfConfig' => [
+                'orientation' => 'portrait',
+                'filename' => 'Pedido_' . $id . '.pdf'
+            ]
+        ]);
 
         $this->set('pedido', $pedido);
     }
@@ -246,5 +270,95 @@ class PedidosController extends AppController
 
             $this->Flash->error(__('No puedes eliminar este pedido.'));
         }
+    }
+
+    /**
+     * Filtrar Peidos Method
+     * 
+     * filtro para buscar pedidos en index (AJAX)
+     * por nombre y rol del usuario y estado del pedido
+     */
+    public function filtrarpedidos(){
+
+        $this->request->allowMethod(['get']);
+
+        $auth = $this->request->session()->read('Auth');
+        $keyword = $this->request->query('keyword');
+        $estado = $this->request->query('estado') + 1;
+
+        $condiciones = array();
+        if(strlen($keyword) > 0){
+            $condiciones['Clientes.name like '] = '%'.$keyword.'%';
+        }
+        if($estado < 5){
+            $condiciones['estado_id = '] = $estado;
+        }
+        if($auth['User']['role_id'] == 4){
+            $condiciones['Pedidos.cliente_id ='] = $auth['User']['cliente_id'];
+        }
+        
+        $query = $this->Pedidos->find('all', [
+            'conditions' => $condiciones,
+            'order' => [
+                'Pedidos.id' => 'DESC'
+            ],
+            'contain' => [
+                'Clientes',
+                'Users',
+                'Estados',
+                'Images'
+            ],
+            'limit' => 200
+        ]);
+
+        $pedidos = $this->paginate($query);
+        $this->set(compact('pedidos'));
+        $this->set('_serialize', 'pedidos');
+    }
+
+    /**
+     * Buscar Pedidos Method
+     * 
+     * busca pedido por numero de id.
+     */
+    public function buscarpedido()
+    {
+
+        $pedido = null;
+
+        if(sizeof($this->request->getData()) > 0){
+
+            $data = $this->request->getData();
+
+            if(ctype_digit ($data['id'])){
+
+                $auth = $this->request->session()->read('Auth');
+                
+                $condiciones = null;
+                if($auth['User']['role_id'] == 4){
+                    $condiciones['Pedidos.cliente_id ='] = $auth['User']['cliente_id'];
+                }
+
+                try {
+
+                    $pedido = $this->Pedidos->get($data['id'], [
+                        'conditions' => $condiciones,
+                        'contain' => ['Clientes', 'Users', 'Estados', 'Images']
+                        ]);
+
+                    return $this->redirect(['action' => 'view', $pedido->id]);
+
+                } catch (RecordNotFoundException $e) {
+
+                    $this->Flash->error(__('Nro de Pedido ingresado no existe.'));
+                }
+
+            }else{
+
+                $this->Flash->error(__('Entrada Invalida.'));
+            }
+        }
+
+        $this->set('pedido', $pedido);
     }
 }

@@ -102,3 +102,14 @@ Router::scope('/', function (RouteBuilder $routes) {
  * });
  * ```
  */
+
+Router::scope('/pedidos', function (RouteBuilder $routes) {
+    $routes->connect('/buscarpedido/*', ['controller' => 'Pedidos', 'action' => 'buscarpedido']);
+    $routes->connect('/delete/*', ['controller' => 'Pedidos', 'action' => 'delete']);
+    $routes->connect('/evaluar/*', ['controller' => 'Pedidos', 'action' => 'evaluar']);
+    $routes->connect('/add/*', ['controller' => 'Pedidos', 'action' => 'add']);
+    $routes->connect('/filtrarpedidos/*', ['controller' => 'Pedidos', 'action' => 'filtrarpedidos']);
+    $routes->setExtensions('pdf');
+    $routes->connect('/view/*', ['controller' => 'Pedidos', 'action' => 'view']);
+    $routes->fallbacks('InflectedRoute');
+});

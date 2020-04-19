@@ -19,23 +19,36 @@
             <li class="heading"><?= __('Pedidos') ?></li>
         <?php } ?>
         <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)){ ?>
-        <li><?= $this->Html->link(__('Ver'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
+            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
+        <?php } ?>
+        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)){ ?>
+            <li><?= $this->Html->link(__('Buscar'), ['controller' => 'Pedidos', 'action' => 'buscarpedido']) ?> </li>
         <?php } ?>
         <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true)){ ?>
             <li><?= $this->Html->link(__('Nuevo'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
         <?php } ?>
         <?php if($this->view == 'view' && $this->name == "Pedidos"){ ?> 
+
+            <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'view', $pedido->id, '_ext' => 'pdf']); ?></li>
+
             <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id']))){ ?>    
                 <li><?= $this->Html->link(__('Evaluar'), ['action' => 'evaluar', $pedido->id]) ?> </li>
-            <?php } ?>
-            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_pedido'] === true) && ($pedido->estado_id == 1)){ ?>
-                <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $pedido->id]) ?> </li>
             <?php } ?>
             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id']))){ ?>    
                 <li><?= $this->Html->link(__('Cancelar'), ['action' => 'delete', $pedido->id]) ?> </li>
             <?php } ?>
         <?php } ?>
         <!-------------->
+
+        <!-- INFORMES -->
+        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true)){ ?>
+            <li role="reparator" class="divider"></li>
+            <li class="heading"><?= __('Informes Diarios') ?></li>
+        <?php } ?>
+        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true)){ ?>
+            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
+        <?php } ?>
+        <!--------------->
 
         <!-- CLIENTES -->
         <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true || $auth['User']['role']['nuevo_cliente'] === true || $auth['User']['role']['modificar_cliente'] === true ||$auth['User']['role']['eliminar_cliente'] === true)){ ?>

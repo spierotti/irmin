@@ -102,6 +102,10 @@
             <th scope="row"><?= __('Baja de Usuarios') ?></th>
             <td><?= $role->eliminar_usuario ? __('Si') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Consulta de Informes') ?></th>
+            <td><?= $role->ver_informes ? __('Si') : __('No'); ?></td>
+        </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Users') ?></h4>
