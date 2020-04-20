@@ -12,6 +12,30 @@ use App\Controller\AppController;
  */
 class InformesController extends AppController
 {
+
+    /**
+     * Is Authorized Method
+     * 
+     */
+    public function isAuthorized($user)
+    {
+
+        if(isset($user['role']) and $user['role']['id'] > 1)
+        {
+            if($this->request->action == 'index' and $user['role']['ver_pedidos'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'view' and $user['role']['ver_pedidos'] == true)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return parent::isAuthorized($user);
+    }
     /**
      * Index method
      *
