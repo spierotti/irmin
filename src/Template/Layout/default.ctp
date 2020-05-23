@@ -116,6 +116,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
 
     </div>
+    <script type="text/javascript"> 
+        $(function () {
+            $('[data-toggle="datepicker"]').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+        });
+    </script>
     <footer>
     </footer>
 </body>

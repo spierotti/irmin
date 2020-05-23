@@ -33,119 +33,68 @@
             </div>
         </div>
         <legend class="mt-2"> Permisos </legend>
+
         <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Categoría
-            </div>
-            <div class="col-sm-2 border">
-                Consulta
-            </div>
-            <div class="col-sm-2 border">
-                Alta
-            </div>
-            <div class="col-sm-2 border">
-                Modificación
-            </div>
-            <div class="col-sm-2 border">
-                Baja
-            </div>
-        </div>
-        <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Pedidos
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('ver_pedidos', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('nuevo_pedido', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('modificar_pedido',['label' => false] );  ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('eliminar_pedido', ['label' => false]); ?>
-            </div>
-        </div>
-        <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Clientes
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('ver_clientes', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('nuevo_cliente', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('modificar_cliente', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('eliminar_cliente', ['label' => false]); ?>
-            </div>
-        </div>
-        <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Imágenes
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('ver_imagenes', ['label' => false]);  ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('nueva_imagen', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('modificar_imagen', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('eliminar_imagen', ['label' => false]); ?>
-            </div>
-        </div>
-        <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Roles
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('ver_roles', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('nueva_rol', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('modificar_rol', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('eliminar_rol', ['label' => false]); ?>
-            </div>
-        </div>
-        <div class="row col-sm-10">
-            <div class="col-sm-2 border">
-                Usuarios
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('ver_usuarios', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('nueva_usuario', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('modificar_usuario', ['label' => false]); ?>
-            </div>
-            <div class="col-sm-2 border">
-                <?php echo $this->Form->control('eliminar_usuario', ['label' => false]); ?>
-            </div>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Consulta</th>
+                  <th scope="col">Alta</th>
+                  <th scope="col">Modificación</th>
+                  <th scope="col">Baja</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Pedidos</th>
+                  <td><?php echo $this->Form->control('ver_pedidos', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('nuevo_pedido', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('modificar_pedido',['label' => false] );  ?></td>
+                  <td><?php echo $this->Form->control('eliminar_pedido', ['label' => false]); ?></td>
+                </tr>
+                <tr>
+                  <th scope="row">Clientes</th>
+                  <td><?php echo $this->Form->control('ver_clientes', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('nuevo_cliente', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('modificar_cliente', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('eliminar_cliente', ['label' => false]); ?></td>
+                </tr>
+                <tr>
+                  <th scope="row">Imágenes</th>
+                  <td><?php echo $this->Form->control('ver_imagenes', ['label' => false]);  ?></td>
+                  <td><?php echo $this->Form->control('nueva_imagen', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('modificar_imagen', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('eliminar_imagen', ['label' => false]); ?></td>
+                </tr>
+                <tr>
+                  <th scope="row">Roles</th>
+                  <td><?php echo $this->Form->control('ver_roles', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('nueva_rol', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('modificar_rol', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('eliminar_rol', ['label' => false]); ?></td>
+                </tr>
+                <tr>
+                  <th scope="row">Usuarios</th>
+                  <td><?php echo $this->Form->control('ver_usuarios', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('nueva_usuario', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('modificar_usuario', ['label' => false]); ?></td>
+                  <td><?php echo $this->Form->control('eliminar_usuario', ['label' => false]); ?></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
 
         <legend class="mt-2"> Otros permisos </legend>
         <div class="row col-sm-10">
-            <div class="row col-sm-4">
-                <div class="col-sm-8 border">
-                    Evaluar pedidos
-                </div>
-                <div class="col-sm-3 border">
-                    <?php echo $this->Form->control('evaluar_pedido', ['label' => false]); ?>
-                </div>
-            </div>
+            <table>
+                <tbody>
+                <tr>
+                    <th scope="row">Evaluar pedidos</th>
+                    <td><div class="ml-2"><?php echo $this->Form->control('evaluar_pedido', ['label' => false]); ?></div></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
         <div class="form-group row">
             <div class="col-sm-6">
