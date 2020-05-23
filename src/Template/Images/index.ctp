@@ -27,7 +27,8 @@
             <?php foreach ($images as $image): ?>
             <tr>
                 <td><?= h($image->fecha_hora_imagen) ?></td>
-                <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/square_' . $image->get('photo')); ?></td>
+                
+                <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo')); ?></td> <!-- /square_ -->
                 <td><?= h($image->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]) ?>

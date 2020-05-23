@@ -57,7 +57,7 @@
         <?php foreach ($pedido->images as $images): ?>
         <tr>
             <td><?= h($images->fecha_hora_imagen) ?></td>
-            <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/square_' . $images->photo, ['fullBase' => true]); ?></td>
+            <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['fullBase' => true]); ?></td>
             <td><?= h($images->created) ?></td>
         </tr>
         <?php endforeach; ?>

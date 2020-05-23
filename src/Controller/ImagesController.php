@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use \Cake\Http\Response;
 
 /**
  * Images Controller
@@ -41,6 +42,14 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+     public function view($id = null)
+     {
+         $image = $this->Images->get($id, [
+             'contain' => []
+         ]);
+ 
+         $this->set('image', $image);
+     }
     
     /*public function view($fecha_hora_imagen = null)
     {
@@ -51,15 +60,6 @@ class ImagesController extends AppController
 
         $this->set('image', $image);
     }*/
-    
-     public function view($id = null)
-    {
-        $image = $this->Images->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('image', $image);
-    }
 
     /**
      * Add method
@@ -67,6 +67,22 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
+    {
+
+        if ($this->request->is('post')) {
+
+            exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
+            //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
+
+            if (!$return) {
+                echo $salida;
+            } else {
+                echo "error";
+            }
+        }
+    }
+    
+    /*public function add()
     {
         $image = $this->Images->newEntity();
 
@@ -103,6 +119,32 @@ class ImagesController extends AppController
             }
         }
         $this->set(compact('image'));
+    }*/
+
+    /**
+     * 
+     */
+    public function ejecutar(){
+
+        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
+        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
+
+        $respuesta = new Response();
+
+        if (!$return) {
+
+            $string = implode("\n", $salida);
+
+            $respuesta = $respuesta->withStringBody($string);
+
+        } else {
+
+            $respuesta = $respuesta->withStringBody("ERROR");
+            //$respuesta = "error";
+            
+        }
+
+        return $respuesta;
     }
 
     /**
