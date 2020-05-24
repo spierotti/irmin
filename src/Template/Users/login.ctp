@@ -7,15 +7,36 @@
 
 <?php echo $this->element('Sidemenu/side_menu_logged_out') ?>
 
-<div class="users form large-9 medium-8 columns content">
+
+<div class="users form large-6 medium-8 columns content">
     <?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __('Login') ?></legend>
-        <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+        <div class="row justify-content-center">
+            <div class="col-sm-8 mt-5"><legend><?= __('Iniciar sesión ') ?></legend></div>
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="email" id="email" class="col-sm-2 col-form-label mt-2">E-mail</label>
+                    <div class="col-sm-9">
+                        <?php
+                            echo $this->Form->control('email',['label' => false,'class'=>'form-control mt-2']);
+                        ?>
+                    </div>
+                    <label for="email" id="email" class="col-sm-2 col-form-label mt-2">Contraseña</label>
+                    <div class="col-sm-9">
+                        <?php
+                            echo $this->Form->control('password', ['label' => false,'class'=>'form-control mt-2']);
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 mt-2">
+                        <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+                        <?= $this->Form->submit('Iniciar sesión', [
+                            'class' => 'btn btn-primary mt-2'
+                        ]) ?>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    <?//= $this->Form->button(__('Submit', ['class' => 'btn btn-primary'])) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -1,0 +1,26 @@
+.legend{
+    width: 100%;
+    margin: 1.5rem;
+}
+
+.form-control{
+    width: 60%;
+    float: right;
+}
+
+.form-group{
+    width: 90%;
+}
+
+.form-group label{
+    align-items: flex-end;
+}
+
+fieldset{
+    align-self: center;
+}
+
+.container fieldset{
+    align-content: center;
+    width: 80%;
+}

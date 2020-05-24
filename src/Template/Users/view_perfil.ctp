@@ -7,28 +7,46 @@
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'User']); ?>
 
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($user->email) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Rol') ?></th>
-            <td><?= $user['role']['name'] ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fecha Creación') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Última Modificación') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
-    </table>
+<legend><?= __('Datos del usuario') ?></legend>
+<div class="row col-sm-12">
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Nombre de usuario
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($user->username) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Email
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($user->email) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Rol
+        </div>
+        <div class="col-sm-6 border">
+            <?= $user['role']['name'] ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Fecha de creación
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($user->created) ?>
+        </div>
+    </div>
+    <div class="row col-sm-10">
+        <div class="col-sm-4 border">
+            Última modificación
+        </div>
+        <div class="col-sm-6 border">
+            <?= h($user->modified) ?>
+        </div>
+    </div>
 </div>
