@@ -37,11 +37,14 @@
                         <?php echo $this->Form->control('domicilio',['label' => false, 'class'=>'form-control mt-2']); ?>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
+                <div class="form-group row mt-4">
+                    <div class="col-sm-8">
                         <?= $this->Form->submit('Guardar cambios', [
                             'class' => 'btn btn-primary'
                         ]) ?>
+                    </div>
+                    <div>
+                        <button onclick="window.location.href = '/clientes';" class="btn btn-primary">Volver</button>
                     </div>
                 </div>
             </div>

@@ -8,37 +8,21 @@
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 <div class="roles index large-9 medium-8 columns content mt-5">
     <legend><?= __('Roles') ?></legend>
-    <div class="row">
-        <!--<div class="col-sm-1 border">
-            ID
-        </div>-->
-        <div class="col-sm-3 border">
-            Nombre
-        </div>
-        <div class="col-sm border">
-            Descripción
-        </div>
-        <!--<div class="col-sm border">
-            Fecha de creación
-        </div>
-        <div class="col-sm border">
-            Última modificación
-        </div>-->
-        <div class="col-sm-1 border">
-            Acciones
-        </div>
-    </div>
-    <?php foreach ($roles as $role): ?>
-        <div class="row">
-                <!--<div class="col-sm-1 border"><?= $this->Number->format($role->id) ?></div>-->
-                <div class="col-sm-3 border"><?= h($role->name) ?></div>
-                <div class="col-sm border"><?= h($role->descripcion) ?></div>
-                <!--<div class="col-sm border"><?= h($role->created) ?></div>
-                <div class="col-sm border"><?= h($role->modified) ?></div>-->
-                <div class="col-sm-1 border">
-                    <td class="actions">
-                    <?//= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
-                    <?php
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($roles as $role): ?>
+            <tr>
+              <th scope="row"><?= h($role->name) ?></th>
+              <td><?= h($role->descripcion) ?></td>
+              <td>
+                <?php
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver detalles')),
                         array('action' => 'view', $role->id),
                         array('escape'=>false)
@@ -55,11 +39,11 @@
                         array('escape'=>false)
                         );
                     ?>
-                    </td>
-                </div>
-        </div>
-    <?php endforeach; ?>
-
+              </td>
+            </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
 
     <br>
     <nav aria-label="Page navigation">
