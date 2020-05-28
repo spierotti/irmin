@@ -92,6 +92,9 @@
                 <tr>
                     <th scope="row">Evaluar pedidos</th>
                     <td><div class="ml-2"><?php echo $this->Form->control('evaluar_pedido', ['label' => false]); ?></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">Ver informes</th>
                     <td><div class="ml-2"><?php echo $this->Form->control('ver_informes', ['label' => false]); ?></div></td>
                 </tr>
               </tbody>
