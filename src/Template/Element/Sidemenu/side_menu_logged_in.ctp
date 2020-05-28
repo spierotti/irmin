@@ -76,15 +76,15 @@
                         { ?> 
                             <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id'])))
                             { ?>    
-                                <li><?= $this->Html->link(__('Evaluar pedidos'), ['action' => 'evaluar', $pedido->id]) ?> </li>
+                                <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
                             <?php } ?>
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_pedido'] === true) && ($pedido->estado_id == 1))
                             { ?>
-                                <li><?= $this->Html->link(__('Modificar pedidos'), ['action' => 'edit', $pedido->id]) ?> </li>
+                                <!--<li><?//= $this->Html->link(__('Modificar pedidos'), ['action' => 'edit', $pedido->id]) ?> </li>-->
                             <?php } ?>
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
                             { ?>    
-                                <li><?= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>
+                                <!--<li><?//= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>-->
                             <?php } ?>
                         <?php } ?>
                     </div>
