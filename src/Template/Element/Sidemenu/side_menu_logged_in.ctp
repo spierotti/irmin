@@ -7,65 +7,6 @@
 
             <div class="margin-block"></div>
 
-<<<<<<< HEAD
-        <!-- PEDIDOS -->
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true || $auth['User']['role']['modificar_pedido'] === true || $auth['User']['role']['nuevo_pedido'] === true || $auth['User']['role']['eliminar_pedido'] === true || $auth['User']['role']['evaluar_pedido'] === true)){ ?>
-            <li role="reparator" class="divider"></li>
-            <li class="heading"><?= __('Pedidos') ?></li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)){ ?>
-            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)){ ?>
-            <li><?= $this->Html->link(__('Buscar'), ['controller' => 'Pedidos', 'action' => 'buscarpedido']) ?> </li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true)){ ?>
-            <li><?= $this->Html->link(__('Nuevo'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
-        <?php } ?>
-        <?php if($this->view == 'view' && $this->name == "Pedidos"){ ?> 
-
-            <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'view', $pedido->id, '_ext' => 'pdf']); ?></li>
-
-            <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id']))){ ?>    
-                <li><?= $this->Html->link(__('Evaluar'), ['action' => 'evaluar', $pedido->id]) ?> </li>
-            <?php } ?>
-            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id']))){ ?>    
-                <li><?= $this->Html->link(__('Cancelar'), ['action' => 'delete', $pedido->id]) ?> </li>
-            <?php } ?>
-        <?php } ?>
-        <!-------------->
-
-        <!-- INFORMES -->
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true)){ ?>
-            <li role="reparator" class="divider"></li>
-            <li class="heading"><?= __('Informes Diarios') ?></li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true)){ ?>
-            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
-        <?php } ?>
-        <!--------------->
-
-        <!-- CLIENTES -->
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true || $auth['User']['role']['nuevo_cliente'] === true || $auth['User']['role']['modificar_cliente'] === true ||$auth['User']['role']['eliminar_cliente'] === true)){ ?>
-            <li role="reparator" class="divider"></li>
-            <li class="heading"><?= __('Clientes') ?></li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true)){ ?>
-            <li><?= $this->Html->link(__('Ver'), ['controller' => 'Clientes', 'action' => 'index', false]) ?> </li>
-        <?php } ?>
-        <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_cliente'] === true)){ ?>
-            <li><?= $this->Html->link(__('Nuevo'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
-        <?php } ?>
-        <?php if($this->view == 'view' && $this->name == "Clientes"){ ?>
-            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)){ ?>
-                <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
-            <?php } ?>
-            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)){ ?>
-                <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
-            <?php } ?>
-        <?php } ?>
-        <!-------------->
-=======
 
             <ul class="primary-menu">
                 <!--<li class="child-menu"><a href="#">-->
@@ -76,7 +17,6 @@
                      */?>
                 <!--<i class="fa fa-angle-right"></i></a>-->
                 <!--</li>-->
->>>>>>> 32b0505a69308f9d57ea63225afb8dcb8c1f4b2b
 
                 <!--vieja sección Mi cuenta
                 <li class="child-menu"><a href="#">Mi cuenta <i class="fa fa-angle-right"></i></a>
@@ -136,15 +76,15 @@
                         { ?> 
                             <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id'])))
                             { ?>    
-                                <li><?= $this->Html->link(__('Evaluar pedidos'), ['action' => 'evaluar', $pedido->id]) ?> </li>
+                                <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
                             <?php } ?>
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_pedido'] === true) && ($pedido->estado_id == 1))
                             { ?>
-                                <li><?= $this->Html->link(__('Modificar pedidos'), ['action' => 'edit', $pedido->id]) ?> </li>
+                                <!--<li><?//= $this->Html->link(__('Modificar pedidos'), ['action' => 'edit', $pedido->id]) ?> </li>-->
                             <?php } ?>
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
                             { ?>    
-                                <li><?= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>
+                                <!--<li><?//= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>-->
                             <?php } ?>
                         <?php } ?>
                     </div>
