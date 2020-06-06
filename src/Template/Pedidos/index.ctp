@@ -12,7 +12,7 @@
     <?php if (isset($auth['User']['role_id']) && $auth['User']['role_id'] != 4){ ?>    
         <?= $this->Form->control('buscar', ['label' => false, 'placeholder' => 'Buscar por Cliente', 'autocompelte' => false, 'id' => 'buscar']); ?>
     <?php } ?>
-    <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false]); ?>
+    <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2']); ?>
 
         <table class="table table-hover">
             <thead>
