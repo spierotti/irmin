@@ -11,7 +11,7 @@
 
     <?= $this->Form->create($role) ?>
     <fieldset>
-        <legend>Agregar rol</legend>
+        <legend>Editar rol</legend>
         <div class="row col-sm-10">
             <label for="razonSocial" id="razonSocial" class="col-sm-2 col-form-label mt-2">Nombre </label>
             <div class="col-sm-9">
@@ -33,7 +33,6 @@
             </div>
         </div>
         <legend class="mt-2"> Permisos </legend>
-
         <div class="row col-sm-10">
             <table class="table table-sm">
               <thead>
