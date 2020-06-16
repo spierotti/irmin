@@ -8,12 +8,48 @@
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Image']); ?>
 
 <div class="images index large-9 medium-8 columns content">
-    <h3><?= __('IMAGENES') ?></h3>
-    <?= $this->Form->create('Images', ['type' => 'get']); ?>
-    <?= $this->Form->control('start_date',['class' => 'datepicker', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
-    <?= $this->Form->control('end_date',['class' => 'datepicker', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
-    <?= $this->Form->button('Buscar'); ?>
-    <?= $this->Form->end(); ?>
+    <Legend>Imágenes</legend>
+    <div class="col-sm-8">
+        <?= $this->Form->create('Images', ['type' => 'get']); ?>
+            <div class="form-group row">
+                <?//= $this->Form->control('start_date',['class' => 'datepicker', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
+
+                <!--<label for="fechaInicio" id="fechaInicio" class="col-sm-2 col-form-label mt-2">Fecha desde</label>-->
+                <?php echo $this->Form->control('start_date', [
+                                    'type' => 'text',
+                                    'placeholder' => 'Fecha desde',
+                                    'class'=>'form-control mt-2',
+                                    //'class' => 'datetimepicker',
+                                    'data-toggle' => 'datepicker',
+                                    'label' => false,
+                                    'value' => $this->request->query('start_date'), 'autocomplete' => 'off'] 
+                                ) ?>
+
+                <!--<label for="fechaFin" id="fechaFin" class="col-sm-2 col-form-label mt-2">Fecha hasta</label>-->
+                <?php echo $this->Form->control('end_date', [
+                                    'type' => 'text',
+                                    'placeholder' => 'Fecha desde',
+                                    'class'=>'form-control mt-2 ml-2',
+                                    //'class' => 'datetimepicker',
+                                    'data-toggle' => 'datepicker',
+                                    'label' => false,
+                                    'value' => $this->request->query('end_date'), 'autocomplete' => 'off'] 
+                                ) ?>
+
+
+
+                <?//= $this->Form->control('end_date',['class' => 'datepicker', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
+            </div>
+            <?//= $this->Form->button('Buscar'); ?>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <?= $this->Form->button('Buscar', [
+                        'class' => 'btn btn-primary'
+                    ]) ?>
+                </div>
+            </div>
+        <?= $this->Form->end(); ?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
