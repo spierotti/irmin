@@ -84,5 +84,25 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            
+            <?php
+                $this->Paginator->templates([
+                    'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                    'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                    'current' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                    'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                    'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                    'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+                ]);
+            ?>
+
+            <?= $this->Paginator->prev('Anterior') ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next('Siguiente') ?>
+
+        </ul>
+    </nav>
 </div>
 <?= $this->Html->script('filtrar-imagen.js') ?>
