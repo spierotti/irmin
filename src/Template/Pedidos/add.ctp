@@ -26,7 +26,7 @@
                     ?>
 
                     <?php echo $this->Form->control('fecha_inicio', [
-                        'type' => 'text',
+                        'type' => 'date',
                         'placeholder' => 'Fecha desde',
                         'class'=>'form-control mt-2',
                         //'class' => 'datetimepicker',
@@ -34,6 +34,14 @@
                         'label' => false,
                         'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : ""
                     ]) ?>
+                    <?php echo $this->Form->control('start_date',
+                        ['class' => 'datepicker form-control mt-2 mb-2', 
+                        'placeholder' => 'Fecha desde',
+                        'value' => $this->request->query('start_date'), 
+                        'autocomplete' => 'off',
+                        'label' => false
+                        ]); 
+                    ?>
 
                 </div>
                 <!--<label for="fechaFin" id="fechaFin" class="col-sm-3 col-form-label mt-2">Fecha de fin</label>-->
@@ -43,7 +51,7 @@
                     ?>
 
                     <?php echo $this->Form->control('fecha_fin', [
-                        'type' => 'text',
+                        'type' => 'date',
                         'placeholder' => 'Fecha hasta',
                         'class'=>'form-control mt-2',
                         //'class' => 'datetimepicker',

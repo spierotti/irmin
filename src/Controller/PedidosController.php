@@ -16,6 +16,13 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class PedidosController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Pedidos.id' => 'desc'
+        ]
+    ];
+
     public function initialize()
     {
         parent::initialize();
@@ -93,6 +100,55 @@ class PedidosController extends AppController
     }
 
     /**
+     * Filtrar Peidos Method
+     * 
+     * filtro para buscar pedidos en index (AJAX)
+     * por nombre y rol del usuario y estado del pedido
+     */
+    public function filtrarpedidos(){
+    //public function index(){
+
+        $this->request->allowMethod(['get']);
+
+        $this->Pedidos->recursive = 0;
+        
+        $this->layout = 'ajax';
+
+        $auth = $this->request->session()->read('Auth');
+        $keyword = $this->request->query('keyword');
+        $estado = $this->request->query('estado') + 1;
+
+        $condiciones = array();
+        if(strlen($keyword) > 0){
+            $condiciones['Clientes.name like '] = '%'.$keyword.'%';
+        }
+        if($estado < 5){
+            $condiciones['estado_id = '] = $estado;
+        }
+        if($auth['User']['role_id'] == 4){
+            $condiciones['Pedidos.cliente_id ='] = $auth['User']['cliente_id'];
+        }
+        
+        $query = $this->Pedidos->find('all', [
+            'conditions' => $condiciones,
+            'order' => [
+                'Pedidos.id' => 'DESC'
+            ],
+            'contain' => [
+                'Clientes',
+                'Users',
+                'Estados',
+                'Images'
+            ],
+            'limit' => 200
+        ]);
+
+        $pedidos = $this->paginate($query);
+        $this->set(compact('pedidos'));
+        $this->set('_serialize', 'pedidos');
+    }
+
+    /**
      * View method
      *
      * @param string|null $id Pedido id.
@@ -123,6 +179,8 @@ class PedidosController extends AppController
         $pedido = $this->Pedidos->newEntity();
         
         if ($this->request->is('post')) {
+
+            debug($this->request->data());
 
             // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
             $query = $this->Pedidos->Images->find('all')->where([
@@ -278,6 +336,7 @@ class PedidosController extends AppController
      * filtro para buscar pedidos en index (AJAX)
      * por nombre y rol del usuario y estado del pedido
      */
+/*
     public function filtrarpedidos(){
 
         $this->request->allowMethod(['get']);
@@ -314,7 +373,7 @@ class PedidosController extends AppController
         $pedidos = $this->paginate($query);
         $this->set(compact('pedidos'));
         $this->set('_serialize', 'pedidos');
-    }
+    }*/
 
     /**
      * Buscar Pedidos Method

@@ -7,13 +7,40 @@
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Image']); ?>
 
-<div class="images index large-9 medium-8 columns content">
-    <h3><?= __('IMAGENES') ?></h3>
+<div class="col-sm-6">    
+    <legend>Imágenes</legend>
     <?= $this->Form->create('Images', ['type' => 'get']); ?>
-    <?= $this->Form->control('start_date',['class' => 'datepicker', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
-    <?= $this->Form->control('end_date',['class' => 'datepicker', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
-    <?= $this->Form->button('Buscar'); ?>
-    <?= $this->Form->end(); ?>
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <?= $this->Form->control('start_date',
+                ['class' => 'datepicker form-control mt-2 mb-2', 
+                'placeholder' => 'Fecha desde',
+                'value' => $this->request->query('start_date'), 
+                'autocomplete' => 'off',
+                'label' => false
+                ]); 
+            ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $this->Form->control('end_date',
+                ['class' => 'datepicker form-control mt-2 mb-2', 
+                'placeholder' => 'Fecha hasta',
+                'value' => $this->request->query('end_date'), 
+                'autocomplete' => 'off',
+                'label' => false
+                ]); 
+            ?>
+        </div>
+        <?//= $this->Form->button('Buscar'); ?>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <?= $this->Form->submit('Buscar', [
+                    'class' => 'btn btn-primary'
+                ]) ?>
+            </div>
+        </div>
+        <?= $this->Form->end(); ?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
