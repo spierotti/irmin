@@ -12,6 +12,14 @@ use App\Controller\AppController;
  */
 class ClientesController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Pedidos.id' => 'desc'
+        ]
+    ];
+    
     /**
      * Is Authorized Method
      * 

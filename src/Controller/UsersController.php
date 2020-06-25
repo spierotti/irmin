@@ -19,6 +19,13 @@ use Cake\Http\Response;
 class UsersController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Pedidos.id' => 'desc'
+        ]
+    ];
+
     /**
      * Is Authorized Method
      * 
