@@ -16,13 +16,13 @@
         <div class="col-sm-8">
             <legend class="mt-2"> Usuarios </legend>
             <div class="col-sm-6">
-                <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Usuario', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
+                <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar usuario', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
             </div>
             <div class="ml-4">
                 <table>
                 <tbody>
                     <tr>
-                    <th scope="row">Solo activos</th>
+                    <th scope="row">Solo usuarios activos</th>
                     <td>
                         <div class="ml-2">
                             <?= $this->Form->control(' Solo Activos ', ['label' => false,'type' => 'checkbox', 'checked' => true, 'id' => 'activo', 'class'=> 'mt-2']); ?>
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="table-content" id="contenedor-tabla">
+    <div class="table-content mt-4" id="contenedor-tabla">
 
         <?php
             $this->Paginator->templates([
@@ -70,8 +70,8 @@
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td>
-                        <a href="../users/view/<?= $user->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
-                        <a href="../users/edit/<?= $user->id?>"><i class="fa fa-pencil" title="Editar usuario"></i></a>
+                        <a href="/users/view/<?= $user->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
+                        <a href="/users/edit/<?= $user->id?>"><i class="fa fa-pencil" title="Editar usuario"></i></a>
                         <?php
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar usuario')),
                         array('action' => 'delete', $user->id),

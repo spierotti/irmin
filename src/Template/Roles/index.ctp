@@ -40,7 +40,7 @@
                         array('escape'=>false)
                         );
                     ?>
-                    <a href="../irmin/roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
+                    <a href="/roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
                     <?php
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash eliminar', 'title' => 'Eliminar rol')),
                         array('action' => 'delete', $role->id),
