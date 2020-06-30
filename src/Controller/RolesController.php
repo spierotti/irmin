@@ -12,6 +12,14 @@ use App\Controller\AppController;
  */
 class RolesController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Roles.name' => 'asc'
+        ]
+    ];
+    
     /**
      * Is Authorized Method
      * 
@@ -21,6 +29,10 @@ class RolesController extends AppController
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
             if($this->request->action == 'index' and $user['role']['ver_roles'] == true)
+            {
+                return true;
+            }
+            if($this->request->action == 'filtrarroles' and $user['role']['ver_roles'] == true)
             {
                 return true;
             }
@@ -52,9 +64,15 @@ class RolesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($borrado = null)
     {
         $roles = $this->paginate($this->Roles);
+
+        if($borrado){
+            $roles = $this->paginate($this->Roles->find()->limit(200));
+        }else{
+            $roles = $this->paginate($this->Roles->find()->where(['borrado' => false])->limit(200));
+        }
 
         $this->set(compact('roles'));
     }
@@ -130,14 +148,51 @@ class RolesController extends AppController
      */
     public function delete($id = null)
     {
+        // BORRADO LOGICO
         $this->request->allowMethod(['post', 'delete']);
+
         $role = $this->Roles->get($id);
-        if ($this->Roles->delete($role)) {
+
+        $role->borrado = true;    
+
+        if ($this->Roles->save($role)) {
             $this->Flash->success(__('The role has been deleted.'));
         } else {
             $this->Flash->error(__('The role could not be deleted. Please, try again.'));
         }
-
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Filtrar Roles Method
+     * 
+     * filtro para buscar roles en index (AJAX)
+     */
+    public function filtrarroles(){
+
+        $this->request->allowMethod(['get']);
+        
+        $keyword = $this->request->query('keyword');
+        $activo = $this->request->query('activo');
+
+        $condiciones = array();
+
+        $condiciones['name like '] = '%'.$keyword.'%';
+
+        if($activo){
+            $condiciones['borrado = '] = false;
+        }
+            
+        $query = $this->Roles->find('all', [
+            'conditions' => $condiciones,
+            'order' => [
+                'Roles.name' => 'ASC'
+            ],
+            'limit' => 100
+        ]);
+        
+        $roles = $this->paginate($query);
+        $this->set(compact('roles'));
+        $this->set('_serialize', 'roles');
     }
 }
