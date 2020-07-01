@@ -10,7 +10,7 @@
 <div class="pedidos index large-9 medium-8 columns content">
     <h3><?= __('Pedidos') ?></h3>
     <?php if (isset($auth['User']['role_id']) && $auth['User']['role_id'] != 4){ ?>    
-        <?= $this->Form->control('buscar', ['label' => false, 'placeholder' => 'Buscar por Cliente', 'autocompelte' => false, 'id' => 'buscar']); ?>
+        <?= $this->Form->control('buscar', ['label' => false, 'placeholder' => 'Buscar por cliente', 'autocompelte' => false, 'id' => 'buscar']); ?>
     <?php } ?>
     <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2']); ?>
 
