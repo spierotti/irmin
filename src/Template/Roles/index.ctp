@@ -5,9 +5,38 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
-<div class="roles index large-9 medium-8 columns content mt-5">
-    <legend><?= __('Roles') ?></legend>
+<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Rol']); ?>
+
+<div class="roles index large-9 medium-8 columns content col-lg-12">
+
+<div class="col-sm-10">
+        <div class="col-sm-2">
+            <br>
+        </div>
+        <div class="col-sm-8">
+            <legend class="mt-2"> Roles </legend>
+            <div class="col-sm-6">
+                <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Rol', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
+            </div>
+            <div class="ml-4">
+                <table>
+                <tbody>
+                    <tr>
+                    <th scope="row">Solo activos</th>
+                    <td>
+                        <div class="ml-2">
+                            <?= $this->Form->control(' Solo Activos ', ['label' => false,'type' => 'checkbox', 'checked' => true, 'id' => 'activo', 'class'=> 'mt-2']); ?>
+                        </div>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-content" id="contenedor-tabla">
+
     <?php
       $this->Paginator->templates([
       'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
@@ -20,6 +49,7 @@
       'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
       ]);
     ?>
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -40,7 +70,7 @@
                         array('escape'=>false)
                         );
                     ?>
-                    <a href="/roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
+                    <a href="./roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
                     <?php
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash eliminar', 'title' => 'Eliminar rol')),
                         array('action' => 'delete', $role->id),
@@ -52,14 +82,17 @@
         <?php endforeach; ?>
       </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('Primera')) ?>
-            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+
+    <nav aria-label="Page navigation ">
+        <ul class="pagination justify-content-center">
+            <?= $this->Paginator->first('<<' ) ?>
+            <?= $this->Paginator->prev('<') ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
-            <?= $this->Paginator->last(__('Última') . ' >>') ?>
+            <?= $this->Paginator->next('>') ?>
+            <?= $this->Paginator->last('>>') ?>
         </ul>
+      </nav>
+
     </div>
 </div>
 <?= $this->Html->script('filtrar-roles.js') ?>
