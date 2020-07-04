@@ -234,7 +234,8 @@
             <ul class="primary-menu">
                 <li class="child-menu"><a href="../pages/nuestra_empresa">Nuestra empresa</a></li>
                 <li class="child-menu"><a href="../pages/contacto">Contacto </a></li>
-                <li class="child-menu"><a href="../pages/ayuda">Ayuda </a></li>
+                <!--<li class="child-menu"><a href="/pages/ayuda">Ayuda </a></li>-->
+                <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
                 <div class="margin-block"></div>
                 <li class="child-menu"><a href="../users/logout">Logout </a></li>
             </ul>
