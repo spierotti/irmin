@@ -30,6 +30,7 @@ class Role extends Entity
         'descripcion' => true,
         'created' => true,
         'modified' => true,
+        'borrado' => true,
         'users' => true,
         'ver_pedidos' => true,
         'nuevo_pedido' => true,
