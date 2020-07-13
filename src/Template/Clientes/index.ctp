@@ -9,10 +9,10 @@
 <div class="clientes index large-9 medium-8 columns content col-lg-12">
   
   <div class="col-sm-10">
-      <!--<div class="clientes index large-9 medium-8 columns content">-->
+      <!--<div class="clientes index large-9 medium-8 columns content">
       <div class="col-sm-2">
           <br>
-      </div>
+      </div>-->
       <div class="col-sm-8">
           <legend class="mt-2"> Clientes </legend>
           <div class="col-sm-6">
@@ -32,7 +32,7 @@
   </div>
 
 
-      <div class="table-content" id="contenedor-tabla">
+      <div class="table-content mt-4" id="contenedor-tabla">
 
           <?php
             $this->Paginator->templates([

@@ -66,7 +66,8 @@ $(document).ready(function() {
 
         $.ajax({
             method: 'get',
-            url: "http://localhost/irmin/roles/filtrarroles",
+            //url: "http://localhost/irmin/roles/filtrarroles",
+            url: "http://test2.local/roles/filtrarroles",
             data: parametros,
             success: function(response){
                 $('.table-content').html(response);
