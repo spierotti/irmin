@@ -19,6 +19,13 @@ use Cake\Http\Response;
 class UsersController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Pedidos.id' => 'desc'
+        ]
+    ];
+
     /**
      * Is Authorized Method
      * 
@@ -507,7 +514,8 @@ class UsersController extends AppController
      */
     public function ayuda()
     {
-        $response = $this->response->withFile('C:/xampp/htdocs/irmin/webroot/files/pdf/jai1_0_1-guide.pdf');
+        //$response = $this->response->withFile('D:\Archivos de programa\appserv\www\test2\webroot\files\pdf\jai1_0_1-guide.pdf');
+        $response = $this->response->withFile(WWW_ROOT . 'files\pdf\jai1_0_1-guide.pdf');
         return $response;
     }
 }

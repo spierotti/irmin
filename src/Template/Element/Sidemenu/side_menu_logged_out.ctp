@@ -26,7 +26,7 @@
 					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['action' => 'forgotPassword']) ?></li>
 					    <li class="child-menu"><?= $this->Html->link(__('Nuestra Empresa'), ['controller' => 'Pages', 'action' => 'display', 'nuestra_empresa']) ?></li>
 					    <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'display', 'contacto']) ?></li>
-					    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Pages', 'action' => 'display', 'ayuda']) ?></li>
+                        <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
 	                </ul>
                 <div class="margin-block"></div>
                 <!-- end menu -->

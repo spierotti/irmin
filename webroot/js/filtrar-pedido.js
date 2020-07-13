@@ -24,7 +24,8 @@ $(document).ready(function() {
         $.ajax({
             method: 'get',
             //url: "<?php echo $this->Url->build(['controller' => 'Clientes', 'action' => 'filtrarclientes']); ?>",
-            url: "http://localhost/irmin/pedidos/filtrarpedidos",
+            //url: "http://localhost/irmin/pedidos/filtrarpedidos",
+            url: "http://test2.local/pedidos/filtrarpedidos",
             data: {
                 keyword: data1,
                 estado: data2

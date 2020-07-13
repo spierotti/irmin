@@ -20,6 +20,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
@@ -73,7 +75,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         -->
         <!--<div class="top-bar-section">-->
             <!--<ul class="right">Esto se saca porque ya está contemplado en el menú lateral.-->
-            <?php if($this->request->session()->read('Auth.User.id')){ ?>
+            <?//php if($this->request->session()->read('Auth.User.id')){ ?>
                 <!--
                 <li>
                 <a target="_blank" href="https://book.cakephp.org/3.0/">
@@ -86,7 +88,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <?//php echo $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?>
                 </li>-->
 
-            <?php } else { ?>
+            <?//php } else { ?>
                 <!--
                 <li>
                     <?//php echo $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']); ?>
@@ -96,7 +98,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <?//php echo $this->Html->link('Recuperar Contraseña', ['controller' => 'users', 'action' => 'forgotPassword']); ?>
                 </li>
                 
-            <?php } ?>
+            <?//php } ?>
             </ul>
         </div>
     </nav>-->

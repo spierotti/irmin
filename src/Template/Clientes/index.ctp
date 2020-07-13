@@ -6,31 +6,48 @@
 ?>
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
-<div class="col-sm-10">
-    <!--<div class="clientes index large-9 medium-8 columns content">-->
-    <div class="col-sm-2">
-        <br>
-    </div>
-    <div class="col-sm-8">
-        <legend class="mt-2"> Clientes </legend>
-        <div class="col-sm-6">
-        <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Cliente', 'autocompelte' => false, 'id' => 'buscar','class'=>'form-control']); ?>
-        </div>
-        <div class="ml-4">
-          <table>
-            <tbody>
-              <tr>
-                  <th scope="row">Solo activos</th>
-                  <td><div class="ml-2"><?= $this->Form->control('Solo Activos', ['label'=> false, 'type' => 'checkbox', 'checked' => true, 'id' => 'activo','class'=>'form-control']); ?></div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </div>
-</div>
-
 <div class="clientes index large-9 medium-8 columns content col-lg-12">
-    <legend><?= __('Clientes') ?></legend>
+  
+  <div class="col-sm-10">
+      <!--<div class="clientes index large-9 medium-8 columns content">
+      <div class="col-sm-2">
+          <br>
+      </div>-->
+      <div class="col-sm-8">
+          <legend class="mt-2"> Clientes </legend>
+          <div class="col-sm-6">
+          <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Cliente', 'autocompelte' => false, 'id' => 'buscar','class'=>'form-control']); ?>
+          </div>
+          <div class="ml-4">
+            <table>
+              <tbody>
+                <tr>
+                    <th scope="row">Solo activos</th>
+                    <td><div class="ml-2"><?= $this->Form->control('Solo Activos', ['label'=> false, 'type' => 'checkbox', 'checked' => true, 'id' => 'activo','class'=>'mt-2']); ?></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+
+
+      <div class="table-content mt-4" id="contenedor-tabla">
+
+          <?php
+            $this->Paginator->templates([
+            'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'current' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            ]);
+          ?>
+
+
         <table class="table table-hover">
           <thead>
             <tr>
@@ -89,18 +106,6 @@
         </ul>
     </nav>
 
-
-    <div class="paginator">
-        <ul class="pagination">
-            <?/*= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) */?></p>
-    </div>
+  </div>
 </div>
-
-
-<?= $this->Html->script('filtrar-cliente.js') ?>
+<?= $this->Html->script('filtrar-cliente.js?v=1.1') ?>
