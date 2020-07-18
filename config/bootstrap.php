@@ -204,6 +204,25 @@ Type::build('datetime')
 Type::build('timestamp')
     ->useImmutable();
 
+//http://discourse.cakephp.org/t/cakephp-locale-pt-br-and-dateformat/1002
+//https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#localizing-dates-and-numbers
+//https://book.cakephp.org/3.0/en/core-libraries/time.html#setting-the-default-locale-and-format-string
+//format chronos
+\Cake\I18n\Time::setToStringFormat([IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT]);
+\Cake\I18n\Time::setToStringFormat('dd/MM/YYYY HH:mm');
+\Cake\I18n\Date::setToStringFormat('dd/MM/yyyy');
+\Cake\I18n\FrozenTime::setToStringFormat('dd/MM/yyyy HH:mm');
+\Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yyyy');
+
+//https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#localizing-dates-and-numbers
+
+\Cake\Database\Type::build('date')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy');
+\Cake\Database\Type::build('datetime')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm');
+\Cake\Database\Type::build('timestamp')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm');
+
+\Cake\Database\Type::build('decimal')->useLocaleParser();
+\Cake\Database\Type::build('float')->useLocaleParser();
+
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
