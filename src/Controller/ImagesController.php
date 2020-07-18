@@ -18,10 +18,21 @@ class ImagesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($start_date = null, $end_date = null)
     {
         $start_date = $this->request->query('start_date');
         $end_date = $this->request->query('end_date');
+
+        $hoy = date('Y-m-d');;
+
+        if(is_null($start_date)){
+            $date_past = strtotime('-30 day', strtotime($hoy));
+            $start_date =  date('d-m-Y', $date_past);
+        }
+
+        if(is_null($end_date)){
+            $end_date = $hoy;
+        }
 
         $this->paginate = [
             'conditions' => [
