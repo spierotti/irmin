@@ -26,39 +26,65 @@
             </div>
         </div>
     <?= $this->Form->end(); ?>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col" class="actions"><?= __('ACCIONES') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($images as $image): ?>
-            <tr>
-                <td><?= h($image->fecha_hora_imagen) ?></td>
-                
-                <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo')); ?></td> <!-- /square_ -->
-                <td><?= h($image->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]) ?>
-                    <?= $this->Form->postLink(__('Borrar Imagen'), ['action' => 'delete', $image->id], ['confirm' => __('¿Seguro que desea eliminar la imagen: #{0}?', $image->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+
+    <div class="table-content" id="contenedor-tabla">
+
+        <?php
+            $this->Paginator->templates([
+            'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'current' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            ]);
+        ?>
+
+        <?php if (!$images->isEmpty()) { ?>
+        
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                        <th scope="col" class="actions"><?= __('ACCIONES') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($images as $image): ?>
+                    <tr>
+                        <td><?= h($image->fecha_hora_imagen) ?></td>
+                        
+                        <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),array('width'=>'200px')); ?></td> <!-- /square_ -->
+                        <td><?= h($image->created) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]) ?>
+                            <?= $this->Form->postLink(__('Borrar Imagen'), ['action' => 'delete', $image->id], ['confirm' => __('¿Seguro que desea eliminar la imagen: #{0}?', $image->id)]) ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation ">
+                <ul class="pagination justify-content-center">
+                    <?= $this->Paginator->first('<< ' . __('first')) ?>
+                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                    <?= $this->Paginator->numbers() ?>
+                    <?= $this->Paginator->next(__('next') . ' >') ?>
+                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                </ul>
+            </nav>
+
+        <?php }else{
+
+            echo '<p>¡No existen registros para el periodo solicitado!</p>';
+        }?>
+
     </div>
+
 </div>
 <?= $this->Html->script('filtrar-imagen.js') ?>
