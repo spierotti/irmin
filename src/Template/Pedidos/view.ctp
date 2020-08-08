@@ -85,11 +85,9 @@
         <?php if (!empty($pedido->images)): ?>
             <?php foreach ($pedido->images as $images): ?>
                 <div class="card">
-                    <!--<img src="..." class="card-img-top" alt="...">-->
                     <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
                     <div class="card-body">
                         <h5 class="card-title"><?= h($images->fecha_hora_imagen) ?></h5>
-                        <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
                         <?= $this->Html->link(__('Ver imagen'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
                     </div>
                 </div>
@@ -98,33 +96,6 @@
     </div>
 </div>
 
-
-
-
-
-<div class="col-sm-12 mt-2">
-    <legend><?= __('Imágenes relacionadas') ?></legend>
-    <?php if (!empty($pedido->images)): ?>
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <th scope="col"><?= __('Fecha Hora Imagen') ?></th>
-            <th scope="col"><?= __('Photo') ?></th>
-            <th scope="col"><?= __('Created') ?></th>
-            <th scope="col" class="actions"><?= __('Actions') ?></th>
-        </tr>
-        <?php foreach ($pedido->images as $images): ?>
-        <tr>
-            <td><?= h($images->fecha_hora_imagen) ?></td>
-            <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/square_' . $images->photo, ['class'=>'card-img-top']); ?></td>
-            <td><?= h($images->created) ?></td>
-            <td class="actions">
-                <?= $this->Html->link(__('View'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-    <?php endif; ?>
-</div>
 <div>
     <button onclick="window.location.href = '/pedidos';" class="btn btn-primary mt-4">Volver</button>
 </div>
