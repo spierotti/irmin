@@ -13,8 +13,16 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  *
  * @method \App\Model\Entity\Pedido[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
+
 class PedidosController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Pedidos.id' => 'desc'
+        ]
+    ];
 
     public function initialize()
     {
@@ -124,10 +132,15 @@ class PedidosController extends AppController
         
         if ($this->request->is('post')) {
 
+            debug(substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00");
+            debug(substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59");
+
             // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
             $query = $this->Pedidos->Images->find('all')->where([
-                'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
-                'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
+                //'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
+                //'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
+                'Images.fecha_hora_imagen >= ' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00", 
+                'Images.fecha_hora_imagen <= ' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59", 
             ]);
 
             // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
@@ -135,8 +148,10 @@ class PedidosController extends AppController
                 'cliente_id' => $this->request->data['cliente_id'],
                 'estado_id' => 1,
                 'fecha_solicitud' => date('Y-m-d H:i:s'),
-                'fecha_inicio' => $this->request->data['fecha_inicio'],
-                'fecha_fin' => $this->request->data['fecha_fin'],
+                //'fecha_inicio' => $this->request->data['fecha_inicio'],
+                'fecha_inicio' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2),
+                //'fecha_fin' => $this->request->data['fecha_fin'],
+                'fecha_fin' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2),
                 'descripcion' => $this->request->data['descripcion'],
                 'images' => array()
             ]);

@@ -12,11 +12,10 @@
     ]);
 ?>
 
-
 <table class="table table-hover">
     <thead>
         <tr>
-          <th scope="col"><?= $this->Paginator->sort('ID'); ?></th>
+          <th scope="col">Id</th>
           <th scope="col">Cliente</th>
           <th scope="col">Experto</th>
           <th scope="col">Fecha de solicitud</th>
@@ -47,18 +46,19 @@
                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
                     { ?>    
                         <?php
-                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-square', 'title' => 'Evaluar pedido')),
-                            array('action' => 'evaluar', $pedido->id),
-                            array('escape'=>false)
+                            echo $this->Html->link(
+                                '', 
+                                array('controller' => 'Pedidos', 'action' => 'evaluar', $pedido->id), 
+                                array('class' => 'fa fa-check-square', 'title' => 'Evaluar pedido')
                             );
                         ?>
                     <?php } ?>
                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id'])))
                         { ?>    
                         <?php
-                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar pedido')),
-                            array('action' => 'delete', $pedido->id),
-                            array('escape'=>false)
+                            echo $this->Html->link('', 
+                                array('controller' => 'Pedidos', 'action' => 'delete', $pedido->id), 
+                                array('class' => 'fa fa-trash', 'title' => 'Cancelar pedido')
                             );
                         ?>
                 <?php } ?>
@@ -67,13 +67,13 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<div class="paginator">
-    <ul class="pagination">
-        <?= $this->Paginator->first('<< ' . __('Primera')) ?>
-        <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <?= $this->Paginator->first('<<') ?> 
+        <?= $this->Paginator->prev('<') ?>
         <?= $this->Paginator->numbers() ?>
-        <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
-        <?= $this->Paginator->last(__('Última') . ' >>') ?>
+        <?= $this->Paginator->next('>') ?>
+        <?= $this->Paginator->last('>>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, mostrando {{current}} registro(s) de {{count}} ')]) ?></p>
-</div>
+</nav>

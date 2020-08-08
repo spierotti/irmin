@@ -44,7 +44,7 @@
             <?php foreach ($pedido->images as $images): ?>
             <tr>
                 <td><?= h($images->fecha_hora_imagen) ?></td>
-                <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/square_' . $images->photo); ?></td>
+                <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo); ?></td>
                 <td><?= h($images->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>

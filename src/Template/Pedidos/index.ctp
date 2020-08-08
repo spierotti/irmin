@@ -45,7 +45,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                  <th scope="col"><?= $this->Paginator->sort('ID'); ?></th>
+                  <th scope="col">Id</th>
                   <th scope="col">Cliente</th>
                   <th scope="col">Experto</th>
                   <th scope="col">Fecha de solicitud</th>
@@ -67,7 +67,6 @@
                       <td>
                         <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true)
                                 { ?>    
-                                    <?//= $this->Html->link(__('Ver'), ['action' => 'view', $pedido->id]) ?>
                                     <?php
                                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver pedido')),
                                         array('action' => 'view', $pedido->id),
@@ -77,22 +76,22 @@
                                 <?php } ?>    
                                 <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
                                 { ?>    
-                                    <?//= $this->Html->link(__('Evaluar'), ['action' => 'evaluar', $pedido->id]) ?>
                                     <?php
-                                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-square', 'title' => 'Evaluar pedido')),
-                                        array('action' => 'evaluar', $pedido->id),
-                                        array('escape'=>false)
+                                        echo $this->Html->link(
+                                            '', 
+                                            array('controller' => 'Pedidos', 'action' => 'evaluar', $pedido->id), 
+                                            array('class' => 'fa fa-check-square', 'title' => 'Evaluar pedido')
                                         );
                                     ?>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id'])))
                                 { ?>    
-                                    <?//= $this->Html->link(__('Cancelar'), ['action' => 'delete', $pedido->id]) ?>
                                     <?php
-                                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar pedido')),
-                                        array('action' => 'delete', $pedido->id),
-                                        array('escape'=>false)
-                                        );
+                                        
+                                    echo $this->Html->link('', 
+                                        array('controller' => 'Pedidos', 'action' => 'delete', $pedido->id), 
+                                        array('class' => 'fa fa-trash', 'title' => 'Cancelar pedido')
+                                    );
                                     ?>
                         <?php } ?>
                         </td>
@@ -100,19 +99,18 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
 
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?= $this->Paginator->first('<<') ?> 
+                <?= $this->Paginator->prev('<') ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next('>') ?>
+                <?= $this->Paginator->last('>>') ?>
+            </ul>
+            </nav>
+        </div>
     </div>
-    
     
 </div>
 <?= $this->Html->script('filtrar-pedido.js') ?>
