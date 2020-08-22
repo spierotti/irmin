@@ -33,14 +33,6 @@
       <th scope="row">Domicilio</th>
       <td><?= h($cliente->domicilio) ?></td>
     </tr>
-    <tr>
-      <th scope="row">Fecha de creación</th>
-      <td><?= h($cliente->created) ?></td>
-    </tr>
-    <tr>
-      <th scope="row">Última modificación</th>
-      <td><?= h($cliente->modified) ?></td>
-    </tr>
   </tbody>
 </table>
 <div>

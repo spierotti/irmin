@@ -102,15 +102,21 @@ class ClientesController extends AppController
     public function add()
     {
         $cliente = $this->Clientes->newEntity();
+
         if ($this->request->is('post')) {
-            $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());
+
+            $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());            
+
             if ($this->Clientes->save($cliente)) {
+                
                 $this->Flash->success(__('The cliente has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
         }
+
         $this->set(compact('cliente'));
     }
 
@@ -149,13 +155,20 @@ class ClientesController extends AppController
     {
         // BORRADO LÓGICO
         $this->request->allowMethod(['post']);
+
         $cliente = $this->Clientes->get($id);
+
         $cliente->borrado = true;
+        
         if($this->Clientes->save($cliente)){
-            $this->Flash->success(__('The cliente has been deleted.'));
+
+            $this->Flash->success(__('¡El Cliente ha sido eliminado!'));
+
         } else {
-            $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+
+            $this->Flash->error(__('¡Error al eliminar el Cliente!'));
         }
+
         return $this->redirect(['action' => 'index']);
     }
 
@@ -170,12 +183,18 @@ class ClientesController extends AppController
     {
         // VUELVO A ACTIVAR EL CLIENTE
         $this->request->allowMethod(['post']);
+
         $cliente = $this->Clientes->get($id);
+
         $cliente->borrado = false;
+
         if($this->Clientes->save($cliente)){
-            $this->Flash->success(__('The cliente has been deleted.'));
+
+            $this->Flash->success(__('¡Cambios guardados con exito!'));
+
         } else {
-            $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
+
+            $this->Flash->error(__('¡Error al guardar los Cambios!'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -185,18 +204,26 @@ class ClientesController extends AppController
      * 
      * @param string|null $term Descripcion parcial de name de cliente
      */
-    public function buscarclientes(){
+    public function buscarclientes()
+    {
         $term = null;
+
         if(!empty($this->request->query['term'])){
+
             $term = $this->request->query['term'];
             $terms = explode(' ', trim($term));
             $terms = array_diff($terms, array(''));
+
             foreach($terms as $t){
+
                 $conditions[] = array('Clientes.cuit LIKE' => '%' . $t . '%');
             }
+
             $clientes = $this->Clientes->find('all', array('recursive' => -1, 'conditions' => $conditions, 'limit' => 20));
         }
+
         echo json_encode($clientes);
+
         $this->autoRender = false;
     }
 
