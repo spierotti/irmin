@@ -12,9 +12,9 @@
         <div class="col-sm-8">
             <div class="form-group row">
                 <legend><?= __('Agregar nuevo cliente') ?></legend>
-                <label for="razonSocial" id="razonSocial" class="col-sm-3 col-form-label mt-2">Nombre </label>
+                <label for="name" id="name" class="col-sm-3 col-form-label mt-2">Nombre </label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('razon_social',['label' => false, 'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('name',['label' => false, 'class'=>'form-control mt-2']); ?>
                 </div>
                 <label for="cuit" id="cuit" class="col-sm-3 col-form-label mt-2">Cuit</label>
                 <div class="col-sm-8">

@@ -33,15 +33,25 @@
               <td><?= h($cliente->celular) ?></td>
               <td><?= h($cliente->domicilio) ?></td>
               <td>
-                <a href="/clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
-                <a href="../clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
+                <a href="./clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
+                <a href="./clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
+                
                 <?php
-                    echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash')),
-                        array('action' => 'delete', $cliente['id']),
-                        array('escape'=>false),
-                        array('confirm' => '¿Seguro quiere borrar el cliente # {0}?', $cliente->id)
+                      if ($cliente->borrado){
+                                        
+                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Activar cliente')),
+                          array('action' => 'activar', $cliente['id']),
+                          array('escape'=>false, 'confirm' => __('¿Seguro quiere activar el cliente # {0}?', $cliente->id))
                         );
-                ?>
+                        
+                      }else{
+                                        
+                          echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
+                            array('action' => 'delete', $cliente['id']),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el cliente # {0}?', $cliente->id))
+                          );
+                      }
+                    ?>
               </td>
             </tr>
         <?php endforeach; ?>
