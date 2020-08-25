@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
-    $('.eliminar').click(function(e) {
+    /*$('.eliminar').click(function(e) {
         e.preventDefault();
         var resp = confirm("¿Seguro que desea eliminar?");
         if (resp != true) {
             return false;    
         } 
-    })
+    });*/
 
     $('#buscar').keyup(function(){
         obtenerParametros("")
@@ -67,7 +67,8 @@ $(document).ready(function() {
         $.ajax({
             method: 'get',
             //url: "http://localhost/irmin/roles/filtrarroles",
-            url: "http://test2.local/roles/filtrarroles",
+            //url: "http://test2.local/roles/filtrarroles",
+            url: "./roles/filtrarroles",
             data: parametros,
             success: function(response){
                 $('.table-content').html(response);
