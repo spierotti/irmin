@@ -13,6 +13,14 @@ use \Cake\Http\Response;
  */
 class ImagesController extends AppController
 {
+
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'images.id' => 'desc'
+        ]
+    ];
+
     /**
      * Index method
      *
@@ -23,7 +31,7 @@ class ImagesController extends AppController
         $start_date = $this->request->query('start_date');
         $end_date = $this->request->query('end_date');
 
-        $hoy = date('Y-m-d');;
+        $hoy = date('Y-m-d');
 
         if(is_null($start_date)){
             $date_past = strtotime('-30 day', strtotime($hoy));

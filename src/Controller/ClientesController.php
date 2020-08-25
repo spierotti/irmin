@@ -16,7 +16,7 @@ class ClientesController extends AppController
     public $paginate = [
         'limit' => 5,
         'order' => [
-            'Pedidos.id' => 'desc'
+            'Clientes.id' => 'asc'
         ]
     ];
     

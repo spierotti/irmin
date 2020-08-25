@@ -17,10 +17,9 @@
             <div class="col-sm-3">
                 <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <?= $this->Form->submit('Buscar', [
+            <div class="col-sm-3">
+                
+            <?= $this->Form->submit('Buscar', [
                     'class' => 'btn btn-primary'
                 ]) ?>
             </div>
@@ -47,35 +46,46 @@
             <table cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
-                        <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('id', ['label' => 'Id']) ?></th>
+                        <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen', ['label' => 'Fecha']) ?></th>
+                        <th scope="col"><?= h('Imagen') ?></th>
                         <th scope="col" class="actions"><?= __('ACCIONES') ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($images as $image): ?>
                     <tr>
+                        <td><?= h($image->id) ?></td>
                         <td><?= h($image->fecha_hora_imagen) ?></td>
-                        
-                        <td><?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),array('width'=>'200px')); ?></td> <!-- /square_ -->
-                        <td><?= h($image->created) ?></td>
+                        <td>
+                            <?= 
+                                $this->Html->link(
+                                    $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),array('width'=>'200px')), 
+                                    array('controller' => 'Images', 'action' => 'view', $image->id),
+                                    array('escape' => false)
+                                );
+                            ?>
+                        </td>
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $image->id]) ?>
-                            <?= $this->Form->postLink(__('Borrar Imagen'), ['action' => 'delete', $image->id], ['confirm' => __('¿Seguro que desea eliminar la imagen: #{0}?', $image->id)]) ?>
+                            <?=                                    
+                                $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar imagen')),
+                                    array('action' => 'delete', $image['id']),
+                                    array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar la Imagen #{0}?', $image->id))
+                                );
+                            ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
 
-            <nav aria-label="Page navigation ">
+            <<nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
-                    <?= $this->Paginator->first('<< ' . __('first')) ?>
-                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                    <?= $this->Paginator->first('<<') ?> 
+                    <?= $this->Paginator->prev('<') ?>
                     <?= $this->Paginator->numbers() ?>
-                    <?= $this->Paginator->next(__('next') . ' >') ?>
-                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                    <?= $this->Paginator->next('>') ?>
+                    <?= $this->Paginator->last('>>') ?>
                 </ul>
             </nav>
 

@@ -1,20 +1,31 @@
 $(document).ready(function() {
 
+    /*$('#contenedor-tabla').on('click', '.eliminar', function(e) {
+        e.preventDefault();
+        var link= $('.eliminar').attr('href');
+        var resp = confirm("¿Seguro que desea eliminar?");
+        if (resp = true) {
+            document.location.href = link;
+        }
+        return false;
+    });
+
+    $('#contenedor-tabla').on('click', '.activar', function(e) {
+        e.preventDefault();
+        var link= $('.activar').attr('href');
+        var resp = confirm("¿Seguro que desea activar?");
+        if (resp = true) {
+            document.location.href = link;
+        }
+        return false;
+    });*/
+
     $('#buscar').keyup(function(){
         obtenerParametros("")
     });
 
     $('#activo').change(function() {
         obtenerParametros("")
-
-        /*var searchkey = $('#buscar').val()
-        var activo = $('#activo:checked').val()
-
-        if(activo != true){
-            activo = 0
-        }
-
-        searchTags(searchkey,activo)*/
     });
 
     $('#contenedor-tabla').on('click', '.page-link', function(e) {
@@ -68,30 +79,12 @@ $(document).ready(function() {
         $.ajax({
             method: 'get',
             //url: "http://localhost/irmin/clientes/filtrarclientes",
-            url: "http://test2.local/clientes/filtrarclientes",
+            //url: "http://test2.local/clientes/filtrarclientes",
+            url: "./clientes/filtrarclientes",
             data: parametros,
             success: function(response){
                 $('.table-content').html(response);
             }
         });
     }
-
-    /*function searchTags( keyword, activo){
-        
-        var data1 = keyword;
-        var data2 = activo;
-
-        $.ajax({
-            method: 'get',
-            //url: "<?php echo $this->Url->build(['controller' => 'Clientes', 'action' => 'filtrarclientes']); ?>",
-            url: "http://localhost/irmin/clientes/filtrarclientes",
-            data: {
-                keyword: data1,
-                activo: data2
-            },
-            success: function(response){
-                $('.table-content').html(response);
-            }
-        });
-    }*/
 });
