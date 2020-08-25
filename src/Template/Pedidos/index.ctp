@@ -87,7 +87,6 @@
                                 <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id'])))
                                 { ?>    
                                     <?php
-                                        
                                     echo $this->Html->link('', 
                                         array('controller' => 'Pedidos', 'action' => 'delete', $pedido->id), 
                                         array('class' => 'fa fa-trash', 'title' => 'Cancelar pedido')
