@@ -156,9 +156,32 @@ class RolesController extends AppController
         $role->borrado = true;    
 
         if ($this->Roles->save($role)) {
-            $this->Flash->success(__('The role has been deleted.'));
+            $this->Flash->success(__('¡Rol ha sido eliminado con Exito!'));
         } else {
-            $this->Flash->error(__('The role could not be deleted. Please, try again.'));
+            $this->Flash->error(__('¡Ha ocurrido un error al eliminar el Rol!'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Role id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function activar($id = null)
+    {
+        $this->request->allowMethod(['post']);
+
+        $role = $this->Roles->get($id);
+
+        $role->borrado = false;    
+
+        if ($this->Roles->save($role)) {
+            $this->Flash->success(__('¡Rol restaurado con Exito!'));
+        } else {
+            $this->Flash->error(__('¡Ha ocurrido un error al intentar restaurar el Rol!'));
         }
         return $this->redirect(['action' => 'index']);
     }

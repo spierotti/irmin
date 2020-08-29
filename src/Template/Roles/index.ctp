@@ -72,10 +72,22 @@
                     ?>
                     <a href="/roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
                     <?php
-                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash eliminar', 'title' => 'Eliminar rol')),
-                        array('action' => 'delete', $role->id),
-                        array('escape'=>false)
-                        );
+
+                        if ($role->borrado){
+
+                          echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle eliminar', 'title' => 'Restaurar rol')),
+                            array('action' => 'activar', $role->id),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere restaurar el Rol #{0}?', $role->id))
+                          );
+
+                        }else{
+
+                          echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash eliminar', 'title' => 'Eliminar rol')),
+                            array('action' => 'delete', $role->id),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el Rol #{0}?', $role->id))
+                          );
+
+                        }
                     ?>
               </td>
             </tr>

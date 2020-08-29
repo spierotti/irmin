@@ -72,7 +72,7 @@
                     <?php
                       if ($cliente->borrado){
                                         
-                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Activar cliente')),
+                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Activar cliente')),
                           array('action' => 'activar', $cliente['id']),
                           array('escape'=>false, 'confirm' => __('¿Seguro quiere activar el cliente # {0}?', $cliente->id))
                         );
