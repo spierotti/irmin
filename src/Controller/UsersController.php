@@ -102,7 +102,7 @@ class UsersController extends AppController
         if($borrado){
             $users = $this->paginate($this->Users->find()->contain('Roles')->limit(200));
         }else{
-            $users = $this->paginate($this->Users->find()->contain('Roles')->where(['borrado' => false])->limit(200));
+            $users = $this->paginate($this->Users->find()->contain('Roles')->where(['Users.borrado' => false])->limit(200));
         }
 
         $this->set(compact('users'));
@@ -253,13 +253,15 @@ class UsersController extends AppController
     public function editPerfil()
     {
         $user = $this->Users->get($this->Auth->user('id'), [
-            'contain' => []
+            'contain' => ['Roles']
         ]);
+        //debug($user);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+
+                return $this->redirect(['action' => 'viewPerfil']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -467,7 +469,7 @@ class UsersController extends AppController
             $query = $this->Users->find('all', [
                 'conditions' => [
                     'username like ' =>  '%'.$keyword.'%',
-                    'borrado = ' => false
+                    'Users.borrado = ' => false
                 ],
                 'order' => [
                     'Users.id' => 'ASC'

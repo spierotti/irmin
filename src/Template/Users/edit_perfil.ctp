@@ -30,6 +30,8 @@
                     <?php
                         if (isset($auth['User']['role_id']) && $auth['User']['role_id'] === 1 && $auth['User']['role']['modificar_usuario'] === true){
                             echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'label' => false,'class'=>'form-control mt-2']);
+                        }else{
+                            echo $this->Form->control('role.name', ['label' => false,'class'=>'form-control mt-2', 'disabled' => 'disabled']);
                         }
                     ?>
                 </div>

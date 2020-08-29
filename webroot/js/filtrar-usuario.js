@@ -68,7 +68,8 @@ $(document).ready(function() {
         $.ajax({
             method: 'get',
             //url: "http://localhost/irmin/clientes/filtrarclientes",
-            url: "http://test2.local/users/filtrarusuarios",
+            //url: "http://test2.local/users/filtrarusuarios",
+            url: "./users/filtrarusuarios",
             data: parametros,
             success: function(response){
                 $('.table-content').html(response);

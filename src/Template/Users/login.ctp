@@ -39,6 +39,5 @@
                 </div>
             </div>
         </div>
-    <?//= $this->Form->button(__('Submit', ['class' => 'btn btn-primary'])) ?>
     <?= $this->Form->end() ?>
 </div>

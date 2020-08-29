@@ -53,7 +53,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Email</th>
@@ -70,13 +70,23 @@
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td>
-                        <a href="/users/view/<?= $user->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
-                        <a href="/users/edit/<?= $user->id?>"><i class="fa fa-pencil" title="Editar usuario"></i></a>
+                        <a href="./users/view/<?= $user->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
+                        <a href="./users/edit/<?= $user->id?>"><i class="fa fa-pencil" title="Editar usuario"></i></a>
                         <?php
-                        echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar usuario')),
-                        array('action' => 'delete', $user->id),
-                        array('escape'=>false)
-                        );
+                        if($user->borrado){
+
+                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Restaurar usuario')),
+                            array('action' => 'activar', $user->id),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere restaurar el Usuario #{0}?', $user->id))
+                            );
+
+                        }else{
+                            
+                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar usuario')),
+                            array('action' => 'delete', $user->id),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el Usuario #{0}?', $user->id))
+                            );
+                        }
                         ?>
                     </td>
                 </tr>
