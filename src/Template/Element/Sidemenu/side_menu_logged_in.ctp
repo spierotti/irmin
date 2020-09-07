@@ -92,11 +92,6 @@
 
                 <ul class="primary-menu">
                     <!--<li class="child-menu"><a href="#">-->
-                        <?/*php/* echo $this->Html->link($this->request->session()->read('Auth.User.email'),
-                             ['controller' => 'Users', 
-                             'action' => 'view', 
-                             $auth['User']['id']]); 
-                         */?>
                     <!--<i class="fa fa-angle-right"></i></a>-->
                     <!--</li>-->
 
