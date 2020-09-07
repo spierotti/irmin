@@ -15,7 +15,6 @@
         <div class="row col-sm-10">
             <label for="razonSocial" id="razonSocial" class="col-sm-2 col-form-label mt-2">Nombre </label>
             <div class="col-sm-9">
-                <?//php echo $this->Form->control('razon_social',['label' => false, 'class'=>'form-control mt-2']); ?>
                 <?php
                     echo $this->Form->control('name', ['label' => false, 'class'=>'form-control mt-2']);
                 ?>

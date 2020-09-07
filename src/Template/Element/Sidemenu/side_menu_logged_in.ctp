@@ -84,33 +84,18 @@
         <div class="vertical-header-wrapper">
             <nav class="nav-menu">
                 <div class="logo">
-                    <!--<a href="index.html"><img src="images/logo.png" alt=""></a>-->
                 </div><!-- end logo -->
 
                 <div class="margin-block"></div>
 
 
                 <ul class="primary-menu">
-                    <!--<li class="child-menu"><a href="#">-->
-                        <?/*php/* echo $this->Html->link($this->request->session()->read('Auth.User.email'),
-                             ['controller' => 'Users', 
-                             'action' => 'view', 
-                             $auth['User']['id']]); 
-                         */?>
-                    <!--<i class="fa fa-angle-right"></i></a>-->
-                    <!--</li>-->
 
-                    <!--vieja sección Mi cuenta
-                    <li class="child-menu"><a href="#">Mi cuenta <i class="fa fa-angle-right"></i></a>
-                        <div class="sub-menu-wrapper">
-                            <ul class="sub-menu center-content">
-                                <li><a href="../users/view-perfil">Ver perfil</a></li>
-                                <li><a href="../users/edit-perfil">Editar perfil</a></li>
-                                <li><a href="../users/change-password">Cambiar contraseña</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    -->
+                    <?php if (!isset($auth['User']['role_id']))
+                    { ?>
+                        <li class="child-menu"><a href="/irmin">Home </a></li>
+					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
+                    <?php } ?>
                     <!--Mi cuenta-->
                     <?php if (isset($auth['User']['role_id']))
                     { ?>
@@ -119,15 +104,12 @@
                             <ul class="sub-menu center-content">
                                 <?php if($this->view != 'viewPerfil')
                                 { ?>
-                                    <!--<li><a href="../users/view-perfil">Ver perfil</a></li>-->
                                     <li><?= $this->Html->link(__('Ver Perfil'), ['controller' => 'Users', 'action' => 'viewPerfil']) ?></li>
                                 <?php 
                                 } else
                                     { ?>
-                                        <!--<li><a href="../users/edit-perfil">Editar perfil</a></li>-->
                                         <li><?= $this->Html->link(__('Editar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
                                 <?php } ?>
-                                <!--<li><a href="../users/change-password">Cambiar contraseña</a></li>-->
                                 <li><?= $this->Html->link(__('Cambiar Contraseña'), ['controller' => 'Users', 'action' => 'changePassword']) ?></li>
                             </ul>
                         </div>
@@ -145,12 +127,10 @@
                             <ul class="sub-menu center-content">
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
                                 { ?>    
-                                <!--<li><a href="../pedidos">Ver pedidos </a></li>-->
                                 <li><?= $this->Html->link(__('Ver pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
                             <?php } ?>
                             <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true))
                                 { ?>
-                                <!--<li><a href="../pedidos/add">Nuevo pedidos </a></li>-->
                                 <li><?= $this->Html->link(__('Nuevo pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
                             <?php } ?>
                             </ul>
@@ -162,11 +142,9 @@
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_pedido'] === true) && ($pedido->estado_id == 1))
                                 { ?>
-                                    <!--<li><?//= $this->Html->link(__('Modificar pedidos'), ['action' => 'edit', $pedido->id]) ?> </li>-->
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
                                 { ?>    
-                                    <!--<li><?//= $this->Form->postLink(__('Cancelar'), ['action' => 'delete', $pedido->id], ['confirm' => __('¿Seguro que desea Cancelar el pedido # {0}?', $pedido->id)]) ?> </li>-->
                                 <?php } ?>
                             <?php } ?>
                         </div>
@@ -182,12 +160,10 @@
                             <ul class="sub-menu center-content">
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true))
                                 { ?>
-                                    <!--<li><a href="../clientes">Ver clientes</a></li>-->
                                     <li><?= $this->Html->link(__('Ver clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_cliente'] === true))
                                 { ?>
-                                    <!--<li><a href="../clientes/add">Nuevo cliente</a></li>-->
                                     <li><?= $this->Html->link(__('Nuevo cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
                                 <?php } ?>
 
@@ -218,12 +194,10 @@
                             <ul class="sub-menu center-content">
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_imagenes'] === true))
                                 { ?>
-                                    <!--<li><a href="../images">Ver imágenes</a></li>-->
                                     <li><?= $this->Html->link(__('Ver imágenes'), ['controller' => 'Images', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true))
                                 { ?>
-                                    <!--<li><a href="../images/add">Nueva imagen</a></li>-->
                                     <li><?= $this->Html->link(__('Nueva imagen'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
                                 <?php } ?>
                                 <?php if($this->view == 'view' && $this->name == "Images"){ ?>
@@ -273,12 +247,10 @@
                             <ul class="sub-menu center-content">
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_usuarios'] === true))
                                 { ?>
-                                    <!--<li><a href="../users">Ver usuarios</a></li>-->
                                     <li><?= $this->Html->link(__('Ver usuarios'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_usuario'] === true))
                                 { ?>
-                                    <!--<li><a href="../users/add">Nuevo usuario</a></li>-->
                                     <li><?= $this->Html->link(__('Nuevo usuario'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
                                 <?php } ?>
                                 <!--¿QUé hace esto?-->
@@ -298,28 +270,17 @@
                     <?php } ?>
                     <!--FIN USUARIOS-->
 
+                    <li class="child-menu"><?= $this->Html->link(__('Nuestra empresa'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
 
-                    <div class="margin-block"></div>
-    <!--
-                    <li class="child-menu"><a href="#">Administración <i class="fa fa-angle-right"></i></a>
-                        <div class="sub-menu-wrapper">
-                            <ul class="sub-menu center-content">
-                                <li><a href="../roles/add">Nuevo rol</a></li>
-                                <li><a href="../roles">Ver roles</a></li>
-                                <li><a href="../estados/add">Nuevo estados</a></li>
-                                <li><a href="../estados">Ver estado</a></li>
-                            </ul>
-                        </div>
-                    </li>
-    -->
-                </ul>
-                <ul class="primary-menu">
-                    <li class="child-menu"><a href="../pages/nuestra_empresa">Nuestra empresa</a></li>
-                    <li class="child-menu"><a href="../pages/contacto">Contacto </a></li>
-                    <!--<li class="child-menu"><a href="/pages/ayuda">Ayuda </a></li>-->
+                    <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'contacto']) ?></li>
+
                     <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
-                    <div class="margin-block"></div>
-                    <li class="child-menu"><a href="../users/logout">Logout </a></li>
+                    
+                    <!--LOGOUT-->
+                    <?php if (isset($auth['User']['role_id']) )
+                    { ?>
+                    <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
+                    <?php } ?>
                 </ul>
                 <!-- end menu -->
             </nav><!-- end nav-menu -->
