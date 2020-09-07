@@ -5,7 +5,7 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_out', ['viewName'=>'User']); ?>
+<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'User']); ?>
 
 <div class="users form large-6 medium-8 columns content">
     <?= $this->Form->create($user) ?>

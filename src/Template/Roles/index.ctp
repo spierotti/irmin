@@ -70,7 +70,7 @@
                         array('escape'=>false)
                         );
                     ?>
-                    <a href="/roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
+                    <a href="./roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
                     <?php
 
                         if ($role->borrado){
