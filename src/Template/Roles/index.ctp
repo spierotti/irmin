@@ -10,11 +10,8 @@
 <div class="roles index large-9 medium-8 columns content col-lg-12">
 
 <div class="col-sm-10">
-        <div class="col-sm-2">
-            <br>
-        </div>
         <div class="col-sm-8">
-            <legend class="mt-2"> Roles </legend>
+            <legend> Roles </legend>
             <div class="col-sm-6">
                 <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Rol', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
             </div>
