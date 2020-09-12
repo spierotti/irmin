@@ -7,14 +7,16 @@
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
 
-<div class="clientes index large-9 medium-8 columns content col-lg-12">
+<!--<div class="clientes index large-9 medium-8 columns content col-lg-12">-->
+<div class="clientes index large-9 medium-8 columns content">
   
-  <div class="col-sm-10">
-      <div class="col-sm-2">
+  <!--<div class="col-sm-10">-->
+  <div>
+      <!--<div class="col-sm-2">
           <br>
-      </div>
+      </div>-->
       <div class="col-sm-8">
-          <legend class="mt-2"> Clientes </legend>
+          <legend> Clientes </legend>
           <div class="col-sm-6">
           <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Cliente', 'autocompelte' => false, 'id' => 'buscar','class'=>'form-control']); ?>
           </div>

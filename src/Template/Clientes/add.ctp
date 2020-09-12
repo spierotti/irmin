@@ -6,9 +6,11 @@
 ?>
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
+
 <div class="clientes form large-9 medium-8 columns content">
     <?= $this->Form->create($cliente) ?>
-    <div class="row justify-content-center">
+    <!--<div class="row justify-content-center">-->
+    <div class="row">
         <div class="col-sm-8">
             <div class="form-group row">
                 <legend><?= __('Agregar nuevo cliente') ?></legend>
