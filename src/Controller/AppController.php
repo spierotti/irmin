@@ -55,7 +55,7 @@ class AppController extends Controller
                     'fields' => ['username' => 'email', 'password' => 'password']
                 ]
             ],
-            'authError' => 'Did you really think you are allowed to see that?',
+            'authError' => 'Lo sentimos, ha habido un problema, inténtalo nuevamente más tarde.',
             'loginRedirect' => [
                 'controller' => 'Users',
                 'action' => 'home'

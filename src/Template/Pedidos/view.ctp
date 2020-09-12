@@ -6,6 +6,7 @@
 ?>
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Pedidos']); ?>
+
 <legend><?= __('Datos del pedido') ?></legend>
 <table class="table table-sm table-hover">
   <tbody>
