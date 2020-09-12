@@ -42,13 +42,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         'datepicker.js',
         'jquery-ui.min.js'
     ]) ?>
-
+  
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
-
+  
     <?= $this->Flash->render() ?>
     <div class="container clearfix" >
 
