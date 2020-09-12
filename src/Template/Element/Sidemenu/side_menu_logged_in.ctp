@@ -91,9 +91,9 @@
 
                 <ul class="primary-menu">
 
+                    <li class="child-menu"><a href="/irmin">Home </a></li>
                     <?php if (!isset($auth['User']['role_id']))
                     { ?>
-                        <li class="child-menu"><a href="/irmin">Home </a></li>
 					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
                     <?php } ?>
                     <!--Mi cuenta-->
@@ -125,28 +125,26 @@
                     <?php } ?>    
                         <div class="sub-menu-wrapper">
                             <ul class="sub-menu center-content">
-                            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
-                                { ?>    
-                                <li><?= $this->Html->link(__('Ver pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
-                            <?php } ?>
-                            <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true))
-                                { ?>
-                                <li><?= $this->Html->link(__('Nuevo pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
-                            <?php } ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                    { ?>    
+                                    <li><?= $this->Html->link(__('Ver pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
+                                <?php } ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true))
+                                    { ?>
+                                    <li><?= $this->Html->link(__('Nuevo pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
+                                <?php } ?>
+                                <?php if($this->view == 'view' && $this->name == "Pedidos") { ?> 
+
+                                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id']))) { ?>    
+                                        <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
+                                    <?php } ?>
+                                    
+                                    <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id']))) { ?>
+                                        <li><?= $this->Html->link(__('Cancelar pedido'), ['action' => 'delete', $pedido->id]) ?> </li>
+                                    <?php } ?>
+
+                                <?php } ?>
                             </ul>
-                            <?php if($this->view == 'view' && $this->name == "Pedidos") //¿Qué onda esta parteee??
-                            { ?> 
-                                <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id'])))
-                                { ?>    
-                                    <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
-                                <?php } ?>
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_pedido'] === true) && ($pedido->estado_id == 1))
-                                { ?>
-                                <?php } ?>
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_pedido'] === true) && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
-                                { ?>    
-                                <?php } ?>
-                            <?php } ?>
                         </div>
                     </li>
                     <!--FIN PEDIDOS -->
@@ -168,16 +166,15 @@
                                 <?php } ?>
 
                                 <!--¿Qué hace esta parte-->
-                                <?php if($this->view == 'view' && $this->name == "Clientes")
-                                { ?>
-                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true))
-                                    { ?>
+                                <?php if($this->view == 'view' && $this->name == "Clientes") { ?>
+
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
                                         <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
-                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true))
-                                    { ?>
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
                                     <?php } ?>
+
                                 <?php } ?>
                                 <!--Fin de qué hace esta parte-->
                              </ul>
@@ -192,18 +189,15 @@
                     <?php } ?>
                         <div class="sub-menu-wrapper">
                             <ul class="sub-menu center-content">
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_imagenes'] === true))
-                                { ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_imagenes'] === true)) { ?>
                                     <li><?= $this->Html->link(__('Ver imágenes'), ['controller' => 'Images', 'action' => 'index']) ?> </li>
                                 <?php } ?>
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true))
-                                { ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
                                     <li><?= $this->Html->link(__('Nueva imagen'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
                                 <?php } ?>
-                                <?php if($this->view == 'view' && $this->name == "Images"){ ?>
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_imagen'] === true))
-                                { ?> <!--¿Qué onda con esta parte?-->
-                                    <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id)]) ?> </li>
+                                <?php if($this->view == 'view' && $this->name == "Images") { ?>
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_imagen'] === true)) { ?> <!--¿Qué onda con esta parte?-->
+                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                              </ul>
@@ -213,8 +207,7 @@
 
 
                     <!-- ROLES -->
-                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_roles'] === true || $auth['User']['role']['nueva_rol'] === true || $auth['User']['role']['modificar_rol'] === true || $auth['User']['role']['eliminar_rol'] === true))
-                    { ?>
+                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_roles'] === true || $auth['User']['role']['nueva_rol'] === true || $auth['User']['role']['modificar_rol'] === true || $auth['User']['role']['eliminar_rol'] === true)) { ?>
                     <li class="child-menu"><a href="#">Roles <i class="fa fa-angle-right"></i></a>
                         <div class="sub-menu-wrapper">
                             <ul class="sub-menu center-content">
