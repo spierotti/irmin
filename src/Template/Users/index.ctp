@@ -10,11 +10,8 @@
 <div class="users index large-9 medium-8 columns content col-lg-12">
 
     <div class="col-sm-10">
-        <div class="col-sm-2">
-            <br>
-        </div>
         <div class="col-sm-8">
-            <legend class="mt-2"> Usuarios </legend>
+            <legend> Usuarios </legend>
             <div class="col-sm-6">
                 <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar usuario', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
             </div>
