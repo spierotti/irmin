@@ -15,18 +15,18 @@
     </div>
     <?php } ?>
     <div class="ml-4">
-                <table>
-                <tbody>
-                    <tr>
-                    <td>
-                        <div class="ml-2">
-                            <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2 mt-2']); ?>
-                        </div>
-                    </td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
+        <table>
+        <tbody>
+            <tr>
+            <td>
+                <div class="ml-2">
+                    <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2 mt-2']); ?>
+                </div>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
     <div class="table-content" id="contenedor-tabla">
 
         <?php
