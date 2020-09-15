@@ -7,8 +7,8 @@
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 
-<div class="informes index large-9 medium-8 columns content">
-    <h3><?= __('Informes') ?></h3>
+<div class="large-9 medium-8 columns content">
+    <h3>Informes</h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
