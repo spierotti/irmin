@@ -7,7 +7,7 @@
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 
-<div class="informes view large-9 medium-8 columns content">
+<div class="large-9 medium-8 columns content">
     <h3><?= h($informe->id) ?></h3>
     <table class="vertical-table">
         <tr>
