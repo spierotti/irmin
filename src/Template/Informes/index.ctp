@@ -8,7 +8,7 @@
 <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 
 <div class="large-9 medium-8 columns content">
-    <h3>Informes</h3>
+    <legend>Informes</legend>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
