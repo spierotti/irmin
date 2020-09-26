@@ -91,7 +91,7 @@
 
                 <ul class="primary-menu">
 
-                    <li class="child-menu"><a href="/irmin">Home </a></li>
+                    <li class="child-menu"><a href="/users/home">Home </a></li>
                     <?php if (!isset($auth['User']['role_id']))
                     { ?>
 					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
