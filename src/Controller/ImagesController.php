@@ -17,7 +17,7 @@ class ImagesController extends AppController
     public $paginate = [
         'limit' => 5,
         'order' => [
-            'images.id' => 'desc'
+            'Images.id' => 'desc'
         ]
     ];
 
@@ -33,21 +33,19 @@ class ImagesController extends AppController
 
         $hoy = date('Y-m-d');
 
-        if(is_null($start_date)){
+        if(is_null($start_date) || strlen($start_date) == 0){
             $date_past = strtotime('-30 day', strtotime($hoy));
-            $start_date =  date('d-m-Y', $date_past);
+            $start_date =  date('Y-m-d', $date_past);
         }
 
-        if(is_null($end_date)){
+        if(is_null($end_date) || strlen($end_date) == 0){
             $end_date = $hoy;
         }
 
-        $this->paginate = [
-            'conditions' => [
+        $this->paginate ['conditions'] = [
                 'DATE(images.fecha_hora_imagen) <= ' => $end_date,
                 'DATE(images.fecha_hora_imagen) >= ' => $start_date
-            ]
-        ];
+            ];
 
         $images = $this->paginate($this->Images);
 

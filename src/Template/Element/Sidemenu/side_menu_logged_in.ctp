@@ -129,6 +129,10 @@
                                     { ?>    
                                     <li><?= $this->Html->link(__('Ver pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
                                 <?php } ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                    { ?>    
+                                    <li><?= $this->Html->link(__('Buscar pedido'), ['controller' => 'Pedidos', 'action' => 'buscarpedido']) ?> </li>
+                                <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true))
                                     { ?>
                                     <li><?= $this->Html->link(__('Nuevo pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
@@ -143,6 +147,23 @@
                                         <li><?= $this->Html->link(__('Cancelar pedido'), ['action' => 'delete', $pedido->id]) ?> </li>
                                     <?php } ?>
 
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--FIN PEDIDOS -->
+
+                    <!--INFORME-->
+                    <?php 
+                    if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true || $auth['User']['role']['modificar_pedido'] === true || $auth['User']['role']['nuevo_pedido'] === true || $auth['User']['role']['eliminar_pedido'] === true || $auth['User']['role']['evaluar_pedido'] === true))
+                    { ?>
+                    <li class="child-menu"><a href="#">Informes<i class="fa fa-angle-right"></i></a>
+                    <?php } ?>    
+                        <div class="sub-menu-wrapper">
+                            <ul class="sub-menu center-content">
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                    { ?>    
+                                    <li><?= $this->Html->link(__('Ver informes'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                             </ul>
                         </div>
