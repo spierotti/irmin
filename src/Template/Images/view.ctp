@@ -8,20 +8,20 @@
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Image']); ?>
 
 <div class="images view large-9 medium-8 columns content">
-    <table class="vertical-table">
+    <table class="table table-hover">
         <tr>
             <?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo')); ?>
         </tr>
         <tr>
-            <th scope="row"><?= __('Fecha y Hora de Captura') ?></th>
+            <th scope="row">Fecha y Hora de Captura</th>
             <td><?= h($image->fecha_hora_imagen) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Fecha y Hora de Alta') ?></th>
+            <th scope="row">Fecha y Hora de Alta</th>
             <td><?= h($image->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Hay Actividad') ?></th>
+            <th scope="row">Hay Actividad</th>
             <td><?= $image->hay_actividad ? __('Si') : __('No'); ?></td>
         </tr>
     </table>
