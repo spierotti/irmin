@@ -5,10 +5,11 @@
  */
 ?>
 
+
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Informe']); ?>
 
-<div class="informes index large-9 medium-8 columns content">
-    <legend>INFORMES</legend>
+<div class="large-9 medium-8 columns content">
+    <legend>Informes</legend>
     <?= $this->Form->create('Informes', ['type' => 'get']); ?>
         <div class="form-group row">
             <div class="col-sm-3">
@@ -40,7 +41,6 @@
             'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
             ]);
         ?>
-
         <?php if (!$informes->isEmpty()) { ?>
 
             <table class="table table-hover">   
@@ -86,7 +86,6 @@
 
             echo '<p>¡No existen registros para el periodo solicitado!</p>';
         }?>
-
     </div>
 
 </div>
