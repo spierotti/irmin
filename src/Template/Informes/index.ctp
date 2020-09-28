@@ -5,12 +5,30 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
+
+<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Informe']); ?>
 
 <div class="large-9 medium-8 columns content">
-    <legend>Informes </legend>
+    <legend>Informes</legend>
+    <?= $this->Form->create('Informes', ['type' => 'get']); ?>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <?= $this->Form->control('start_date',['label' => false,'placeholder' => 'Fecha desde','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
+            </div>
+            <div class="col-sm-3">
+                <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
+            </div>
+            <div class="col-sm-3">
+                
+            <?= $this->Form->submit('Buscar', [
+                    'class' => 'btn btn-primary'
+                ]) ?>
+            </div>
+        </div>
+    <?= $this->Form->end(); ?>
+
     <div class="table-content" id="contenedor-tabla">
-        
+
         <?php
             $this->Paginator->templates([
             'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
@@ -23,33 +41,52 @@
             'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
             ]);
         ?>
-        
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('fecha_hora_informe') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('descripcion') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($informes as $informe): ?>
-                <tr>
-                    <td><?= $this->Number->format($informe->id) ?></td>
-                    <td><?= h($informe->fecha_hora_informe) ?></td>
-                    <td><?= h($informe->descripcion) ?></td>
-                    <td class="actions">
-                        <?php
-                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver pedido')),
-                            array('action' => 'view', $informe->id),
-                            array('escape'=>false)
-                            );
-                        ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <?php if (!$informes->isEmpty()) { ?>
+
+            <table class="table table-hover">   
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($informes as $informe): ?>
+                    <tr>
+                        <td><?= $this->Number->format($informe->id) ?></td>
+                        <td><?= h($informe->fecha_hora_informe) ?></td>
+                        <td><?= h($informe->descripcion) ?></td>
+                        <td class="actions">
+                            <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true) { 
+                                    echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver informe')),
+                                    array('action' => 'view', $informe->id),
+                                    array('escape'=>false)
+                                    );
+                            } ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+
+            </table>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?= $this->Paginator->first('<<') ?> 
+                    <?= $this->Paginator->prev('<') ?>
+                    <?= $this->Paginator->numbers() ?>
+                    <?= $this->Paginator->next('>') ?>
+                    <?= $this->Paginator->last('>>') ?>
+                </ul>
+            </nav>
+
+        <?php }else{
+
+            echo '<p>¡No existen registros para el periodo solicitado!</p>';
+        }?>
     </div>
+
 </div>
+<?= $this->Html->script('filtrar-informe.js') ?>

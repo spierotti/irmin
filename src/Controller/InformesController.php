@@ -13,6 +13,13 @@ use App\Controller\AppController;
 class InformesController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'Informes.id' => 'desc'
+        ]
+    ];
+
     /**
      * Is Authorized Method
      * 
@@ -41,8 +48,35 @@ class InformesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    /*public function index()
     {
+        $informes = $this->paginate($this->Informes);
+
+        $this->set(compact('informes'));
+    }*/
+    public function index($start_date = null, $end_date = null)
+    {
+        $start_date = $this->request->query('start_date');
+        $end_date = $this->request->query('end_date');
+
+        $hoy = date('Y-m-d');
+
+        if(is_null($start_date) || strlen($start_date) == 0){
+            $date_past = strtotime('-30 day', strtotime($hoy));
+            $start_date =  date('Y-m-d', $date_past);
+        }
+
+        if(is_null($end_date) || strlen($end_date) == 0){
+            $end_date = $hoy;
+        }
+
+        $this->paginate ['conditions'] = [
+                'DATE(Informes.fecha_hora_informe) <= ' =>  $end_date,
+                'DATE(Informes.fecha_hora_informe) >= ' =>  $start_date
+            ];
+
+        debug($this->paginate);
+
         $informes = $this->paginate($this->Informes);
 
         $this->set(compact('informes'));
