@@ -80,9 +80,9 @@
 </table>
 
 
-<div class="col-sm-10">
-    <div class="card-deck">
-        <legend><?= __('Imágenes relacionadas') ?></legend>
+<div>
+<legend>Imágenes relacionadas</legend>
+    <div class="card-columns">
         <?php if (!empty($pedido->images)): ?>
             <?php foreach ($pedido->images as $images): ?>
                 <div class="card">

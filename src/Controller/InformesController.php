@@ -75,7 +75,7 @@ class InformesController extends AppController
                 'DATE(Informes.fecha_hora_informe) >= ' =>  $start_date
             ];
 
-        debug($this->paginate);
+        //debug($this->paginate);
 
         $informes = $this->paginate($this->Informes);
 
