@@ -1,3 +1,4 @@
+<!--Menu mobile-->
 <div class="menu-wrapper">
     <div class="mobile-menu">
         <nav class="navbar navbar-inverse">
@@ -14,64 +15,59 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Menu Example 01</a></li>
-                                <li><a href="#">Menu Example 02</a></li>
-                                <li><a href="#">Menu Example 03</a></li>
-                                <li><a href="#">Menu Example 04</a></li>
-                                <li><a href="#">Menu Example 05</a></li>
-                                <li><a href="#">Menu Example 06</a></li>
+                                <li><a href="#">Ver perfil</a></li>
+                                <li><a href="#">Editar perfil</a></li>
+                                <li><a href="#">Cambiar contraseña</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pedidos </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Menu Example 01</a></li>
-                                <li><a href="#">Menu Example 02</a></li>
-                                <li><a href="#">Menu Example 03</a></li>
-                                <li><a href="#">Menu Example 04</a></li>
-                                <li><a href="#">Menu Example 05</a></li>
-                                <li><a href="#">Menu Example 06</a></li>
+                                <li><a href="#">Ver pedidos</a></li>
+                                <li><a href="#">Buscar pedido</a></li>
+                                <li><a href="#">Nuevo pedido</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informes </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Menu Example 01</a></li>
-                                <li><a href="#">Menu Example 02</a></li>
-                                <li><a href="#">Menu Example 03</a></li>
-                                <li><a href="#">Menu Example 04</a></li>
-                                <li><a href="#">Menu Example 05</a></li>
-                                <li><a href="#">Menu Example 06</a></li>
+                                <li><a href="#">Ver informes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Menu Example 01</a></li>
-                                <li><a href="#">Menu Example 02</a></li>
-                                <li><a href="#">Menu Example 03</a></li>
-                                <li><a href="#">Menu Example 04</a></li>
-                                <li><a href="#">Menu Example 05</a></li>
-                                <li><a href="#">Menu Example 06</a></li>
+                                <li><a href="#">Ver clientes</a></li>
+                                <li><a href="#">Nuevo cliente</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Imágenes </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Menu Example 01</a></li>
-                                <li><a href="#">Menu Example 02</a></li>
-                                <li><a href="#">Menu Example 03</a></li>
-                                <li><a href="#">Menu Example 04</a></li>
-                                <li><a href="#">Menu Example 05</a></li>
-                                <li><a href="#">Menu Example 06</a></li>
+                                <li><a href="#">Ver imágenes </a></li>
+                                <li><a href="#">Nueva imagen</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="https://html.design">Download <i class="fa fa-shopping-bag"></i></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Ver roles </a></li>
+                                <li><a href="#">Nuevo rol </a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Ver usuarios </a></li>
+                                <li><a href="#">Nuevo usuario </a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Nuestra empresa </a></li>
+                        <li><a href="#">Contacto </a></li>
+                        <li><a href="#">Ayuda </a></li>
+                        <li><a href="#">Logout </a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
