@@ -5,9 +5,6 @@
  */
 ?>
 
-
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Informe']); ?>
-
 <div class="large-9 medium-8 columns content">
     <legend>Informes</legend>
     <?= $this->Form->create('Informes', ['type' => 'get']); ?>

@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
-
 <!--<div class="clientes form large-9 medium-8 columns content mt-5">-->
 <div class="clientes form large-9 medium-8 columns content">
     <?= $this->Form->create($cliente) ?>

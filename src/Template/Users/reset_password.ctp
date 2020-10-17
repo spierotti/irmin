@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_out', ['viewName'=>'User']); ?>
-
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>

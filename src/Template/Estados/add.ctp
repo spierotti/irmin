@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
-
 <div class="estados form large-9 medium-8 columns content">
     <?= $this->Form->create($estado) ?>
     <fieldset>
