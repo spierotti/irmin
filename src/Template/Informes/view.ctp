@@ -5,9 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
-
-
 <legend>Informe número <?= h($informe->id) ?></legend>
 <table class="table table-sm table-hover">
     <tr>

@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'User']); ?>
-
 <div class="users view large-9 medium-8 columns content">
     <legend>Datos del usuario</legend>
     <table class="table table-responsive-sm table-hover">

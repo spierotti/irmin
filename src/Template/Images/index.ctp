@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Image']); ?>
-
 <div class="images index large-9 medium-8 columns content">
     <legend>IMAGENES</legend>
     <?= $this->Form->create('Images', ['type' => 'get']); ?>

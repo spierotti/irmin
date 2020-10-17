@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Pedidos']); ?>
-
 <div class="pedidos index large-9 medium-8 columns content">
     <legend> Pedidos </legend>
     <?php if (isset($auth['User']['role_id']) && $auth['User']['role_id'] != 4){ ?>

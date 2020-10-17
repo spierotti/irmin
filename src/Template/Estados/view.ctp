@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Estado']); ?>
-
 <div class="estados view large-9 medium-8 columns content">
     <h3><?= h($estado->id) ?></h3>
     <table class="vertical-table">

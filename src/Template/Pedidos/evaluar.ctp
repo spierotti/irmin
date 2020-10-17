@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Pedidos']); ?>
-
 <div class="pedidos view large-9 medium-8 columns content">
     <table class="vertical-table">
         <h4><?= __('Evaluar Pedido') ?></h4>

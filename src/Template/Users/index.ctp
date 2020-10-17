@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'User']); ?>
-
 <div class="users index large-9 medium-8 columns content col-lg-12">
 
     <div class="col-sm-10">
