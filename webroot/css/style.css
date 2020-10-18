@@ -592,7 +592,7 @@ MOBILE MENU
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 400;
     margin: 0;
     text-transform: capitalize;
@@ -2228,4 +2228,21 @@ RESPONSIVE
 
 .fa-bars{
     color:#aeaeae;
+}
+
+.navbar-nav .show .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 20px;
+}
+
+.navbar-nav .show .dropdown-menu li{
+    margin-left: 50px;
+    font-size: 14px;
 }
