@@ -8,7 +8,7 @@
 <div class="pedidos index large-9 medium-8 columns content">
     <legend> Pedidos </legend>
     <?php if (isset($auth['User']['role_id']) && $auth['User']['role_id'] != 4){ ?>
-    <div class="col-sm-6">    
+    <div class="col-sm-6">
         <?= $this->Form->control('buscar', ['label' => false, 'placeholder' => 'Buscar por Cliente', 'autocompelte' => false, 'id' => 'buscar', 'class' => 'form-control']); ?>
     </div>
     <?php } ?>
@@ -18,7 +18,7 @@
             <tr>
             <td>
                 <div class="ml-2">
-                    <?= $this->Form->radio('estado',['Nuevo ', 'En Evaluacion ', 'Evaluado ', 'Cancelado ', 'Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2 mt-2']); ?>
+                    <?= $this->Form->radio('estado',[' Nuevo ', ' En Evaluacion ', ' Evaluado ', ' Cancelado ', ' Todos'],['id' => 'estado', 'value' => 0, 'hiddenField' => false, 'class' =>'ml-2 mt-2']); ?>
                 </div>
             </td>
             </tr>

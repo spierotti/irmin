@@ -5,7 +5,7 @@
  */
 ?>
 
-<legend><?= __('Datos del usuario') ?></legend>
+<legend>Datos del usuario</legend>
 <div class="row col-sm-10">
     <table class="table table-responsive-sm table-hover">
         <tbody>
