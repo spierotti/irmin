@@ -96,5 +96,5 @@
 </div>
 
 <div>
-    <button onclick="window.location.href = '/pedidos';" class="btn btn-primary mt-4">Volver</button>
+    <button onclick="window.location.href = '/pedidos/buscarpedido';" class="btn btn-primary mt-4">Volver</button>
 </div>

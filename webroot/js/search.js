@@ -7,7 +7,8 @@ $(document).ready(function () {
         },
         source: function(request, response) {
             $.ajax({
-                url: "http://localhost/irmin/clientes/buscarclientes",
+                //url: "http://localhost/irmin/clientes/buscarclientes",
+                url: "./clientes/buscarclientes",
                 data: {
                     term: request.term
                 },
@@ -28,7 +29,8 @@ $(document).ready(function () {
             // If it's not already added
             if (!$('#add-cliente').length) {
                 // Add it
-                $('<li id="add-cliente"><a href="http://localhost/irmin/clientes/add">Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
+                //$('<li id="add-cliente"><a href="http://localhost/irmin/clientes/add">Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
+                $('<li id="add-cliente"><a href="./clientes/add">Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
             }
         }
     }).data("ui-autocomplete")._renderItem = function(ul, item){
