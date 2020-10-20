@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Cake\Http\Response;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Images Controller
@@ -67,16 +68,6 @@ class ImagesController extends AppController
  
          $this->set('image', $image);
      }
-    
-    /*public function view($fecha_hora_imagen = null)
-    {
-        $query = $images->find('all')
-                        ->where('Images.fecha_hora_imagen = ' => $fecha_hora_imagen);
-
-        $image = $query->first();
-
-        $this->set('image', $image);
-    }*/
 
     /**
      * Add method
@@ -85,108 +76,15 @@ class ImagesController extends AppController
      */
     public function add()
     {
+        // Obtengo datos de la Tabla ultima_descarga.
+        $conn = ConnectionManager::get('default');
 
-        if ($this->request->is('post')) {
+        $stmt = $conn->execute("SELECT * FROM `ultima_descarga` order by fecha_hora_actualizacion desc LIMIT 1");
 
-            exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
-            //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
-
-            if (!$return) {
-                echo $salida;
-            } else {
-                echo "error";
-            }
-        }
+        $row = $stmt->fetch('assoc');
+ 
+        $this->set('row', $row);
     }
-    
-    /*public function add()
-    {
-        $image = $this->Images->newEntity();
-
-        if ($this->request->is('post')) {
-
-            $img = $this->request->getData();
-
-            $texto = substr($img['photo']['name'], 0,5);
-
-            if ($texto == "topes"){
-
-                $img['fecha_hora_imagen']['year'] = substr($img['photo']['name'], 5,2);
-                $img['fecha_hora_imagen']['month'] = substr($img['photo']['name'], 7,2);
-                $img['fecha_hora_imagen']['day'] = substr($img['photo']['name'], 9,2);
-                $img['fecha_hora_imagen']['hour'] = substr($img['photo']['name'], 12,2);
-                $img['fecha_hora_imagen']['minute'] = substr($img['photo']['name'], 14,2);
-
-                //$image = $this->Images->patchEntity($image, $this->request->getData());
-                $image = $this->Images->patchEntity($image, $img);
-
-                if ($this->Images->save($image)) {
-
-                    $this->Flash->success(__('LA IMAGEN SE GUARDO CON EXITO.'));
-
-                    return $this->redirect(['action' => 'index']);
-                }
-
-                $this->Flash->error(__('ERRO AL GUARDAR IMAGEN. INTENTELO NUEVAMENTE.'));
-
-            }else{
-
-                $this->Flash->error(__('LA IMAGEN DEBE SER DE TOPES NUBOSOS.'));
-
-            }
-        }
-        $this->set(compact('image'));
-    }*/
-
-    /**
-     * 
-     */
-    public function ejecutar(){
-
-        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
-        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
-
-        $respuesta = new Response();
-
-        if (!$return) {
-
-            $string = implode("\n", $salida);
-
-            $respuesta = $respuesta->withStringBody($string);
-
-        } else {
-
-            $respuesta = $respuesta->withStringBody("ERROR");
-            //$respuesta = "error";
-            
-        }
-
-        return $respuesta;
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Image id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    /*public function edit($id = null)
-    {
-        $image = $this->Images->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $image = $this->Images->patchEntity($image, $this->request->getData());
-            if ($this->Images->save($image)) {
-                $this->Flash->success(__('The image has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The image could not be saved. Please, try again.'));
-        }
-        $this->set(compact('image'));
-    }*/
 
     /**
      * Delete method
@@ -206,5 +104,85 @@ class ImagesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Metodo Ejecutar
+     * 
+     * Ejecuta el script de descarga de imagenes en Py.
+     */
+    public function ejecutar(){
+
+        session_write_close();
+
+        $respuesta = new Response();
+
+        // ejecuto screipt de descarga
+        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
+        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
+
+        if (!$return) {
+
+            // Obtengo datos de la Tabla ultima_descarga.
+            $conn = ConnectionManager::get('default');
+
+            $stmt = $conn->execute("SELECT * FROM `ultima_descarga` order by fecha_hora_actualizacion desc LIMIT 1");
+
+            $row = $stmt->fetch('assoc');
+
+            //$string = implode("\n", $row['salida']);
+            $string = implode("\n", $salida);
+
+            $respuesta = $respuesta->withType('application/json')->withStringBody(
+                json_encode(
+                        [
+                            'fecha_hora_actualizacion' => $row['fecha_hora_actualizacion'],
+                            'salida' => $string
+                        ]
+                )
+            );
+
+        } else {
+
+            $respuesta = $respuesta->withType('application/json')->withStringBody(
+                json_encode(
+                    [
+                        'error' => '¡Ha ocurrido un error al descargar las imagenes!'
+                    ]
+                )
+            );
+        }
+
+        return $respuesta;
+    }
+
+    /**
+     * Metodo get progreso
+     * 
+     * Obtiene el porcetaje de la descarga de imagenes realizado hasta el momento.
+     */
+    public function getProgreso(){
+
+        $conn = ConnectionManager::get('default');
+
+        $stmt = $conn->execute("SELECT * FROM `ultima_descarga` order by fecha_hora_actualizacion desc LIMIT 1");
+
+        $row = $stmt->fetch('assoc');
+
+        $procentaje = ($row['completado'] * 100)/ $row['total'];
+ 
+        $respuesta = new Response();
+
+        if (!is_null($row)) {
+
+            $respuesta = $respuesta->withType('application/json')->withStringBody(json_encode(['porcentaje' => $procentaje]));
+
+        } else {
+
+            $respuesta = $respuesta->withStringBody("Error");
+            
+        }
+
+        return $respuesta;
     }
 }

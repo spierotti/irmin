@@ -79,24 +79,25 @@
   </tbody>
 </table>
 
-
 <div>
-<legend>Imágenes relacionadas</legend>
-    <div class="card-columns">
-        <?php if (!empty($pedido->images)): ?>
-            <?php foreach ($pedido->images as $images): ?>
-                <div class="card">
-                    <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
-                    <div class="card-body">
-                        <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
-                        <?= $this->Html->link(__('Ver imagen'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
+  <legend>Imágenes relacionadas</legend>
+  <div class="card-columns">
+    <?php if (!empty($pedido->images)){ ?>
+      <?php foreach ($pedido->images as $images): ?>
+          <div class="card">
+              <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
+              <div class="card-body">
+                  <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
+                  <?= $this->Html->link(__('Ver imagen'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
+              </div>
+          </div>
+      <?php endforeach; ?>
+    <?php }else{
+      echo '<p>¡No existen registros para el periodo solicitado!</p>';
+    }?>
+  </div>
 </div>
 
-<div>
+<!--<div>
     <button onclick="window.location.href = '/pedidos';" class="btn btn-primary mt-4">Volver</button>
-</div>
+</div>-->

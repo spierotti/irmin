@@ -79,15 +79,12 @@
     <header class="vertical-header">
         <div class="vertical-header-wrapper">
             <nav class="nav-menu">
-                <div class="logo">
-                </div><!-- end logo -->
 
                 <div class="margin-block"></div>
 
-
                 <ul class="primary-menu">
 
-                    <li class="child-menu"><a href="/users/home">Home </a></li>
+                    <li class="child-menu"><a href="http://localhost/irmin">Home </a></li>
                     <?php if (!isset($auth['User']['role_id']))
                     { ?>
 					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
@@ -134,6 +131,8 @@
                                     <li><?= $this->Html->link(__('Nuevo pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
                                 <?php } ?>
                                 <?php if($this->view == 'view' && $this->name == "Pedidos") { ?> 
+
+                                    <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'view', $pedido->id, '_ext' => 'pdf']); ?></li>
 
                                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id']))) { ?>    
                                         <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
@@ -210,7 +209,7 @@
                                     <li><?= $this->Html->link(__('Ver imágenes'), ['controller' => 'Images', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
-                                    <li><?= $this->Html->link(__('Nueva imagen'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
+                                    <li><?= $this->Html->link(__('Descargar Imagenes'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
                                 <?php } ?>
                                 <?php if($this->view == 'view' && $this->name == "Images") { ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_imagen'] === true)) { ?> <!--¿Qué onda con esta parte?-->

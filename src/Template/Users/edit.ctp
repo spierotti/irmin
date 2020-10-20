@@ -35,9 +35,9 @@
                         'class' => 'btn btn-primary'
                     ]) ?>
                 </div>
-                <div>
+                <!--<div>
                     <button onclick="window.location.href = '/users';" class="btn btn-primary">Volver</button>
-                </div>
+                </div>-->
             </div>
         </div>
     <?= $this->Form->end() ?>

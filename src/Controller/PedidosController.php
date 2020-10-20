@@ -132,9 +132,6 @@ class PedidosController extends AppController
         
         if ($this->request->is('post')) {
 
-            debug(substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00");
-            debug(substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59");
-
             // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
             $query = $this->Pedidos->Images->find('all')->where([
                 //'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
@@ -144,7 +141,7 @@ class PedidosController extends AppController
             ]);
 
             // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
-            $pedido = $this->Pedidos->patchEntity($pedido, [
+            /*$pedido = $this->Pedidos->patchEntity($pedido, [
                 'cliente_id' => $this->request->data['cliente_id'],
                 'estado_id' => 1,
                 'fecha_solicitud' => date('Y-m-d H:i:s'),
@@ -154,7 +151,15 @@ class PedidosController extends AppController
                 'fecha_fin' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2),
                 'descripcion' => $this->request->data['descripcion'],
                 'images' => array()
-            ]);
+            ]);*/
+
+            $pedido->cliente_id = $this->request->data['cliente_id'];
+            $pedido->estado_id = 1;
+            $pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
+            $pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
+            $pedido->fecha_solicitud = date('Y-m-d H:i:s');
+            $pedido->descripcion = $this->request->data['descripcion'];
+            $pedido->images = array();
 
             $i = 0;
             foreach ($query as $row) {
@@ -163,10 +168,10 @@ class PedidosController extends AppController
             }
 
             if ($this->Pedidos->save($pedido)) {
-                $this->Flash->success(__('The pedido has been saved.'));
+                $this->Flash->success(__('Pedido guardado con Exito.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al guardar el Pedido.'));
         }
         $this->set(compact('pedido'));
     }
@@ -217,17 +222,17 @@ class PedidosController extends AppController
             $data = $this->request->getData();
 
             $pedido->conclusion = $data['conclusion'];
-            $pedido->fecha_evaluacion = Time::now();
+            $pedido->fecha_evaluacion = date('Y-m-d H:i:s');
             $pedido->estado_id = 3;
 
            if ($this->Pedidos->save($pedido)) {
 
-               $this->Flash->success(__('The pedido has been saved.'));
+               $this->Flash->success(__('Pedido actualizado con Exito.'));
 
                return $this->redirect(['action' => 'index']);
            }
 
-           $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
+           $this->Flash->error(__('Error al actualizar el Pedido.'));
 
         }else{
 
