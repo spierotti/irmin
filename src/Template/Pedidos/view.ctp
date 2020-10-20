@@ -5,7 +5,7 @@
  */
 ?>
 
-<legend><?= __('Datos del pedido') ?></legend>
+<legend>Datos del pedido</legend>
 <table class="table table-sm table-hover">
   <tbody>
     <tr>
