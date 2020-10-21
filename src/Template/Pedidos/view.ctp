@@ -5,9 +5,7 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Pedidos']); ?>
-
-<legend><?= __('Datos del pedido') ?></legend>
+<legend>Datos del pedido</legend>
 <table class="table table-sm table-hover">
   <tbody>
     <tr>
@@ -97,7 +95,6 @@
     }?>
   </div>
 </div>
-
-<!--<div>
-    <button onclick="window.location.href = '/pedidos';" class="btn btn-primary mt-4">Volver</button>
-</div>-->
+<div>
+    <button onclick="window.location.href = '/pedidos/buscarpedido';" class="btn btn-primary mt-4">Volver</button>
+</div>

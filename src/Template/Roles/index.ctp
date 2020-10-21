@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Rol']); ?>
-
 <div class="roles index large-9 medium-8 columns content col-lg-12">
 
 <div class="col-sm-10">
@@ -32,21 +30,21 @@
         </div>
     </div>
 
-
-    <div class="table-content" id="contenedor-tabla">
-    <?php
-      $this->Paginator->templates([
-      'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'current' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
-      ]);
-    ?>
-
+    <div style="overflow-x:auto;">
+      <div class="table-content" id="contenedor-tabla">
+      <?php
+        $this->Paginator->templates([
+        'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'current' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        ]);
+      ?>
+        
     <?php if (!$roles->isEmpty()) { ?>
     
       <table class="table table-hover">
@@ -106,7 +104,8 @@
     <?php }else{
       echo '<p>¡No existen registros para el periodo solicitado!</p>';
     }?>
-
+        
+      </div>
     </div>
 </div>
 <?= $this->Html->script('filtrar-roles.js') ?>

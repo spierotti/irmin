@@ -5,9 +5,6 @@
  */
 ?>
 
-
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Informe']); ?>
-
 <div class="large-9 medium-8 columns content">
     <legend>Informes</legend>
     <?= $this->Form->create('Informes', ['type' => 'get']); ?>
@@ -15,7 +12,7 @@
             <div class="col-sm-3">
                 <?= $this->Form->control('start_date',['label' => false,'placeholder' => 'Fecha desde','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 mb-2">
                 <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
             </div>
             <div class="col-sm-3">
@@ -48,8 +45,8 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col" class="actions">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

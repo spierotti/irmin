@@ -5,10 +5,7 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Pedidos']); ?>
-
 <!--<div class="row justify-content-center">-->
-<div class="row">
     <div class="col-sm-8">
         <?= $this->Form->create($pedido) ?>
             <div class="form-group row">
@@ -74,5 +71,4 @@
             </div>
         <?= $this->Form->end() ?>
     </div>
-</div>
 <?= $this->Html->script('search.js') ?>

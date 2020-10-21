@@ -5,7 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
 <div class="row col-sm-12">
     <div class="col-sm-6">
         <legend> Detalles del rol </legend>

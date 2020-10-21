@@ -5,23 +5,20 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Image']); ?>
-
 <div class="images index large-9 medium-8 columns content">
-    <legend>IMAGENES</legend>
+    <legend>Imágenes</legend>
     <?= $this->Form->create('Images', ['type' => 'get']); ?>
         <div class="form-group row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 mt-1">
                 <?= $this->Form->control('start_date',['label' => false,'placeholder' => 'Fecha desde','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 mt-1">
                 <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
             </div>
-            <div class="col-sm-3">
-                
-            <?= $this->Form->submit('Buscar', [
-                    'class' => 'btn btn-primary'
-                ]) ?>
+            <div class="col-sm-3 mt-2 ml-2">
+                <?= $this->Form->submit('Buscar', [
+                        'class' => 'btn btn-primary'
+                    ]) ?>
             </div>
         </div>
     <?= $this->Form->end(); ?>
@@ -41,45 +38,30 @@
             ]);
         ?>
 
-        <?php if (!$images->isEmpty()) { ?>
-        
-            <table cellpadding="0" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th scope="col"><?= $this->Paginator->sort('id', ['label' => 'Id']) ?></th>
-                        <th scope="col"><?= $this->Paginator->sort('fecha_hora_imagen', ['label' => 'Fecha']) ?></th>
-                        <th scope="col"><?= h('Imagen') ?></th>
-                        <th scope="col" class="actions"><?= __('ACCIONES') ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($images as $image): ?>
-                    <tr>
-                        <td><?= h($image->id) ?></td>
-                        <td><?= h($image->fecha_hora_imagen) ?></td>
-                        <td>
-                            <?= 
-                                $this->Html->link(
-                                    $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),array('width'=>'200px')), 
-                                    array('controller' => 'Images', 'action' => 'view', $image->id),
-                                    array('escape' => false)
-                                );
-                            ?>
-                        </td>
-                        <td class="actions">
+        <?php if (!$images->isEmpty()){ ?>
+            <div class="card-columns">
+                <?php foreach ($images as $image): ?>
+                    <div class="card">
+                        <?=$this->Html->link(
+                                $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),['class'=>'card-img-top']), 
+                                array('controller' => 'Images', 'action' => 'view', $image->id),
+                                array('escape' => false)
+                            );
+                        ?>
+                        <div class="card-body">
+                            <h6 class="card-title" title="Número de imagen"><?= h($image->id) ?><h6>
+                            <p class="card-text"><?= h($image->fecha_hora_imagen) ?></p>
                             <?=                                    
                                 $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar imagen')),
                                     array('action' => 'delete', $image['id']),
                                     array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar la Imagen #{0}?', $image->id))
                                 );
                             ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
-            <<nav aria-label="Page navigation">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     <?= $this->Paginator->first('<<') ?> 
                     <?= $this->Paginator->prev('<') ?>
@@ -88,13 +70,9 @@
                     <?= $this->Paginator->last('>>') ?>
                 </ul>
             </nav>
-
         <?php }else{
-
-            echo '<p>¡No existen registros para el periodo solicitado!</p>';
+            echo '<div class="row"><p>¡No existen registros para el periodo solicitado!</p></div>';
         }?>
-
     </div>
-
 </div>
 <?= $this->Html->script('filtrar-imagen.js') ?>

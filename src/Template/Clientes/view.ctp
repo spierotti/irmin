@@ -5,7 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'Cliente']); ?>
 <legend>Datos del cliente</legend>
 <table class="table table-responsive-sm table-hover">
   <tbody>

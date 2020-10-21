@@ -47,18 +47,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body>
+<body class="left-menu">
   
     <?= $this->Flash->render() ?>
-    <div class="container clearfix" >
+    <!--<div class="container clearfix" >-->
 
-        <div id="contenedor-sitio">
+    <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
+        <!--<div id="contenedor-sitio">-->
+        <div id="wrapper">
             <div class="container mt-5 mb-5">
                 <?= $this->fetch('content') ?>
             </div>
         </div>
 
-    </div>
+    <!--</div>-->
     <script type="text/javascript"> 
         $(function () {
             $('[data-toggle="datepicker"]').datepicker({

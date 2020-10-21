@@ -5,8 +5,6 @@
  */
 ?>
 
-<?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName'=>'User']); ?>
-
 <div class="users index large-9 medium-8 columns content col-lg-12">
 
     <div class="col-sm-10">
@@ -32,7 +30,8 @@
         </div>
     </div>
 
-    <div class="table-content mt-4" id="contenedor-tabla">
+    <div style="overflow-x:auto;">
+        <div class="table-content mt-4" id="contenedor-tabla">
 
         <?php
             $this->Paginator->templates([
@@ -48,7 +47,7 @@
         ?>
         
         <?php if (!$users->isEmpty()) { ?>
-        
+                               
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -107,7 +106,8 @@
 
             echo '<p>¡No existen registros para el periodo solicitado!</p>';
         }?>
-
+          
+        </div>                        
     </div>
 </div>
 <?= $this->Html->script('filtrar-usuario.js?v=1.1') ?>
