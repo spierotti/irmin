@@ -155,7 +155,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         // Get a list of tags.
-        $roles = $this->Users->Roles->find('list');
+        $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
         // Set tags to the view context
         $this->set('roles', $roles);
         $this->set(compact('user'));
@@ -237,7 +237,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         // Get a list of tags.
-        $roles = $this->Users->Roles->find('list');
+        $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
         // Set tags to the view context
         $this->set('roles', $roles);
         $this->set(compact('user'));
@@ -266,7 +266,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         // Get a list of tags.
-        $roles = $this->Users->Roles->find('list');
+        $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
         //debug($roles);
         // Set tags to the view context
         $this->set('roles', $roles);
@@ -517,7 +517,7 @@ class UsersController extends AppController
     public function ayuda()
     {
         //$response = $this->response->withFile('D:\Archivos de programa\appserv\www\test2\webroot\files\pdf\jai1_0_1-guide.pdf');
-        $response = $this->response->withFile(WWW_ROOT . 'files\pdf\jai1_0_1-guide.pdf');
+        $response = $this->response->withFile(WWW_ROOT . 'files\pdf\manual.pdf');
         return $response;
     }
 }

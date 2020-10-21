@@ -34,6 +34,6 @@
     </tr>
   </tbody>
 </table>
-<div>
+<!--<div>
     <button onclick="window.location.href = '/clientes';" class="btn btn-primary mt-4">Volver</button>
-</div>
+</div>-->

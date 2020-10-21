@@ -44,7 +44,9 @@
         'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
         ]);
       ?>
-
+        
+    <?php if (!$roles->isEmpty()) { ?>
+    
       <table class="table table-hover">
         <thead>
           <tr>
@@ -97,8 +99,12 @@
               <?= $this->Paginator->next('>') ?>
               <?= $this->Paginator->last('>>') ?>
           </ul>
-        </nav>
+      </nav>
 
+    <?php }else{
+      echo '<p>¡No existen registros para el periodo solicitado!</p>';
+    }?>
+        
       </div>
     </div>
 </div>

@@ -43,8 +43,8 @@
                             <th scope="row"><?= h($users->username) ?></th>
                             <td><?= h($users->email) ?></td>
                             <td>
-                                <a href="/users/view/<?= $users->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
-                                <a href="/users/edit/<?= $users->id?>"><i class="fa fa-pencil" title="Modificar usuario"></i></a>
+                                <a href="/irmin/users/view/<?= $users->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
+                                <a href="/irmin/users/edit/<?= $users->id?>"><i class="fa fa-pencil" title="Modificar usuario"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -118,11 +118,11 @@
           </tbody>
         </table>
     </div>
-    <div class="form-group row">
+    <!--<div class="form-group row">
         <div class="col-sm-4">
         </div>
         <div class="ml-4">
             <button onclick="window.location.href = '/roles';" class="btn btn-primary mt-4">Volver</button>
         </div>
-    </div>
+    </div>-->
 </div>
