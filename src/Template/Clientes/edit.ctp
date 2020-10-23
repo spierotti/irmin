@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cliente $cliente
  */
+$this->assign('title', 'Editar cliente');
 ?>
 
 <!--<div class="clientes form large-9 medium-8 columns content mt-5">-->

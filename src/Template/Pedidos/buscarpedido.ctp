@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pedido $pedido
  */
+$this->assign('title', 'Buscar pedido');
 ?>
 
 <div class="pedidos form large-9 medium-8 columns content">

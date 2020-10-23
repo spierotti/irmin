@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Informe $informe
  */
+$this->assign('title', 'Informe número '.h($informe->id));
 ?>
 
 <legend>Informe número <?= h($informe->id) ?></legend>

@@ -1,4 +1,6 @@
-
+<?php
+$this->assign('title', 'Home');
+?>
 <H1>IRMIN</H1>
 
 <!-- tutiempo.net - Ancho:300px - Alto:411px -->

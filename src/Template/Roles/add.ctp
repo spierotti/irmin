@@ -3,13 +3,13 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Role $role
  */
+$this->assign('title', 'Agregar rol');
 ?>
-
-<div class="roles form large-9 medium-8 columns content">
-    
+<div class="row justify-content-center">
     <?= $this->Form->create($role) ?>
     <fieldset>
-        <legend>Agregar rol</legend>
+      <div class="justify-content-center"> 
+        <legend class="ml-2">Agregar rol</legend>
         <div class="row col-sm-10">
             <label for="razonSocial" id="razonSocial" class="col-sm-2 col-form-label mt-2">Nombre </label>
             <div class="col-sm-9">
@@ -29,8 +29,8 @@
             ]); ?>
             </div>
         </div>
-        <legend class="mt-2"> Permisos </legend>
-        <div class="row col-sm-10">
+        <legend class="mt-2 ml-2"> Permisos </legend>
+        <div class="row col-sm-10 ml-2">
             <table class="table table-sm">
               <thead>
                 <tr>
@@ -82,8 +82,8 @@
             </table>
         </div>
 
-        <legend class="mt-2"> Otros permisos </legend>
-        <div class="row col-sm-10">
+        <legend class="mt-2 ml-2"> Otros permisos </legend>
+        <div class="row col-sm-10 ml-2">
             <table>
                 <tbody>
                 <tr>
@@ -100,10 +100,11 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <?= $this->Form->submit('Agregar rol', [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4 ml-2'
                 ]) ?>
             </div>
         </div>
+      </div>
     </fieldset>
     <?= $this->Form->end() ?>
 </div>

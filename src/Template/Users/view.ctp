@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->assign('title', 'Datos del usuario');
 ?>
 
 <div class="users view large-9 medium-8 columns content">

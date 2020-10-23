@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Image $image
  */
+$this->assign('title', 'Imágenes');
 ?>
 
 <div class="images view large-9 medium-8 columns content">

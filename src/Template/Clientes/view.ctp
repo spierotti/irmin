@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cliente $cliente
  */
+$this->assign('title', 'Datos del cliente');
 ?>
 
 <legend>Datos del cliente</legend>

@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pedido $pedido
  */
+$this->assign('title', 'Cancelar pedido');
 ?>
 <legend>Cancelar Pedido</legend>
 <div class="row col-sm-12">
