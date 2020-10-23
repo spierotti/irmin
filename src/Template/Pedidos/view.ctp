@@ -79,10 +79,10 @@
 
 <div>
   <legend>Imágenes relacionadas</legend>
-  <div class="card-columns">
+  <div class="row card-columns">
     <?php if (!empty($pedido->images)){ ?>
       <?php foreach ($pedido->images as $images): ?>
-          <div class="card">
+          <div class="card col-sm-3">
               <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
               <div class="card-body">
                   <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>

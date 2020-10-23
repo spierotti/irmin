@@ -6,7 +6,7 @@
 ?>
 
 <legend>Evaluar Pedido</legend>
-<div class="row col-sm-10">
+<div class="row col-sm-12">
     <table class="table table-responsive-sm table-hover">
         <tbody>
             <tr>
@@ -32,31 +32,7 @@
         </tbody>
     </table>
 
-        
-    <div class="related">
-        <?php if (!empty($pedido->images)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col">Fecha Hora Imagen</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Fecha de creación</th>
-                <th scope="col" class="actions">Acciones</th>
-            </tr>
-            <?php foreach ($pedido->images as $images): ?>
-            <tr>
-                <td><?= h($images->fecha_hora_imagen) ?></td>
-                <td><?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo); ?></td>
-                <td><?= h($images->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-</div>
-    <?= $this->Form->create($pedido) ?>
+    <?= $this->Form->create($pedido,['class'=>'col-sm-12']) ?>
         <!--<label for="descripcion" id="descripcion" class="col-sm-2 col-form-label font-weight-bold">Conclusión </label>-->
         <div class="col-sm-10">
             <?php 
@@ -77,4 +53,29 @@
             </div>
         </div>
     <?= $this->Form->end() ?>
+        
+    <div class="col-sm-12 ml-5">
+        <legend> Imágenes relacionadas al pedido </legend>
+        <div class="row card-columns">
+            <?php if (!empty($pedido->images)){ ?>
+                <?php foreach ($pedido->images as $images): ?>
+                    <div class="card col-sm-3">
+                        <?= $this->Html->link(
+                            $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-1']), 
+                            array('controller' => 'Images', 'action' => 'view', $images->id),
+                            array('escape' => false)
+                        ); 
+                        ?>
+                        <div class="card-body">
+                            <h6 class="card-title"><?= h($images->created) ?></h5>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php }else{
+                echo '<p>No existen imágenes para el periodo solicitado.</p>';
+            }?>
+        </div>
+    </div>
+</div>
+    
 

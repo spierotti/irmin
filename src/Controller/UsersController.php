@@ -106,6 +106,7 @@ class UsersController extends AppController
         }
 
         $this->set(compact('users'));
+        $this->pageTitle = 'Ejemplo de título.';
     }
 
     /**
