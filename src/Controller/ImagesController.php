@@ -16,7 +16,7 @@ class ImagesController extends AppController
 {
 
     public $paginate = [
-        'limit' => 5,
+        'limit' => 6,
         'order' => [
             'Images.id' => 'desc'
         ]
