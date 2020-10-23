@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pedido $pedido
  */
+$this->assign('title', 'Evaluar pedido');
 ?>
 
 <legend>Evaluar Pedido</legend>
@@ -34,7 +35,7 @@
 
     <?= $this->Form->create($pedido,['class'=>'col-sm-12']) ?>
         <!--<label for="descripcion" id="descripcion" class="col-sm-2 col-form-label font-weight-bold">Conclusión </label>-->
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <?php 
                 echo $this->Form->control('conclusion',[
                     'type' => 'textarea',

@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Informe[]|\Cake\Collection\CollectionInterface $informes
  */
+$this->assign('title', 'Informes');
+
 ?>
 
 <div class="large-9 medium-8 columns content">

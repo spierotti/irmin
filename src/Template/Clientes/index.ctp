@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cliente[]|\Cake\Collection\CollectionInterface $clientes
  */
+$this->assign('title', 'Clientes');
 ?>
 
 <!--<div class="clientes index large-9 medium-8 columns content col-lg-12">-->

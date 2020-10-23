@@ -3,32 +3,31 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Role[]|\Cake\Collection\CollectionInterface $roles
  */
+$this->assign('title', 'Roles');
 ?>
 
-<div class="roles index large-9 medium-8 columns content col-lg-12">
-
 <div class="col-sm-10">
-        <div class="col-sm-8">
-            <legend> Roles </legend>
-            <div class="col-sm-6">
-                <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Rol', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
-            </div>
-            <div class="ml-4">
-                <table>
-                <tbody>
-                    <tr>
-                    <th scope="row">Solo activos</th>
-                    <td>
-                        <div class="ml-2">
-                            <?= $this->Form->control(' Solo Activos ', ['label' => false,'type' => 'checkbox', 'checked' => true, 'id' => 'activo', 'class'=> 'mt-2']); ?>
-                        </div>
-                    </td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="col-sm-10">
+    <legend> Roles </legend>
+    <div class="col-sm-8">
+      <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar Rol', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
     </div>
+    <div class="ml-4 mb-2">
+      <table>
+        <tbody>
+          <tr>
+          <th scope="row">Solo activos</th>
+            <td>
+              <div class="ml-2">
+                <?= $this->Form->control(' Solo Activos ', ['label' => false,'type' => 'checkbox', 'checked' => true, 'id' => 'activo', 'class'=> 'mt-2']); ?>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
     <div style="overflow-x:auto;">
       <div class="table-content" id="contenedor-tabla">
@@ -107,5 +106,4 @@
         
       </div>
     </div>
-</div>
 <?= $this->Html->script('filtrar-roles.js') ?>

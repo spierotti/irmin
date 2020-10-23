@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pedido[]|\Cake\Collection\CollectionInterface $pedidos
  */
+$this->assign('title', 'Pedidos');
 ?>
 
 <div class="pedidos index large-9 medium-8 columns content">

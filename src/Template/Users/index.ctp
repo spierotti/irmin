@@ -9,9 +9,9 @@ $this->assign('title', 'Usuarios');
 <div class="users index large-9 medium-8 columns content col-lg-12">
 
     <div class="col-sm-10">
-        <div class="col-sm-8">
+        <div class="col-sm-10">
             <legend> Usuarios </legend>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <?= $this->Form->control('Buscar', ['label' => false, 'placeholder' => 'Buscar usuario', 'autocompelte' => false, 'id' => 'buscar', 'class'=>'form-control']); ?>
             </div>
             <div class="ml-4">

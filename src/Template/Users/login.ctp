@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->assign('title', 'Iniciar sesión');
 ?>
 
 <div class="users form large-6 medium-8 columns content">

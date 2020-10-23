@@ -3,13 +3,13 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->assign('title', 'Usuarios - Modificar usuario');
 ?>
-
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-        <div class="col-sm-8">
+<?= $this->Form->create($user) ?>
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
             <div class="form-group row">
-                <legend>Modificar usuario</legend>
+                <legend class="ml-2">Modificar usuario</legend>
                 <label for="usuario" id="usuario" class="col-sm-3 col-form-label mt-2">Nombre de usuario</label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('username', ['autocomplete' => 'off','label' => false, 'class'=>'form-control mt-2']); ?>
@@ -38,6 +38,6 @@
                 </div>-->
             </div>
         </div>
-    <?= $this->Form->end() ?>
-</div>
+    </div>
+<?= $this->Form->end() ?>
 <?= $this->Html->script('enabled-disabled.js') ?>

@@ -3,12 +3,13 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cliente $cliente
  */
+$this->assign('title', 'Agregar nuevo cliente');
 ?>
 
 <div class="clientes form large-9 medium-8 columns content">
     <?= $this->Form->create($cliente) ?>
     <!--<div class="row justify-content-center">-->
-    <div class="row">
+    <div class="row ml-1">
         <div class="col-sm-8">
             <div class="form-group row">
                 <legend><?= __('Agregar nuevo cliente') ?></legend>

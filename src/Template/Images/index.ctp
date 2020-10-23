@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Image[]|\Cake\Collection\CollectionInterface $images
  */
+$this->assign('title', 'Imágenes');
 ?>
 
 <legend>Imágenes</legend>

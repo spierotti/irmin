@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pedido $pedido
  */
+$this->assign('title', 'Detalle del pedido');
 ?>
 
 <legend>Datos del pedido</legend>
@@ -77,7 +78,7 @@
   </tbody>
 </table>
 
-<div>
+<div class="row justify-content-center ml-5">
   <legend>Imágenes relacionadas</legend>
   <div class="row card-columns">
     <?php if (!empty($pedido->images)){ ?>
