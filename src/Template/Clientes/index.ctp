@@ -51,9 +51,8 @@ $this->assign('title', 'Clientes');
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Id</th>
+                <th scope="col">CUIT / DNI</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">DNI</th>
                 <th scope="col">Email</th>
                 <th scope="col">Celular</th>
                 <th scope="col">Domicilio</th>
@@ -63,14 +62,14 @@ $this->assign('title', 'Clientes');
             <tbody>
               <?php foreach ($clientes as $cliente): ?>
                   <tr>
-                    <th scope="row"><?= $this->Number->format($cliente->id) ?></th>
-                    <td><?= h($cliente->name) ?></td>
                     <td><?= h($cliente->cuit) ?></td>
+                    <td><?= h($cliente->name) ?></td>
                     <td><?= h($cliente->email) ?></td>
                     <td><?= h($cliente->celular) ?></td>
                     <td><?= h($cliente->domicilio) ?></td>
                     <td>
                       <a href="./clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
+
                       <a href="./clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
                       
                       <?php
@@ -81,11 +80,18 @@ $this->assign('title', 'Clientes');
                             array('escape'=>false, 'confirm' => __('¿Seguro quiere activar el cliente # {0}?', $cliente->id))
                           );
                           
-                        }else{                                        
-                            echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
-                              array('action' => 'delete', $cliente['id']),
-                              array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el cliente # {0}?', $cliente->id))
-                            );
+                        }else{     
+
+                          echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
+                            array('action' => 'delete', $cliente['id']),
+                            array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el cliente # {0}?', $cliente->id))
+                          ); 
+
+                          echo $this->Html->link('',
+                            ['controller' => 'Pedidos', 'action' => 'add', $cliente->id],
+                            ['class' => 'fa fa-plus-square', 'title' => 'Realizar pedido'],
+                            ['confirm' => '¿Desea realizar un pedido para este cliente?']
+                          );
                         }
                       ?>
                     </td>

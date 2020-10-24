@@ -52,7 +52,6 @@ $this->assign('title', 'Usuarios');
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Email</th>
@@ -63,7 +62,6 @@ $this->assign('title', 'Usuarios');
                 <tbody>
                 <?php foreach ($users as $user): ?>
                     <tr>
-                        <th scope="row"><?= $this->Number->format($user->id) ?></th>
                         <td><?= h($user->username) ?></td>
                         <td><?= $user['role']['name'] ?></td>
                         <td><?= h($user->email) ?></td>

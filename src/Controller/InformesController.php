@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Informes Controller
@@ -97,29 +99,46 @@ class InformesController extends AppController
 
         $this->set('informe', $informe);
     }
-
+    
     /**
-     * Edit method
-     *
-     * @param string|null $id Informe id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     *  Buscar Informe por Id
      */
-    /*public function edit($id = null)
-    {
-        $informe = $this->Informes->get($id, [
-            'contain' => ['Images']
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $informe = $this->Informes->patchEntity($informe, $this->request->getData());
-            if ($this->Informes->save($informe)) {
-                $this->Flash->success(__('The informe has been saved.'));
+    public function buscarinforme(){
 
-                return $this->redirect(['action' => 'index']);
+        $informe = null;
+
+        if(sizeof($this->request->getData()) > 0){
+
+            $data = $this->request->getData();
+
+            if(ctype_digit ($data['id'])){
+
+                try {
+
+                    $informe = $this->Informes->get($data['id'], [
+                        'contain' => ['Images']
+                        ]);
+
+                    if (!is_null($informe)){
+
+                        return $this->redirect(['action' => 'view', $informe->id]);
+
+                    }else{
+
+                        $this->Flash->error(__('No existe un informe con ese numero.'));
+                    }
+
+                } catch (RecordNotFoundException $e) {
+
+                    $this->Flash->error(__('No existe un informe con ese numero.'));
+                }
+
+            }else{
+
+                $this->Flash->error(__('Entrada Invalida.'));
             }
-            $this->Flash->error(__('The informe could not be saved. Please, try again.'));
         }
-        $images = $this->Informes->Images->find('list', ['limit' => 200]);
-        $this->set(compact('informe', 'images'));
-    }*/
+
+        $this->set('informe', $informe);
+    }
 }

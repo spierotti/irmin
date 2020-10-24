@@ -47,7 +47,7 @@ $this->assign('title', 'Pedidos');
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">#</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Experto</th>
                         <th scope="col">Fecha de solicitud</th>
