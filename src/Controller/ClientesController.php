@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Clientes Controller
@@ -50,6 +52,10 @@ class ClientesController extends AppController
                 return true;
             }
             elseif($this->request->action == 'buscarclientes' and $user['role']['ver_clientes'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'buscarclientecuit' and $user['role']['ver_clientes'] == true)
             {
                 return true;
             }
@@ -225,6 +231,54 @@ class ClientesController extends AppController
         echo json_encode($clientes);
 
         $this->autoRender = false;
+    }
+
+    /**
+     *  Buscar Cliente x  CUIT / DNI
+     */
+    public function buscarclientecuit($cliente = null){
+
+        if(sizeof($this->request->getData()) > 0){
+
+            $data = $this->request->getData();
+
+            if(ctype_digit ($data['id'])){
+
+                $auth = $this->request->session()->read('Auth');
+
+                try {
+
+                    $conditions[] = array('Clientes.cuit = ' => $data['id']);
+        
+                    $c = $this->Clientes->find(
+                        'all', 
+                        array('recursive' => -1,
+                         'conditions' => $conditions)
+                        )->first();
+
+                    if (!is_null($c)){
+
+                        $cliente = $c->toArray();
+
+                        return $this->redirect(['action' => 'view', $cliente['id']]);
+                        
+                    }else{
+
+                        $this->Flash->error(__('No existe un Cliente con ese CUIT/DNI.'));
+                    }
+
+                } catch (RecordNotFoundException $e) {
+
+                    $this->Flash->error(__('No existe un Cliente con ese CUIT/DNI.'));
+                }
+
+            }else{
+
+                $this->Flash->error(__('Solo ingresar Numeros sin "." ni "-".'));
+            }
+        }
+
+        $this->set('cliente', $cliente);
     }
 
     /**

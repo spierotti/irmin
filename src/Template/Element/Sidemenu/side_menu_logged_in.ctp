@@ -291,6 +291,10 @@
                                     { ?>    
                                     <li><?= $this->Html->link(__('Ver informes'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                    { ?>    
+                                    <li><?= $this->Html->link(__('Buscar informe'), ['controller' => 'Informes', 'action' => 'buscarinforme']) ?> </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </li>
@@ -307,6 +311,10 @@
                                 { ?>
                                     <li><?= $this->Html->link(__('Ver clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_clientes'] === true))
+                                    { ?>    
+                                    <li><?= $this->Html->link(__('Buscar cliente'), ['controller' => 'Clientes', 'action' => 'buscarclientecuit']) ?> </li>
+                                <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_cliente'] === true))
                                 { ?>
                                     <li><?= $this->Html->link(__('Nuevo cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
@@ -314,6 +322,10 @@
 
                                 <!--¿Qué hace esta parte-->
                                 <?php if($this->view == 'view' && $this->name == "Clientes") { ?>
+
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true)) { ?>
+                                        <li><?= $this->Html->link(__('Realizar Pedido'), ['controller' => 'Pedidos', 'action' => 'add', $cliente->id], ['confirm' => '¿Desea realizar un pedido para este cliente?']); ?></li>    
+                                    <?php } ?>
 
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
                                         <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
@@ -413,13 +425,15 @@
                     <li class="child-menu"><?= $this->Html->link(__('Nuestra empresa'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
 
                     <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'contacto']) ?></li>
-
-                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
                     
                     <!--LOGOUT-->
                     <?php if (isset($auth['User']['role_id']) )
                     { ?>
+
+                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
+                        
                     <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
+
                     <?php } ?>
                 </ul>
                 <!-- end menu -->

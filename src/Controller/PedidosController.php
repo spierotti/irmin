@@ -5,6 +5,8 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\ORM\TableRegistry;
+
 
 /**
  * Pedidos Controller
@@ -126,7 +128,7 @@ class PedidosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($cliente = null)
     {
         $pedido = $this->Pedidos->newEntity();
         
@@ -172,6 +174,19 @@ class PedidosController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('Error al guardar el Pedido.'));
+        }else{
+
+            if ($this->request->is('get') and !is_null($cliente)) {
+
+                $this->Clientes = TableRegistry::get('Clientes');
+
+                $c = $this->Clientes->get($cliente);
+
+                $this->request->data['cliente'] = $c->name;
+                $this->request->data['cliente_id'] = $c->id;
+
+                $this->set($this->request->data);
+            }
         }
         $this->set(compact('pedido'));
     }
@@ -341,8 +356,7 @@ class PedidosController extends AppController
      * 
      * busca pedido por numero de id.
      */
-    public function buscarpedido()
-    {
+    public function buscarpedido(){
 
         $pedido = null;
 
@@ -370,7 +384,7 @@ class PedidosController extends AppController
 
                 } catch (RecordNotFoundException $e) {
 
-                    $this->Flash->error(__('Nro de Pedido ingresado no existe.'));
+                    $this->Flash->error(__('No existe un pedido con ese numero.'));
                 }
 
             }else{

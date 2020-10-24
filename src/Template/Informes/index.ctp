@@ -43,7 +43,7 @@
             <table class="table table-hover">   
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Descripción</th>
                         <th scope="col" class="actions">Acciones</th>
