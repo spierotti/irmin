@@ -31,7 +31,8 @@ $this->assign('title', 'Nuevo pedido');
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : ""
+                        'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : "",
+                        'autocomplete' => 'off'
                     ]) ?>
 
                 </div>
@@ -48,8 +49,10 @@ $this->assign('title', 'Nuevo pedido');
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        'value' => (!empty($this->request->query['fecha_fin'])) ? $this->request->query['fecha_fin'] : ""
-                    ]) ?>
+                        'value' => (!empty($this->request->query['fecha_fin'])) ? $this->request->query['fecha_fin'] : "",
+                        'autocomplete' => 'off'
+                        ])
+                    ?>
                 </div>
                 <label for="descripcion" id="descripcion" class="col-sm-3 col-form-label mt-2">Descripción</label>
                 <div class="col-sm-9">
