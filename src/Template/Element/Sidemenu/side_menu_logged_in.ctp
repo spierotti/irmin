@@ -214,11 +214,13 @@
                 <div class="margin-block"></div>
 
                 <ul class="primary-menu">
-
-                    <li class="child-menu"><a href="/users/home">Home </a></li>
+                    
                     <?php if (!isset($auth['User']['role_id']))
                     { ?>
+                        <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'login']) ?> </li>
 					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
+                    <?php } else {?>
+                        <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'home']) ?> </li>
                     <?php } ?>
                     <!--Mi cuenta-->
                     <?php if (isset($auth['User']['role_id']))
