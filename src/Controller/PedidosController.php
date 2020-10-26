@@ -20,7 +20,7 @@ class PedidosController extends AppController
 {
 
     public $paginate = [
-        'limit' => 5,
+        'limit' => 6,
         'order' => [
             'Pedidos.id' => 'desc'
         ]
