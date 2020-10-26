@@ -16,7 +16,7 @@ class InformesController extends AppController
 {
 
     public $paginate = [
-        'limit' => 5,
+        'limit' => 6,
         'order' => [
             'Informes.id' => 'desc'
         ]

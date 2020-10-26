@@ -84,10 +84,14 @@ $this->assign('title', 'Detalle del pedido');
     <?php if (!empty($pedido->images)){ ?>
       <?php foreach ($pedido->images as $images): ?>
           <div class="card col-sm-3">
-              <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
+              <?= $this->Html->link(
+                        $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']),
+                        array('controller' => 'Images', 'action' => 'view', $images->id),
+                        array('escape' => false)
+                  );
+              ?>
               <div class="card-body">
                   <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
-                  <?= $this->Html->link(__('Ver imagen'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
               </div>
           </div>
       <?php endforeach; ?>

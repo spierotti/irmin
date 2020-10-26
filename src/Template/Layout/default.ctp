@@ -50,14 +50,20 @@ $cakeDescription = 'Irmin ';
 </head>
 <body class="left-menu">
   
-    <?= $this->Flash->render() ?>
+    
     <!--<div class="container clearfix" >-->
 
     <?php echo $this->element('Sidemenu\side_menu_logged_in'); ?>
         <!--<div id="contenedor-sitio">-->
         <div id="wrapper">
             <div class="container mt-5 mb-5">
+                <div class="row justify-content-center ml-5">
+                    <!--Mensaje de alerta o lo que pase.-->
+                    <?= $this->Flash->render() ?>
+                </div>
+                
                 <?= $this->fetch('content') ?>
+                
             </div>
         </div>
 

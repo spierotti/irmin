@@ -18,15 +18,19 @@ $this->assign('title', 'Informe número '.h($informe->id));
     </tr>
 </table>
 <?php if (!empty($informe->images)): ?>
-    <div class="related">
+    <div class="related ml-2">
         <legend>Imágenes relacionadas</legend>
         <?php foreach ($informe->images as $images): ?>
-            <div class="card-columns">
-                <div class="card">
-                    <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top']); ?>
+            <div class="row card-columns">
+                <div class="card col-sm-3">
+                    <?= $this->Html->link(
+                            $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']), 
+                            array('controller' => 'Images', 'action' => 'view', $images->id),
+                            array('escape' => false)
+                        );
+                    ?>
                     <div class="card-body">
                         <div class="card-title"><?= h($images->fecha_hora_imagen) ?></div>
-                        <?= $this->Html->link(__('Ver imagen'), ['controller' => 'Images', 'action' => 'view', $images->id]) ?>
                     </div>
                 </div>
             </div>

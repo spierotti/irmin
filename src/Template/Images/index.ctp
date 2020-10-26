@@ -44,7 +44,7 @@ $this->assign('title', 'Imágenes');
                 <?php foreach ($images as $image): ?>
                     <div class="card col-sm-3">
                         <?=$this->Html->link(
-                                $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),['class'=>'card-img-top']), 
+                                $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),['class'=>'card-img-top mt-2']), 
                                 array('controller' => 'Images', 'action' => 'view', $image->id),
                                 array('escape' => false)
                             );
@@ -52,12 +52,6 @@ $this->assign('title', 'Imágenes');
                         <div class="card-body">
                             <h6 class="card-title" title="Número de imagen"><?= h($image->id) ?><h6>
                             <p class="card-text"><?= h($image->fecha_hora_imagen) ?></p>
-                            <?=                                    
-                                $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar imagen')),
-                                    array('action' => 'delete', $image['id']),
-                                    array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar la Imagen #{0}?', $image->id))
-                                );
-                            ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
