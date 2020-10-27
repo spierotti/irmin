@@ -31,7 +31,7 @@ $this->assign('title', 'Clientes');
           </div>
       </div>
       <div style="overflow-x:auto;">
-        <div class="table-content" id="contenedor-tabla">
+        <div class="table-content mt-1" id="contenedor-tabla">
 
           <?php
             $this->Paginator->templates([
@@ -89,7 +89,7 @@ $this->assign('title', 'Clientes');
 
                           echo $this->Html->link('',
                             ['controller' => 'Pedidos', 'action' => 'add', $cliente->id],
-                            ['class' => 'fa fa-plus-square', 'title' => 'Realizar pedido'],
+                            ['class' => 'fa fa-plus-square ml-1', 'title' => 'Realizar pedido'],
                             ['confirm' => '¿Desea realizar un pedido para este cliente?']
                           );
                         }

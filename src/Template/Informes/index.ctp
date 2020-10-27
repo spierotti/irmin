@@ -12,10 +12,26 @@ $this->assign('title', 'Informes');
     <?= $this->Form->create('Informes', ['type' => 'get']); ?>
         <div class="form-group row">
             <div class="col-sm-3">
-                <?= $this->Form->control('start_date',['label' => false,'placeholder' => 'Fecha desde','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
+                <?= $this->Form->control('start_date',[
+                    'label' => false,
+                    'placeholder' => 'Fecha desde',
+                    'class' => 'form-control mt-2', 
+                    'data-toggle' => 'datepicker',
+                    'value' => $this->request->query('start_date'), 
+                    'autocomplete' => 'off'
+                    ]); 
+                ?>
             </div>
             <div class="col-sm-3 mb-2">
-                <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
+                <?= $this->Form->control('end_date',[
+                    'label' => false,
+                    'placeholder' => 'Fecha hasta',
+                    'class' => 'form-control mt-2', 
+                    'data-toggle' => 'datepicker',
+                    'value' => $this->request->query('end_date'), 
+                    'autocomplete' => 'off'
+                    ]); 
+                ?>
             </div>
             <div class="col-sm-3">
                 

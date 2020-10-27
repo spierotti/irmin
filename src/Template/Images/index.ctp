@@ -10,10 +10,26 @@ $this->assign('title', 'Imágenes');
 <?= $this->Form->create('Images', ['type' => 'get']); ?>
     <div class="form-group row">
         <div class="col-sm-3 mt-1">
-            <?= $this->Form->control('start_date',['label' => false,'placeholder' => 'Fecha desde','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('start_date'), 'autocomplete' => 'off']); ?>
+            <?= $this->Form->control('start_date',[
+                    'label' => false,
+                    'placeholder' => 'Fecha desde',
+                    'class' => 'form-control mt-2', 
+                    'data-toggle' => 'datepicker',
+                    'value' => $this->request->query('start_date'), 
+                    'autocomplete' => 'off'
+                ]); 
+            ?>
         </div>
         <div class="col-sm-3 mt-1">
-            <?= $this->Form->control('end_date',['label' => false,'placeholder' => 'Fecha hasta','class' => 'datepicker form-control mt-2', 'value' => $this->request->query('end_date'), 'autocomplete' => 'off']); ?>
+            <?= $this->Form->control('end_date',[
+                    'label' => false,
+                    'placeholder' => 'Fecha hasta',
+                    'class' => 'form-control mt-2',
+                    'data-toggle' => 'datepicker',
+                    'value' => $this->request->query('end_date'),
+                    'autocomplete' => 'off'
+                ]);
+             ?>
         </div>
         <div class="col-sm-3 mt-2 ml-2">
             <?= $this->Form->submit('Buscar', [

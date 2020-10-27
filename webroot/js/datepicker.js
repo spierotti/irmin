@@ -54,7 +54,8 @@
     // The ISO language code (built-in: en-US)
     language: '',
     // The date string format
-    format: 'mm/dd/yyyy',
+    format: 'dd/mm/yyyy',
+    //format: 'mm/dd/yyyy',
     // The initial date
     date: null,
     // The start view date

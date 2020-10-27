@@ -33,8 +33,10 @@ $cakeDescription = 'Irmin ';
     'bootstrap.min',
     'bootstrap.icon-large.min',
     'font-awesome.min',
-    "datepicker.min",
-    'style'
+    'datepicker.min',
+    'style',
+    'jquery-ui',
+    'jquery-ui.min',
     ]); ?>
 
     <?= $this->Html->script([
