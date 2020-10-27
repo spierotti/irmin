@@ -134,12 +134,17 @@ class PedidosController extends AppController
         
         if ($this->request->is('post')) {
 
+            $start_date = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],3,2) . "-" . substr($this->request->data['fecha_inicio'],0, 2); 
+            $end_date = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],3,2) . "-" . substr($this->request->data['fecha_fin'],0, 2);
+
             // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
             $query = $this->Pedidos->Images->find('all')->where([
                 //'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
                 //'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
-                'Images.fecha_hora_imagen >= ' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00", 
-                'Images.fecha_hora_imagen <= ' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59", 
+                //'Images.fecha_hora_imagen >= ' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00", 
+                //'Images.fecha_hora_imagen <= ' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59", 
+                'DATE(Images.fecha_hora_imagen) >= ' => $start_date, 
+                'DATE(Images.fecha_hora_imagen) <= ' => $end_date
             ]);
 
             // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
@@ -157,8 +162,10 @@ class PedidosController extends AppController
 
             $pedido->cliente_id = $this->request->data['cliente_id'];
             $pedido->estado_id = 1;
-            $pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
-            $pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
+            $pedido->fecha_inicio = $start_date;
+            $pedido->fecha_fin = $end_date;
+            //$pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
+            //$pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
             $pedido->fecha_solicitud = date('Y-m-d H:i:s');
             $pedido->descripcion = $this->request->data['descripcion'];
             $pedido->images = array();

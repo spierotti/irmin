@@ -45,17 +45,12 @@ class InformesController extends AppController
 
         return parent::isAuthorized($user);
     }
+
     /**
      * Index method
      *
      * @return \Cake\Http\Response|null
      */
-    /*public function index()
-    {
-        $informes = $this->paginate($this->Informes);
-
-        $this->set(compact('informes'));
-    }*/
     public function index($start_date = null, $end_date = null)
     {
         $start_date = $this->request->query('start_date');
@@ -63,21 +58,23 @@ class InformesController extends AppController
 
         $hoy = date('Y-m-d');
 
-        if(is_null($start_date) || strlen($start_date) == 0){
+        if(!is_null($start_date)){
+            $start_date = substr($start_date,6,4) . "-" . substr($start_date,3,2) . "-" . substr($start_date,0, 2); 
+        }else{
             $date_past = strtotime('-30 day', strtotime($hoy));
             $start_date =  date('Y-m-d', $date_past);
         }
 
-        if(is_null($end_date) || strlen($end_date) == 0){
+        if(!is_null($end_date)){
+            $end_date = substr($end_date,6,4) . "-" . substr($end_date,3,2) . "-" . substr($end_date,0, 2);
+        }else{
             $end_date = $hoy;
         }
 
         $this->paginate ['conditions'] = [
-                'DATE(Informes.fecha_hora_informe) <= ' =>  $end_date,
-                'DATE(Informes.fecha_hora_informe) >= ' =>  $start_date
+                'DATE(informes.fecha_hora_informe) <= ' =>  $end_date,
+                'DATE(informes.fecha_hora_informe) >= ' =>  $start_date
             ];
-
-        //debug($this->paginate);
 
         $informes = $this->paginate($this->Informes);
 
