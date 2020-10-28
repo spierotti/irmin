@@ -27,6 +27,7 @@ $this->assign('title', 'Informes');
                     'label' => false,
                     'placeholder' => 'Fecha hasta',
                     'class' => 'form-control mt-2', 
+                    //'type'  => 'text',
                     'data-toggle' => 'datepicker',
                     'value' => $this->request->query('end_date'), 
                     'autocomplete' => 'off'

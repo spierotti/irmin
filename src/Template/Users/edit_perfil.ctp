@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
-$this->assign('title', 'Usuarios - Editar perfil');
+$this->assign('title', 'Editar perfil');
 ?>
 <?= $this->Form->create($user) ?>
     <div class="row justify-content-center">

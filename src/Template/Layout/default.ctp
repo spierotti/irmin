@@ -73,8 +73,11 @@ $cakeDescription = 'Irmin ';
     <script type="text/javascript"> 
         $(function () {
             $('[data-toggle="datepicker"]').datepicker({
-                format: 'dd/mm/yyyy'
+                format: 'dd/mm/yyyy',
+                changeMonth: true,
+                changeYear: true
             });
+            $('.date').datepicker({ language: "es"});
         });
     </script>
     <footer>
