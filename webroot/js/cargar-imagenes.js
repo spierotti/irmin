@@ -12,9 +12,6 @@ $(document).ready(function(){
 
             $.ajax({
                 url:"http://localhost/irmin/images/ejecutar",
-                /*beforeSend:function(){
-                    get_progreso();
-                },*/
                 success:function(data) {
                     enproceso = false;
                     actualizar_pantalla(data['fecha_hora_actualizacion'],data['salida']);
@@ -27,11 +24,8 @@ $(document).ready(function(){
                 }
             });
 
-            get_progreso();
-        }/*else{
-
-            alert('Descarga en ejecucion... Por favor espere.');
-        }*/
+            setTimeout(get_progreso,5000);
+        }
     });
 
     function iniciar_barra_progreso(){
@@ -64,13 +58,11 @@ $(document).ready(function(){
 
                     if (porcentaje < 100){
                         setTimeout(get_progreso,1000);
-                        //get_progreso();
                     }
                 }
             }, 
             error: function(data) {
                setTimeout(get_progreso,1000)
-                //get_progreso();
             }
         });
     }

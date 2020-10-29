@@ -34,14 +34,14 @@ class ImagesController extends AppController
 
         $hoy = date('Y-m-d');
 
-        if(!is_null($start_date)){
+        if(!is_null($start_date) && strlen($start_date)>0){
             $start_date = substr($start_date,6,4) . "-" . substr($start_date,3,2) . "-" . substr($start_date,0, 2); 
         }else{
             $date_past = strtotime('-30 day', strtotime($hoy));
             $start_date =  date('Y-m-d', $date_past);
         }
 
-        if(!is_null($end_date)){
+        if(!is_null($end_date) && strlen($end_date)>0){
             $end_date = substr($end_date,6,4) . "-" . substr($end_date,3,2) . "-" . substr($end_date,0, 2);
         }else{
             $end_date = $hoy;
@@ -122,8 +122,8 @@ class ImagesController extends AppController
         $respuesta = new Response();
 
         // ejecuto screipt de descarga
-        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
-        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
+        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
+        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
 
         if (!$return) {
 
@@ -173,7 +173,7 @@ class ImagesController extends AppController
 
         $row = $stmt->fetch('assoc');
 
-        $procentaje = ($row['completado'] * 100)/ $row['total'];
+        $procentaje = round(($row['completado'] * 100)/ $row['total'], 2, PHP_ROUND_HALF_EVEN);
  
         $respuesta = new Response();
 

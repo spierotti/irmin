@@ -11,7 +11,7 @@
         <legend>Buscar Informe</legend>
         <div class="col-sm-6">
             <?php
-                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese Nro de Informe','class' => 'form-control']);
+                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese Nro de Informe','autocomplete' => 'off', 'id' => 'id', 'class' => 'form-control']);
             ?>
         </div>
 
@@ -25,3 +25,5 @@
     </fieldset>
     <?= $this->Form->end() ?>
 </div>
+
+<?= $this->Html->script('number-validator.js?v=1.1') ?>

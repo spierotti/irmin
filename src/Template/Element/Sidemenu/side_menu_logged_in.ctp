@@ -431,12 +431,12 @@
                     <li class="child-menu"><?= $this->Html->link(__('Nuestra empresa'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
 
                     <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'contacto']) ?></li>
-                    
-                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
 
                     <!--LOGOUT-->
                     <?php if (isset($auth['User']['role_id']) )
                     { ?>
+                    
+                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
                         
                     <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
 
