@@ -12,7 +12,7 @@ $this->assign('title', 'Buscar pedido');
         <legend>Buscar Pedido</legend>
         <div class="col-sm-6">
             <?php
-                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese Nro de Pedido','class' => 'form-control']);
+                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese Nro de Pedido', 'autocomplete' => 'off', 'id' => 'id', 'class' => 'form-control']);
             ?>
         </div>
 
@@ -26,3 +26,5 @@ $this->assign('title', 'Buscar pedido');
     </fieldset>
     <?= $this->Form->end() ?>
 </div>
+
+<?= $this->Html->script('number-validator.js?v=1.1') ?>

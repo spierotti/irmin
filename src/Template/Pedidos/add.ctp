@@ -27,6 +27,7 @@ $this->assign('title', 'Nuevo pedido');
                     <?php echo $this->Form->control('fecha_inicio', [
                         'type' => 'text',
                         'placeholder' => 'Fecha desde',
+                        'readonly' => 'readonly',
                         'class'=>'form-control mt-2',
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
@@ -45,6 +46,7 @@ $this->assign('title', 'Nuevo pedido');
                     <?php echo $this->Form->control('fecha_fin', [
                         'type' => 'text',
                         'placeholder' => 'Fecha hasta',
+                        'readonly' => 'readonly',
                         'class'=>'form-control mt-2',
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',

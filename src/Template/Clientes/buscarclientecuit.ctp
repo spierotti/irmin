@@ -11,7 +11,7 @@
         <legend>Buscar Cliente</legend>
         <div class="col-sm-6">
             <?php
-                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese CUIT o DNI del cliente','class' => 'form-control']);
+                echo $this->Form->control('id', ['label' => false, 'placeholder' => 'Ingrese CUIT o DNI del cliente', 'autocomplete' => 'off', 'id' => 'id', 'class' => 'form-control']);
             ?>
         </div>
 
@@ -25,3 +25,5 @@
     </fieldset>
     <?= $this->Form->end() ?>
 </div>
+
+<?= $this->Html->script('number-validator.js') ?>
