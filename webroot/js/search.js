@@ -4,6 +4,8 @@ $(document).ready(function () {
         select: function(event, ui){
             $("#s").val(ui.item.label);
             $("#c_id").val(ui.item.id);
+            $("#s_dni").val(ui.item.cuit);
+            $("#c_dni").val(ui.item.id);
         },
         source: function(request, response) {
             $.ajax({
