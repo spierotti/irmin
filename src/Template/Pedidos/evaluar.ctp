@@ -7,7 +7,7 @@ $this->assign('title', 'Evaluar pedido');
 ?>
 
 <legend>Evaluar Pedido</legend>
-<div class="row col-sm-12">
+<div class="col-sm-12">
     <table class="table table-responsive-sm table-hover">
         <tbody>
             <tr>
@@ -34,23 +34,31 @@ $this->assign('title', 'Evaluar pedido');
     </table>
 
     <?= $this->Form->create($pedido,['class'=>'col-sm-12']) ?>
-        <!--<label for="descripcion" id="descripcion" class="col-sm-2 col-form-label font-weight-bold">Conclusión </label>-->
         <div class="col-sm-12">
-            <?php 
-                echo $this->Form->control('conclusion',[
-                    'type' => 'textarea',
-                    'class'=>'form-control mt-2',
-                    'style' => 'width: -moz-available;',
-                    'label' => false,
-                    'placeholder' => 'Escriba la conclusión en este recuadro.'
-            ]); ?>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <?= $this->Form->submit('Finalizar', [
-                    'class' => 'btn btn-primary mt-4 ml-3'
-                ]) ?>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <?php 
+                        echo $this->Form->control('conclusion',[
+                            'type' => 'textarea',
+                            'class'=>'form-control mt-2',
+                            'style' => 'width: -moz-available;',
+                            'label' => false,
+                            'placeholder' => 'Escriba la conclusión en este recuadro.'
+                    ]); ?>
+                </div>
+                <div class="col-sm-4">
+                    <?= $this->Form->submit('Finalizar', [
+                        'class' => 'btn btn-primary mt-3 ml-3'
+                    ]) ?>
+                </div>
+                <div class="col-sm-2">
+                    <?=
+                        $this->Form->button('Cancelar', 
+                        array('type' => 'button',
+                        'class' => 'btn btn-primary mt-3 ml-3',
+                        'onclick' => 'location.href=\'/pedidos\'')
+                    ); ?>
+                </div>
             </div>
         </div>
     <?= $this->Form->end() ?>

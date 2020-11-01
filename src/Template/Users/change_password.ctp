@@ -28,14 +28,19 @@ $this->assign('title', 'Cambiar contraseña');
                         echo $this->Form->control('repetir_nuevo_password', ['type' => 'password', 'label' => false,'class'=>'form-control mt-2']);
                     ?>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
-                        <?= $this->Form->submit('Guardar', [
-                            'class' => 'btn btn-primary mt-3 ml-2'
-                        ]) ?>
-                    </div>
-                </div> 
+                <div class="col-sm-4">
+                    <?= $this->Form->submit('Guardar', [
+                        'class' => 'btn btn-primary mt-3 ml-2'
+                    ]); ?>
+                </div>
+                <div class="col-sm-2">
+                    <?=
+                        $this->Form->button('Cancelar', 
+                        array('type' => 'button',
+                        'class' => 'btn btn-primary mt-3 ml-2',
+                        'onclick' => 'location.href=\'/users/view_perfil\'')
+                    ); ?>
+                </div>
             </div>
         </div>
     </div>

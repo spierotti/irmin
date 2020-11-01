@@ -32,14 +32,20 @@ $this->assign('title', 'Editar perfil');
                         }
                     ?>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
-                        <?= $this->Form->submit('Guardar cambios', [
-                            'class' => 'btn btn-primary mt-2 ml-2'
-                        ]) ?>
-                    </div>
-                </div> 
+                <div class="col-sm-4">
+                    <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+                    <?= $this->Form->submit('Guardar cambios', [
+                        'class' => 'btn btn-primary mt-3 ml-2'
+                    ]) ?>
+                </div>
+                <div class="col-sm-4">
+                    <?=
+                        $this->Form->button('Cancelar', 
+                        array('type' => 'button',
+                        'class' => 'btn btn-primary mt-3 ml-5',
+                        'onclick' => 'location.href=\'/users/view_perfil\'')
+                    ); ?>
+                </div>
             </div>
         </div>
     </div>
