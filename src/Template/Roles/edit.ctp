@@ -103,8 +103,13 @@ $this->assign('title', 'Editar rol');
                       'class' => 'btn btn-primary mt-4'
                   ]) ?>
               </div>
-              <div class="ml-5">
-                  <button onclick="window.location.href = '/roles';" class="btn btn-primary mt-4">Volver</button>
+              <div class="ml-3">
+                  <?=
+                      $this->Form->button('Volver', 
+                      array('type' => 'button',
+                      'class' => 'btn btn-primary mt-4 ml-3',
+                      'onclick' => 'location.href=\'/roles\'')
+                  ); ?>
               </div>
           </div>
       </div>

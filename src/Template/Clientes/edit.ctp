@@ -44,8 +44,13 @@ $this->assign('title', 'Editar cliente');
                         'class' => 'btn btn-primary'
                     ]) ?>
                 </div>
-                <div class="ml-5 mt-2">
-                    <button onclick="window.location.href = '/clientes';" class="btn btn-primary">Volver</button>
+                <div class="ml-3 mt-2">
+                    <?=
+                        $this->Form->button('Volver', 
+                        array('type' => 'button',
+                        'class' => 'btn btn-primary',
+                        'onclick' => 'location.href=\'/clientes\'')
+                    ); ?>
                 </div>
             </div>
         </div>

@@ -28,14 +28,19 @@ $this->assign('title', 'Usuarios - Modificar usuario');
                 </div>
             </div>
             <div class="form-group row mt-4">
-                <div class="col-sm-8">
+                <div class="col-sm-5 mr-2">
                     <?= $this->Form->submit('Guardar cambios', [
-                        'class' => 'btn btn-primary'
+                        'class' => 'btn btn-primary mt-2 mr-2'
                     ]) ?>
                 </div>
-                <!--<div>
-                    <button onclick="window.location.href = '/users';" class="btn btn-primary">Volver</button>
-                </div>-->
+                <div class="col-sm-3 ml-3">
+                    <?=
+                        $this->Form->button('Volver', 
+                        array('type' => 'button',
+                        'class' => 'btn btn-primary ml-3 mt-2',
+                        'onclick' => 'location.href=\'/users\'')
+                    ); ?>
+                </div>
             </div>
         </div>
     </div>

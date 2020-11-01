@@ -17,6 +17,15 @@ $this->assign('title', 'Informe número '.h($informe->id));
         <td><?= h($informe->fecha_hora_informe) ?></td>
     </tr>
 </table>
+<div class="col-sm-2">
+    <?=
+        $this->Form->button('Volver', 
+        array('type' => 'button',
+        'class' => 'btn btn-primary mt-3 ml-2',
+        'onclick' => 'location.href=\'/informes\'')
+    ); ?>
+</div>
+
 <?php if (!empty($informe->images)): ?>
     <div class="related ml-2">
         <legend>Imágenes relacionadas</legend>

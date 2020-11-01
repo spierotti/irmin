@@ -120,12 +120,13 @@ $this->assign('title', 'Detalles del rol');
             </tbody>
             </table>
         </div>
-        <!--<div class="form-group row">
-            <div class="col-sm-4">
-            </div>
-            <div class="ml-4">
-                <button onclick="window.location.href = '/roles';" class="btn btn-primary mt-4">Volver</button>
-            </div>
-        </div>-->
+        <div class="ml-3 mt-2">
+            <?=
+                $this->Form->button('Volver', 
+                array('type' => 'button',
+                'class' => 'btn btn-primary',
+                'onclick' => 'location.href=\'/roles\'')
+            ); ?>
+        </div>
     </div>
 </div>

@@ -36,7 +36,12 @@ $this->assign('title', 'Datos del usuario');
             </tr>
         </tbody>
     </table>
-    <!--<div>
-        <button onclick="window.location.href = '/users';" class="btn btn-primary mt-4">Volver</button>
-    </div>-->
+    <div class="col-sm-3 ml-3">
+        <?=
+            $this->Form->button('Volver', 
+            array('type' => 'button',
+            'class' => 'btn btn-primary ml-3 mt-2',
+            'onclick' => 'location.href=\'/users\'')
+        ); ?>
+    </div>
 </div>
