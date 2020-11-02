@@ -15,23 +15,61 @@ $this->assign('title', 'Agregar nuevo cliente');
                 <legend><?= __('Agregar nuevo cliente') ?></legend>
                 <label for="name" id="name" class="col-sm-3 col-form-label mt-2">Nombre </label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('name',['label' => false, 'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('name',
+                        [
+                            'type' => 'text',
+                            'label' => false, 
+                            'class'=>'form-control mt-2',
+                            'autocomplete' => 'off'
+                            ]
+                        ); ?>
                 </div>
                 <label for="cuit" id="cuit" class="col-sm-3 col-form-label mt-2">Cuit</label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('cuit',['label' => false,'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control( 'cuit',
+                        [
+                            'type' => 'text',
+                            'label' => false, 
+                            'id' => 'txt_cuit', 
+                            'class'=>'form-control mt-2',
+                            'autocomplete' => 'off'
+                            ]
+                        ); ?>
                 </div>
                 <label for="email" id="email" class="col-sm-3 col-form-label mt-2">E-mail</label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('email',['label' => false,'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('email',
+                        [
+                            'type' => 'email',
+                            'label' => false, 
+                            'class'=>'form-control mt-2',
+                            'autocomplete' => 'off'
+                            ]
+                        ); ?>
                 </div>
                 <label for="telefono" id="telefono" class="col-sm-3 col-form-label mt-2">Teléfono</label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('telefono',['label' => false, 'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('telefono',
+                        [
+                            'type' => 'text',
+                            'label' => false, 
+                            'class'=>'form-control mt-2',
+                            'autocomplete' => 'off',
+                            'id' => 'txt_telefono'
+                            ]
+                        ); ?>
                 </div>
                 <label for="celular" id="celular" class="col-sm-3 col-form-label mt-2">Celular</label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('celular',['label' => false, 'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('celular',
+                        [
+                            'type' => 'text',
+                            'label' => false, 
+                            'class'=>'form-control mt-2',
+                            'autocomplete' => 'off',
+                            'id' => 'txt_celular'
+                            ]
+                        ); ?>
                 </div>
                 <label for="domicilio" id="domicilio" class="col-sm-3 col-form-label mt-2">Domicilio</label>
                 <div class="col-sm-8">
@@ -50,3 +88,4 @@ $this->assign('title', 'Agregar nuevo cliente');
 
     <?= $this->Form->end() ?>
 </div>
+<?= $this->Html->script('number-validator-cliente.js') ?>
