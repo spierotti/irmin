@@ -111,16 +111,37 @@ class ClientesController extends AppController
 
         if ($this->request->is('post')) {
 
-            $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());            
+            $data = $this->request->getData();
 
-            if ($this->Clientes->save($cliente)) {
-                
-                $this->Flash->success(__('The cliente has been saved.'));
+            $cantidad = $this->Clientes->find('all', [
+                'conditions' => [
+                    'Clientes.cuit' => $data['cuit']
+                ],
+                'order' => [
+                    'Clientes.id' => 'ASC'
+                ],
+            ])->count();
 
-                return $this->redirect(['action' => 'index']);
+            if ($cantidad == 0){
+
+                //$cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());            
+                $cliente = $this->Clientes->patchEntity($cliente, $data);            
+
+                if ($this->Clientes->save($cliente)) {
+                    
+                    $this->Flash->success(__('¡Cliente guardado con éxito!'));
+
+                    return $this->redirect(['action' => 'index']);
+
+                }
+
+                $this->Flash->error(__('¡Error al guardar el Cliente!'));
+
+            } else {
+
+                $this->Flash->error(__('¡Ese CUIT / DNI ya se está registrado!'));
+
             }
-
-            $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
         }
 
         $this->set(compact('cliente'));
@@ -138,15 +159,21 @@ class ClientesController extends AppController
         $cliente = $this->Clientes->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
+
             $cliente = $this->Clientes->patchEntity($cliente, $this->request->getData());
+
             if ($this->Clientes->save($cliente)) {
-                $this->Flash->success(__('The cliente has been saved.'));
+
+                $this->Flash->success(__('¡Cliente actualizado con éxito!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cliente could not be saved. Please, try again.'));
+
+            $this->Flash->error(__('¡Error al actualizar el Cliente!'));
         }
+
         $this->set(compact('cliente'));
     }
 
