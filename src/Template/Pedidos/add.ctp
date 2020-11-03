@@ -12,18 +12,20 @@ $this->assign('title', 'Nuevo pedido');
             <div class="form-group row">
                 <legend>Nuevo Pedido</legend>
                 <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
-                <div class="col-sm-9">
+                <div id="cliente_div" class="col-sm-8">
                     <?php
+                        echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2', 'title' => 'Ingrese nombre o CUIT/DNI del cliente']);
                         echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']);
-                        echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2']);
                     ?>
                 </div>
-                <label for="DNI" id="DNI" class="col-sm-3 col-form-label mt-2">DNI</label>
-                <div class="col-sm-9">
-                    <?php
-                        echo $this->Form->control('cliente_dni', ['type' => 'hidden', 'id' => 'c_dni', 'label' => false, 'class'=>'form-control mt-2']);
-                        echo $this->Form->control('dni', ['div' => false, 'id' => 's_dni', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2']); 
-                    ?>
+                <div class="col-sm-1">
+                    <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
+                            'type' => 'button',
+                            'class' => 'btn btn-primary',
+                            'id' => 'btn_limpiar',
+                            'title' => 'Quitar cliente',
+                            'style' => "display: none;"
+                        ]) ?>
                 </div>
                 <label for="fechaInicio" id="fechaInicio" class="col-sm-3 col-form-label mt-2">Fechas</label>
                 <div class="col-sm-4">
@@ -64,7 +66,7 @@ $this->assign('title', 'Nuevo pedido');
                     ?>
                 </div>
                 <label for="descripcion" id="descripcion" class="col-sm-3 col-form-label mt-2">Descripción</label>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <?php 
                         echo $this->Form->control('descripcion',[
                             'type' => 'textarea',
