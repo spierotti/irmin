@@ -32,7 +32,6 @@ $this->assign('title', 'Nuevo pedido');
                     <?php 
                         //echo $this->Form->control('fecha_inicio',['label' => false]); 
                     ?>
-
                     <?php echo $this->Form->control('fecha_inicio', [
                         'type' => 'text',
                         'placeholder' => 'Fecha desde',
