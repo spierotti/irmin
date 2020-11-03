@@ -249,7 +249,12 @@ class ClientesController extends AppController
 
             foreach($terms as $t){
 
-                $conditions[] = array('Clientes.cuit LIKE' => '%' . $t . '%');
+                $conditions[] = array(
+                    'OR' => [
+                            'Clientes.cuit LIKE' => '%' . $t . '%',
+                            'Clientes.name LIKE' => '%' . $t . '%'
+                        ]
+                    );
             }
 
             $clientes = $this->Clientes->find('all', array('recursive' => -1, 'conditions' => $conditions, 'limit' => 20));
