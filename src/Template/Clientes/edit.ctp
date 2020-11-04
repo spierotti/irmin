@@ -49,7 +49,7 @@ $this->assign('title', 'Editar cliente');
                         $this->Form->button('Volver', 
                         array('type' => 'button',
                         'class' => 'btn btn-primary',
-                        'onclick' => 'location.href=\'/clientes\'')
+                        'onclick' => 'location.href=\'../\'')
                     ); ?>
                 </div>
             </div>

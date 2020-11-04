@@ -56,7 +56,7 @@ $this->assign('title', 'Evaluar pedido');
                         $this->Form->button('Cancelar', 
                         array('type' => 'button',
                         'class' => 'btn btn-primary mt-3 ml-3',
-                        'onclick' => 'location.href=\'/pedidos\'')
+                        'onclick' => 'location.href=\'../\'')
                     ); ?>
                 </div>
             </div>

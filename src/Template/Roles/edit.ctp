@@ -108,7 +108,7 @@ $this->assign('title', 'Editar rol');
                       $this->Form->button('Volver', 
                       array('type' => 'button',
                       'class' => 'btn btn-primary mt-4 ml-3',
-                      'onclick' => 'location.href=\'/roles\'')
+                      'onclick' => 'location.href=\'../\'')
                   ); ?>
               </div>
           </div>

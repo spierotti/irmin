@@ -7,7 +7,7 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <i class="fa fa-bars fa-2x"></i>
                     </button>
-                    <a class="navbar-brand" href="/users/home"><i class="fa fa-home fa-2x"></i></a>
+                    <a class="navbar-brand" href="../users/home"><i class="fa fa-home fa-2x"></i></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

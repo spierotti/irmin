@@ -22,7 +22,7 @@ $this->assign('title', 'Informe número '.h($informe->id));
         $this->Form->button('Volver', 
         array('type' => 'button',
         'class' => 'btn btn-primary mt-3 ml-2',
-        'onclick' => 'location.href=\'/informes\'')
+        'onclick' => 'location.href=\'../\'')
     ); ?>
 </div>
 
