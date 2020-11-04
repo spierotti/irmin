@@ -2292,3 +2292,12 @@ RESPONSIVE
 .ui-datepicker-next:before {
   content: "\f101";
 }
+
+.botonera{
+    display: flex;
+    width: 100%;
+}
+
+.botonera .rapido{
+    width: 98%;
+}
