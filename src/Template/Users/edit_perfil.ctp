@@ -43,7 +43,7 @@ $this->assign('title', 'Editar perfil');
                         $this->Form->button('Cancelar', 
                         array('type' => 'button',
                         'class' => 'btn btn-primary mt-3 ml-5',
-                        'onclick' => 'location.href=\'/users/view_perfil\'')
+                        'onclick' => 'location.href=\'../users/view_perfil\'')
                     ); ?>
                 </div>
             </div>

@@ -41,7 +41,7 @@ $this->assign('title', 'Datos del cliente');
         $this->Form->button('Volver', 
         array('type' => 'button',
         'class' => 'btn btn-primary mt-3 ml-2',
-        'onclick' => 'location.href=\'/clientes\'')
+        'onclick' => 'location.href=\'../\'')
     ); ?>
   </div>
 </div>

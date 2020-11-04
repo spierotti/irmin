@@ -38,7 +38,7 @@ $this->assign('title', 'Cambiar contraseña');
                         $this->Form->button('Cancelar', 
                         array('type' => 'button',
                         'class' => 'btn btn-primary mt-3 ml-2',
-                        'onclick' => 'location.href=\'/users/view_perfil\'')
+                        'onclick' => 'location.href=\'../users/view_perfil\'')
                     ); ?>
                 </div>
             </div>
