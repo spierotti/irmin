@@ -8,7 +8,7 @@ $this->assign('title', 'Evaluar pedido');
 
 <legend>Evaluar Pedido</legend>
 <div class="col-sm-12">
-    <table class="table table-responsive-sm table-hover">
+    <table class="table table-responsive-sm table-hover col-sm-12">
         <tbody>
             <tr>
                 <th scope="row">Nro. de Pedido</th>
@@ -16,7 +16,7 @@ $this->assign('title', 'Evaluar pedido');
             </tr>
             <tr>
                 <th scope="row">Cliente</th>
-                <td><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?></td>
+                <td><u class="cliente"><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id], ['class'=>'cliente']) : '-' ?></u></td>
             </tr>
             <tr>
                 <th scope="row">Descripcion</th>
@@ -33,37 +33,7 @@ $this->assign('title', 'Evaluar pedido');
         </tbody>
     </table>
 
-    <?= $this->Form->create($pedido,['class'=>'col-sm-12']) ?>
-        <div class="col-sm-12">
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <?php 
-                        echo $this->Form->control('conclusion',[
-                            'type' => 'textarea',
-                            'class'=>'form-control mt-2',
-                            'style' => 'width: -moz-available;',
-                            'label' => false,
-                            'placeholder' => 'Escriba la conclusión en este recuadro.'
-                    ]); ?>
-                </div>
-                <div class="col-sm-4">
-                    <?= $this->Form->submit('Finalizar', [
-                        'class' => 'btn btn-primary mt-3 ml-3'
-                    ]) ?>
-                </div>
-                <div class="col-sm-2">
-                    <?=
-                        $this->Form->button('Cancelar', 
-                        array('type' => 'button',
-                        'class' => 'btn btn-primary mt-3 ml-3',
-                        'onclick' => 'location.href=\'../\'')
-                    ); ?>
-                </div>
-            </div>
-        </div>
-    <?= $this->Form->end() ?>
-        
-    <div class="col-sm-12 ml-5">
+    <div class="col-sm-12">
         <legend> Imágenes relacionadas al pedido </legend>
         <div class="row card-columns">
             <?php if (!empty($pedido->images)){ ?>
@@ -85,6 +55,38 @@ $this->assign('title', 'Evaluar pedido');
             }?>
         </div>
     </div>
+
+    <?= $this->Form->create($pedido,['class'=>'col-sm-11 mr-4']) ?>
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <div class="col-sm-10 ml-3">
+                    <?php 
+                        echo $this->Form->control('conclusion',[
+                            'type' => 'textarea',
+                            'class'=>'form-control mt-2',
+                            'style' => 'width: -moz-available;',
+                            'label' => false,
+                            'placeholder' => 'Escriba la conclusión en este recuadro.'
+                    ]); ?>
+                </div>
+                <div class="form-group col-sm-10 row ml-5">
+                    <div class="col-sm-7 ml-3">
+                        <?= $this->Form->submit('Finalizar', [
+                            'class' => 'btn btn-primary mt-3 ml-3'
+                        ]) ?>
+                    </div>
+                    <div class="col-sm-2 ml-3">
+                        <?=
+                            $this->Form->button('Cancelar', 
+                            array('type' => 'button',
+                            'class' => 'btn btn-primary mt-3 ml-3',
+                            'onclick' => 'location.href=\'../\'')
+                        ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?= $this->Form->end() ?>
 </div>
     
 
