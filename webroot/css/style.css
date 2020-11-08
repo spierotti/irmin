@@ -2306,3 +2306,9 @@ RESPONSIVE
     color: blue;
     font-style: italic;
 }
+
+.centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
