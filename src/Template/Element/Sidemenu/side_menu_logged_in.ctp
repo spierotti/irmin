@@ -24,7 +24,7 @@
                                 <?php 
                                 } else
                                     { ?>
-                                        <li><?= $this->Html->link(__('Editar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
+                                        <li><?= $this->Html->link(__('Modificar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
                                 <?php } ?>
                                 <li><?= $this->Html->link(__('Cambiar Contraseña'), ['controller' => 'Users', 'action' => 'changePassword']) ?></li>
                             </ul>
@@ -102,7 +102,7 @@
                                 <?php if($this->view == 'view' && $this->name == "Clientes") { ?>
 
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
@@ -178,7 +178,7 @@
                                 <?php if($this->view == 'view' && $this->name == "Users")
                                 { ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_usuario'] === true)){ ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $user->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
@@ -233,7 +233,7 @@
                                 <?php 
                                 } else
                                     { ?>
-                                        <li><?= $this->Html->link(__('Editar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
+                                        <li><?= $this->Html->link(__('Modificar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
                                 <?php } ?>
                                 <li><?= $this->Html->link(__('Cambiar Contraseña'), ['controller' => 'Users', 'action' => 'changePassword']) ?></li>
                             </ul>
@@ -329,7 +329,7 @@
                                     <?php } ?>
 
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
@@ -410,7 +410,7 @@
                                 <?php if($this->view == 'view' && $this->name == "Users")
                                 { ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_usuario'] === true)){ ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $user->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>

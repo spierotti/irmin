@@ -2312,3 +2312,18 @@ RESPONSIVE
     justify-content: center;
     align-items: center;
   }
+
+.roles-usuarios-relacionados
+{
+    height: 100px;
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    /* overflow-x: hidden;   Hide the horizontal scroll */
+}
+
+.centro {
+    text-align: center;
+}
+
+.izquierda {
+    text-align: left;
+}

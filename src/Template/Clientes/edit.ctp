@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cliente $cliente
  */
-$this->assign('title', 'Editar cliente');
+$this->assign('title', 'Modificar cliente');
 ?>
 
 <!--<div class="clientes form large-9 medium-8 columns content mt-5">-->
@@ -12,7 +12,7 @@ $this->assign('title', 'Editar cliente');
     <div class="row ml-1">
         <div class="col-sm-8">
             <div class="form-group row">
-                <legend><?= __('Editar cliente') ?></legend>
+                <legend>Modificar cliente</legend>
                 <label for="razonSocial" id="razonSocial" class="col-sm-3 col-form-label mt-2">Razón social</label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('name',['label' => false, 'class'=>'form-control mt-2']); ?>
