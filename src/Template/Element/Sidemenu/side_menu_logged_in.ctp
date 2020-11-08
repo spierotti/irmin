@@ -105,7 +105,7 @@
                                         <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>
@@ -332,7 +332,7 @@
                                         <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>

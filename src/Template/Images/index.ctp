@@ -13,7 +13,7 @@ $this->assign('title', 'Imágenes');
                 <?= $this->Form->control('start_date',[
                         'label' => false,
                         'placeholder' => 'Fecha desde',
-                        'class' => 'form-control mt-2', 
+                        'class' => 'form-control mt-2 calendario', 
                         'readonly' => 'readonly',
                         'data-toggle' => 'datepicker',
                         'value' => $this->request->query('start_date'), 
@@ -25,7 +25,7 @@ $this->assign('title', 'Imágenes');
                 <?= $this->Form->control('end_date',[
                         'label' => false,
                         'placeholder' => 'Fecha hasta',
-                        'class' => 'form-control mt-2',
+                        'class' => 'form-control mt-2 calendario',
                         'readonly' => 'readonly',
                         'data-toggle' => 'datepicker',
                         'value' => $this->request->query('end_date'),

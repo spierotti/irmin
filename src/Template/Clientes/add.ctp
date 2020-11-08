@@ -77,7 +77,7 @@ $this->assign('title', 'Agregar nuevo cliente');
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-10">
+                <div class="col-sm-10 mt-3">
                     <?= $this->Form->submit('Agregar cliente', [
                         'class' => 'btn btn-primary'
                     ]) ?>
