@@ -3,6 +3,10 @@ $(document).ready(function () {
     //$("#btn_limpiar").
     //document.getElementById("btn_limpiar").style.display = "none";
 
+    if ($("#c_id").val().length > 0){
+        $( "#s" ).prop( "disabled", true );
+    }
+
     $("#s").autocomplete({
         minLength: 2,
         select: function(event, ui){
@@ -61,12 +65,12 @@ $(document).ready(function () {
         document.getElementById("btn_limpiar").style.display = "none";
     });
     
-    /*$("#s").keypress(function (e) {
+    /*$("#fecha_inicio").keypress(function (e) {
         //if the letter is not digit then display error and don't type anything
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
            //display error message
            //$("#errmsg").html("Digits Only").show().fadeOut("slow");
                   return false;
-       }
+       //}
       });*/
 });

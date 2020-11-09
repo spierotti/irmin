@@ -129,13 +129,13 @@ class ClientesController extends AppController
 
                 if ($this->Clientes->save($cliente)) {
                     
-                    $this->Flash->success(__('¡Cliente guardado con éxito!'));
+                    $this->Flash->success(__('Cliente creado con éxito.'));
 
                     return $this->redirect(['action' => 'index']);
 
                 }
 
-                $this->Flash->error(__('¡Error al guardar el Cliente!'));
+                $this->Flash->error(__('Error al crear el Cliente.'));
 
             } else {
 
@@ -166,12 +166,12 @@ class ClientesController extends AppController
 
             if ($this->Clientes->save($cliente)) {
 
-                $this->Flash->success(__('¡Cliente actualizado con éxito!'));
+                $this->Flash->success(__('Cliente actualizado con éxito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
 
-            $this->Flash->error(__('¡Error al actualizar el Cliente!'));
+            $this->Flash->error(__('Error al actualizar el cliente.'));
         }
 
         $this->set(compact('cliente'));
@@ -195,11 +195,11 @@ class ClientesController extends AppController
         
         if($this->Clientes->save($cliente)){
 
-            $this->Flash->success(__('¡El Cliente ha sido eliminado!'));
+            $this->Flash->success(__('Cliente eliminado con éxito.'));
 
         } else {
 
-            $this->Flash->error(__('¡Error al eliminar el Cliente!'));
+            $this->Flash->error(__('Error al eliminar el cliente.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -223,11 +223,11 @@ class ClientesController extends AppController
 
         if($this->Clientes->save($cliente)){
 
-            $this->Flash->success(__('¡Cambios guardados con exito!'));
+            $this->Flash->success(__('Cliente restaurado con éxito.'));
 
         } else {
 
-            $this->Flash->error(__('¡Error al guardar los Cambios!'));
+            $this->Flash->error(__('Error al restaurar el cliente.'));
         }
         return $this->redirect(['action' => 'index']);
     }

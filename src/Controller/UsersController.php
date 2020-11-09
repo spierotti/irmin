@@ -150,10 +150,10 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Usuario creado con éxito.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al crear el usuario.'));
         }
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
@@ -231,11 +231,11 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Usuario actualizado con éxito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al actualizar el usuario.'));
         }
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
@@ -260,11 +260,11 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Perfil actualizado con éxito.'));
 
                 return $this->redirect(['action' => 'viewPerfil']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al actualizar el perfíl.'));
         }
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
@@ -288,9 +288,9 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         $user->borrado = true;
         if ($this->Users->save($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('Usuario eliminado con éxito.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Error al eliminar el usuario.'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -309,9 +309,9 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         $user->borrado = false;
         if ($this->Users->save($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('Usuario restaurado con éxito.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Error al restaurar el usuario.'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -365,14 +365,14 @@ class UsersController extends AppController
                     ['validate' => 'reset']  
                 );
                     if ($this->Users->save($user)) {
-                        $this->Flash->set(__('Your password has been updated.'));
+                        $this->Flash->set(__('Contraseña actualizada con éxito.'));
                         return $this->redirect(array('action' => 'login'));
                     } else {
-                        $this->Flash->error(__('The password could not be updated. Please, try again.'));
+                        $this->Flash->error(__('Error al actualizar la contraseña.'));
                     }
                 }
             } else {
-                $this->Flash->error('Invalid or expired passkey. Please check your email or try again');
+                $this->Flash->error('El Código es invalido o ha expirado. Mirá tu email o volvé a intentar.');
                 $this->redirect(['action' => 'password']);
             }
             unset($user->password);
@@ -437,12 +437,12 @@ class UsersController extends AppController
 
                 if ($this->Users->save($user)) {
 
-                    $this->Flash->success(__('The user has been saved.'));
+                    $this->Flash->success(__('Contraseña actualizada con éxito.'));
 
                     return $this->redirect(['action' => 'index']);
                 }
 
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('Error al actualizar la contraseña.'));
 
             /*}else{
 

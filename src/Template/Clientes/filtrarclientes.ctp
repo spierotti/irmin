@@ -34,6 +34,7 @@
             <td><?= h($cliente->domicilio) ?></td>
             <td>
               <a href="./clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
+
               <a href="./clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
               
               <?php
@@ -41,21 +42,20 @@
                                   
                   echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Activar cliente')),
                     array('action' => 'activar', $cliente['id']),
-                    array('escape'=>false, 'confirm' => __('¿Seguro quiere activar el cliente # {0}?', $cliente->id))
+                    array('escape'=>false, 'confirm' => __('¿Está seguro que desea restaurar el cliente {0}?', $cliente->name))
                   );
                   
                 }else{
-
-                    echo $this->Html->link(
-                        '',
-                        ['controller' => 'Pedidos', 'action' => 'add', $cliente->id],
-                        ['class' => 'fa fa-file-text-o', 'title' => 'Realizar pedido'],
-                        ['confirm' => '¿Desea realizar un pedido para este cliente?']
-                    );
                                   
                     echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
                       array('action' => 'delete', $cliente['id']),
-                      array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el cliente # {0}?', $cliente->id))
+                      array('escape'=>false, 'confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name))
+                    );
+
+                    echo $this->Html->link('',
+                        ['controller' => 'Pedidos', 'action' => 'add', $cliente->id],
+                        ['class' => 'fa fa-plus-square ml-1', 'title' => 'Realizar pedido'],
+                        ['confirm' => '¿Desea realizar un pedido para este cliente?']
                     );
                 }
               ?>
@@ -65,7 +65,7 @@
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation ">
+  <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center">
           <?= $this->Paginator->first('<<') ?> 
           <?= $this->Paginator->prev('<') ?>

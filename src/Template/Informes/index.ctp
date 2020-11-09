@@ -4,33 +4,34 @@
  * @var \App\Model\Entity\Informe[]|\Cake\Collection\CollectionInterface $informes
  */
 $this->assign('title', 'Informes');
-
 ?>
 
 <div class="large-9 medium-8 columns content">
     <legend>Informes</legend>
     <?= $this->Form->create('Informes', ['type' => 'get']); ?>
         <div class="form-group row">
-            <div class="col-sm-3">
+            <label for="informe" id="informe" class="col-form-label mt-2 ml-3">Fecha Desde</label>
+            <div class="col-sm-2">
                 <?= $this->Form->control('start_date',[
                     'label' => false,
                     'placeholder' => 'Fecha desde',
                     'class' => 'form-control mt-2 calendario', 
                     'readonly' => 'readonly',
                     'data-toggle' => 'datepicker',
-                    'value' => $this->request->query('start_date'), 
+                    'value' => $start_date, 
                     'autocomplete' => 'off'
                     ]); 
                 ?>
             </div>
-            <div class="col-sm-3 mb-2">
+            <label for="informe" id="informe" class="col-form-label mt-2 ml-3">Fecha Hasta</label>
+            <div class="col-sm-2 mb-2">
                 <?= $this->Form->control('end_date',[
                     'label' => false,
                     'placeholder' => 'Fecha hasta',
                     'class' => 'form-control mt-2 calendario', 
                     'readonly' => 'readonly',
                     'data-toggle' => 'datepicker',
-                    'value' => $this->request->query('end_date'), 
+                    'value' => $end_date, 
                     'autocomplete' => 'off'
                     ]); 
                 ?>

@@ -5,34 +5,38 @@
  */
 $this->assign('title', 'Imágenes');
 ?>
+
 <div class="col-sm-12 justify-content-center mt-1">
-    <legend>Imágenes</legend>
+    <legend>Imágenes</legend> 
     <?= $this->Form->create('Images', ['type' => 'get']); ?>
         <div class="form-group row">
-            <div class="col-sm-3 mt-1">
-                <?= $this->Form->control('start_date',[
-                        'label' => false,
-                        'placeholder' => 'Fecha desde',
-                        'class' => 'form-control mt-2 calendario', 
-                        'readonly' => 'readonly',
-                        'data-toggle' => 'datepicker',
-                        'value' => $this->request->query('start_date'), 
-                        'autocomplete' => 'off'
-                    ]); 
+           <label for="image" id="image" class="col-form-label mt-3 ml-3">Fecha Desde</label>
+           <div class="col-sm-2">
+               <?= $this->Form->control('start_date',[
+                      'label' => false,
+                      'placeholder' => 'Fecha desde',
+                      'class' => 'form-control mt-3 calendario', 
+                      'readonly' => 'readonly',
+                      'data-toggle' => 'datepicker',
+                      'value' => $start_date, 
+                      'autocomplete' => 'off'
+                  ]); 
+               ?>
+           </div>
+           <label for="image" id="image" class="col-form-label mt-3 ml-3">Fecha Hasta</label>
+           <div class="col-sm-2">
+               <?= $this->Form->control('end_date',[
+                      'label' => false,
+                      'placeholder' => 'Fecha hasta',
+                      'class' => 'form-control mt-3 calendario',
+                      'readonly' => 'readonly',
+                      'data-toggle' => 'datepicker',
+                      'value' => $end_date,
+                      'autocomplete' => 'off'
+                  ]);
                 ?>
-            </div>
-            <div class="col-sm-3 mt-1">
-                <?= $this->Form->control('end_date',[
-                        'label' => false,
-                        'placeholder' => 'Fecha hasta',
-                        'class' => 'form-control mt-2 calendario',
-                        'readonly' => 'readonly',
-                        'data-toggle' => 'datepicker',
-                        'value' => $this->request->query('end_date'),
-                        'autocomplete' => 'off'
-                    ]);
-                ?>
-            </div>
+           </div>
+          
             <div class="col-sm-3 mt-2 ml-2">
                 <?= $this->Form->submit('Buscar', [
                         'class' => 'btn btn-primary'

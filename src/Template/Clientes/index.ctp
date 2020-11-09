@@ -77,14 +77,14 @@ $this->assign('title', 'Clientes');
                                           
                           echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Activar cliente')),
                             array('action' => 'activar', $cliente['id']),
-                            array('escape'=>false, 'confirm' => __('¿Seguro quiere activar el cliente # {0}?', $cliente->id))
+                            array('escape'=>false, 'confirm' => __('¿Está seguro que desea restaurar el cliente {0}?', $cliente->name))
                           );
                           
                         }else{     
 
                           echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
                             array('action' => 'delete', $cliente['id']),
-                            array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el cliente # {0}?', $cliente->id))
+                            array('escape'=>false, 'confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name))
                           ); 
 
                           echo $this->Html->link('',

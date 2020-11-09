@@ -15,7 +15,7 @@ $this->assign('title', 'Recuperar contraseña');
                 <!--<label for="email" id="email" class="col-sm-2 col-form-label mt-2">E-mail</label>-->
                 <div class="col-sm-6">
 			        <?php
-			            echo $this->Form->control('email', ['label' => false,'class'=>'form-control mt-2', 'placeholder'=> 'Ingrese su email']);
+			            echo $this->Form->control('email', ['label' => false,'class'=>'form-control mt-2', 'placeholder'=> 'Ingrese su email', 'autocomplete' => 'off']);
 			        ?>
 			    </div>
 			</div>

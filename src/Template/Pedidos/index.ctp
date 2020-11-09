@@ -62,11 +62,11 @@ $this->assign('title', 'Pedidos');
                             <tr>
                             <th scope="row"><?= $this->Number->format($pedido->id) ?></th>
                             <td><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?></td>
-                            <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td></td>
+                            <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td>
                             <td><?= h($pedido->fecha_solicitud) ?></td>
                             <td><?= ($pedido->has('estado') and !is_null($pedido->estado)) ? $pedido->estado->descripcion : '-' ?></td>
                             <td><?= h($pedido->descripcion) ?></td>
-                            <td>
+                            <td class="actions">
                                 <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true)
                                         { ?>    
                                             <?php

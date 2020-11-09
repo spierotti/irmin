@@ -104,11 +104,11 @@ class RolesController extends AppController
         if ($this->request->is('post')) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
             if ($this->Roles->save($role)) {
-                $this->Flash->success(__('The role has been saved.'));
+                $this->Flash->success(__('Rol creado con éxito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The role could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al crear el rol..'));
         }
         $this->set(compact('role'));
     }
@@ -131,10 +131,10 @@ class RolesController extends AppController
                 if ($this->Auth->user('role_id') == $id){
                     $this->Auth->session->write($this->Auth->sessionKey . '.role', $role->toArray());
                 }
-                $this->Flash->success(__('The role has been saved.'));
+                $this->Flash->success(__('Rol actualizado con éxito.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The role could not be saved. Please, try again.'));
+            $this->Flash->error(__('Error al actualizar el rol.'));
         }
         $this->set(compact('role'));
     }
@@ -156,9 +156,9 @@ class RolesController extends AppController
         $role->borrado = true;    
 
         if ($this->Roles->save($role)) {
-            $this->Flash->success(__('¡Rol ha sido eliminado con Exito!'));
+            $this->Flash->success(__('Rol eliminado con éxito.'));
         } else {
-            $this->Flash->error(__('¡Ha ocurrido un error al eliminar el Rol!'));
+            $this->Flash->error(__('Error al eliminar el rol.'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -179,9 +179,9 @@ class RolesController extends AppController
         $role->borrado = false;    
 
         if ($this->Roles->save($role)) {
-            $this->Flash->success(__('¡Rol restaurado con Exito!'));
+            $this->Flash->success(__('Rol restaurado con éxito.'));
         } else {
-            $this->Flash->error(__('¡Ha ocurrido un error al intentar restaurar el Rol!'));
+            $this->Flash->error(__('Error al restaurar el rol.'));
         }
         return $this->redirect(['action' => 'index']);
     }

@@ -62,55 +62,32 @@ class ClientesTable extends Table
             ->maxLength('cuit', 11)
             ->requirePresence('cuit', 'create')
             ->notEmptyString('cuit')
-            ->add('cuit', 'custom', [
-                'rule' => function ($value, $context) {
+            ->add(
+                'cuit', 
+                'custom', 
+                [
+                    'rule' => function ($value, $context) {
 
-                    if (strlen($value) == 11){
+                        if (strlen($value) == 11){
 
-                        return validarCUIT($value);
+                            return $this->validarCUIT($value);
+                
+                        }else{
+                
+                            if (strlen($value) <= 8){
 
-                        /*$digits = array();
-                                
-                        for ($i = 0; $i < strlen($value); $i++) {
-                            if (!ctype_digit($value[$i])) return false;
-                            if ($i < 12) {
-                                $digits[] = $value[$i];
+                                return $this->validarDni($value);
+                
+                            }else{
+                
+                                return false;
+                
                             }
                         }
-                        
-                        $acum = 0;
-                        foreach (array(5, 4, 3, 2, 7, 6, 5, 4, 3, 2) as $i => $multiplicador) {
-                            $acum += $digits[$i] * $multiplicador;
-                        }
-                        $cmp = 11 - ($acum % 11);
-                        if ($cmp == 11) $cmp = 0;
-                        if ($cmp == 10) $cmp = 9;
-                        return ($value[10] == $cmp);*/
-            
-                    }else{
-            
-                        if (strlen($value) <= 8){
-
-                            return validarDni($value);
-
-                            /*if (strlen($value) <= 8 && strlen($value) >= 7) 
-                            {
-                                return true;
-
-                            } else {
-
-                                return false;
-                            }*/
-            
-                        }else{
-            
-                            return false;
-            
-                        }
-                    }
-                },
-                'message' => '¡Este CUIT / DNI no es válido!'
-            ]);
+                    },
+                    'message' => '¡Este CUIT / DNI no es válido!'
+                ]
+            );
 
         $validator
             ->email('email')
@@ -155,26 +132,6 @@ class ClientesTable extends Table
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
-    }
-
-    private function validarIdentificacion($identificador){
-
-        if (strlen($identificador) == 11){
-
-            return validarCUIT($identificador);
-
-        }else{
-
-            if (strlen($identificador) <= 8){
-
-                return validarDni($identificador);
-
-            }else{
-
-                return false;
-
-            }
-        }
     }
 
     private function validarCUIT($cuit)

@@ -105,7 +105,7 @@
                                         <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>
@@ -127,11 +127,6 @@
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
                                     <li><?= $this->Html->link(__('Nueva imagen'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
                                 <?php } ?>
-                                <?php if($this->view == 'view' && $this->name == "Images") { ?>
-                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_imagen'] === true)) { ?> <!--¿Qué onda con esta parte?-->
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id)]) ?> </li>
-                                    <?php } ?>
-                                <?php } ?>
                             </ul>
                         </li>
                         <!--Fin imágenes-->
@@ -152,7 +147,7 @@
                                         <li><?= $this->Html->link(__('Modificar rol'), ['action' => 'edit', $role->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_rol'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar rol'), ['action' => 'delete', $role->id], ['confirm' => __('Are you sure you want to delete # {0}?', $role->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar rol'), ['action' => 'delete', $role->id], ['confirm' => __('¿Está seguro que desea eliminar el rol {0}?', $role->name)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                             </ul>
@@ -181,7 +176,7 @@
                                         <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                                 <!--Fin de ¿QUé hace esto?-->
@@ -264,7 +259,7 @@
                                 <?php } ?>
                                 <?php if($this->view == 'view' && $this->name == "Pedidos") { ?> 
 
-                                    <li><?= $this->Html->link(__('Exportar a PDF'), ['action' => 'view', $pedido->id, '_ext' => 'pdf']); ?></li>
+                                    <li><?= $this->Html->link(__('Exportar PDF'), ['action' => 'view', $pedido->id, '_ext' => 'pdf', 'target' => '_blank']); ?></li>
 
                                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id == $auth['User']['id']))) { ?>    
                                         <li><?= $this->Html->link(__('Evaluar pedido'), ['action' => 'evaluar', $pedido->id]) ?> </li>
@@ -332,7 +327,7 @@
                                         <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cliente->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>
@@ -354,11 +349,6 @@
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
                                     <li><?= $this->Html->link(__('Descargar Imagenes'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
-                                <?php } ?>
-                                <?php if($this->view == 'view' && $this->name == "Images") { ?>
-                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_imagen'] === true)) { ?> <!--¿Qué onda con esta parte?-->
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id)]) ?> </li>
-                                    <?php } ?>
                                 <?php } ?>
                              </ul>
                         </div>
@@ -382,7 +372,7 @@
                                         <li><?= $this->Html->link(__('Modificar rol'), ['action' => 'edit', $role->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_rol'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar rol'), ['action' => 'delete', $role->id], ['confirm' => __('Are you sure you want to delete # {0}?', $role->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar rol'), ['action' => 'delete', $role->id], ['confirm' => __('¿Está seguro que desea eliminar el rol {0}?', $role->name)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                             </ul>
@@ -413,7 +403,7 @@
                                         <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                                 <!--Fin de ¿QUé hace esto?-->

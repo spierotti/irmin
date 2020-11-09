@@ -134,53 +134,106 @@ class PedidosController extends AppController
         
         if ($this->request->is('post')) {
 
-            $start_date = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],3,2) . "-" . substr($this->request->data['fecha_inicio'],0, 2); 
-            $end_date = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],3,2) . "-" . substr($this->request->data['fecha_fin'],0, 2);
+            if ($this->request->data['cliente_id']!=0){
+            
+                if (strlen($this->request->data['fecha_inicio']) > 0 ) {
+        
+                    if (strlen($this->request->data['fecha_fin']) > 0 ){
 
-            // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
-            $query = $this->Pedidos->Images->find('all')->where([
-                //'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
-                //'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
-                //'Images.fecha_hora_imagen >= ' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00", 
-                //'Images.fecha_hora_imagen <= ' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59", 
-                'DATE(Images.fecha_hora_imagen) >= ' => $start_date, 
-                'DATE(Images.fecha_hora_imagen) <= ' => $end_date
-            ]);
+                        $time1 = strtotime($this->request->data['fecha_inicio']);
+                        $time2 = strtotime($this->request->data['fecha_fin']);
 
-            // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
-            /*$pedido = $this->Pedidos->patchEntity($pedido, [
-                'cliente_id' => $this->request->data['cliente_id'],
-                'estado_id' => 1,
-                'fecha_solicitud' => date('Y-m-d H:i:s'),
-                //'fecha_inicio' => $this->request->data['fecha_inicio'],
-                'fecha_inicio' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2),
-                //'fecha_fin' => $this->request->data['fecha_fin'],
-                'fecha_fin' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2),
-                'descripcion' => $this->request->data['descripcion'],
-                'images' => array()
-            ]);*/
+                        if($time1<=$time2){
 
-            $pedido->cliente_id = $this->request->data['cliente_id'];
-            $pedido->estado_id = 1;
-            $pedido->fecha_inicio = $start_date;
-            $pedido->fecha_fin = $end_date;
-            //$pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
-            //$pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
-            $pedido->fecha_solicitud = date('Y-m-d H:i:s');
-            $pedido->descripcion = $this->request->data['descripcion'];
-            $pedido->images = array();
+                            $start_date = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],3,2) . "-" . substr($this->request->data['fecha_inicio'],0, 2); 
+                            $end_date = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],3,2) . "-" . substr($this->request->data['fecha_fin'],0, 2);
 
-            $i = 0;
-            foreach ($query as $row) {
-                $pedido->images[$i] = $row;
-                $i++;
+
+                            // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
+                            $query = $this->Pedidos->Images->find('all')->where([
+                                //'Images.fecha_hora_imagen >= ' => $this->request->data['fecha_inicio']['year'] . "-" . $this->request->data['fecha_inicio']['month'] . "-" . $this->request->data['fecha_inicio']['day'] . " 00:00:00", 
+                                //'Images.fecha_hora_imagen <= ' => $this->request->data['fecha_fin']['year'] . "-" . $this->request->data['fecha_fin']['month'] . "-" . $this->request->data['fecha_fin']['day'] . " 23:59:59", 
+                                //'Images.fecha_hora_imagen >= ' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2) . " 00:00:00", 
+                                //'Images.fecha_hora_imagen <= ' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2) . " 23:59:59", 
+                                'DATE(Images.fecha_hora_imagen) >= ' => $start_date, 
+                                'DATE(Images.fecha_hora_imagen) <= ' => $end_date
+                            ]);
+
+                            // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
+                            /*$pedido = $this->Pedidos->patchEntity($pedido, [
+                                'cliente_id' => $this->request->data['cliente_id'],
+                                'estado_id' => 1,
+                                'fecha_solicitud' => date('Y-m-d H:i:s'),
+                                //'fecha_inicio' => $this->request->data['fecha_inicio'],
+                                'fecha_inicio' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2),
+                                //'fecha_fin' => $this->request->data['fecha_fin'],
+                                'fecha_fin' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2),
+                                'descripcion' => $this->request->data['descripcion'],
+                                'images' => array()
+                            ]);*/
+
+                            $pedido->cliente_id = $this->request->data['cliente_id'];
+                            $pedido->estado_id = 1;
+                            $pedido->fecha_inicio = $start_date;
+                            $pedido->fecha_fin = $end_date;
+                            //$pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
+                            //$pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
+                            $pedido->fecha_solicitud = date('Y-m-d H:i:s');
+                            $pedido->descripcion = $this->request->data['descripcion'];
+                            $pedido->images = array();
+
+                            $i = 0;
+                            foreach ($query as $row) {
+                                $pedido->images[$i] = $row;
+                                $i++;
+                            }
+
+                            if ($this->Pedidos->save($pedido)) {
+                                $this->Flash->success(__('Pedido creado con Exito.'));
+                                return $this->redirect(['action' => 'index']);
+                            }
+
+                            $this->Flash->error(__('Error al crear el Pedido.'));
+
+                        } else {
+                    
+                            $this->Flash->error(__('Fecha Desde debe ser anterior o igual a la Fecha Hasta.'));
+                            
+                        }
+
+                    } else {
+                    
+                        $this->Flash->error(__('Fecha Hasta es obligatorio.'));
+        
+                    }
+
+                } else {
+                    
+                    $this->Flash->error(__('Fecha Desde es obligatorio.'));
+
+                }
+
+            } else {
+                    
+                $this->Flash->error(__('Debe seleccionar un cliente.'));
+
             }
 
-            if ($this->Pedidos->save($pedido)) {
-                $this->Flash->success(__('Pedido guardado con Exito.'));
-                return $this->redirect(['action' => 'index']);
+
+            if (strlen($this->request->data['cliente_id']) > 0){
+            
+                $this->Clientes = TableRegistry::get('Clientes');
+
+                $c = $this->Clientes->get($cliente);
+
+                $s = $c->name . " ( " . $c->cuit . " ) ";
+
+                $this->request->data['cliente'] = $s;
+                $this->request->data['cliente_id'] = $c->id;
+
+                $this->set($this->request->data);
             }
-            $this->Flash->error(__('Error al guardar el Pedido.'));
+
         }else{
 
             if ($this->request->is('get') and !is_null($cliente)) {
@@ -189,7 +242,9 @@ class PedidosController extends AppController
 
                 $c = $this->Clientes->get($cliente);
 
-                $this->request->data['cliente'] = $c->name;
+                $s = $c->name . " ( " . $c->cuit . " ) ";
+
+                $this->request->data['cliente'] = $s;
                 $this->request->data['cliente_id'] = $c->id;
 
                 $this->set($this->request->data);
@@ -303,7 +358,7 @@ class PedidosController extends AppController
 
                     return $this->redirect(['action' => 'index']);
                 }
-                $this->Flash->error(__('El pedido no pudo ser guardado. Por favor, pruebas más tarde.'));
+                $this->Flash->error(__('Error al cancelar el pedido.'));
             }
         
             $this->set(compact('pedido'));
