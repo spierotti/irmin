@@ -24,7 +24,7 @@ $(document).ready(function(){
                 }
             });
 
-            setTimeout(get_progreso,5000);
+            setTimeout(get_progreso,10000);
         }
     });
 

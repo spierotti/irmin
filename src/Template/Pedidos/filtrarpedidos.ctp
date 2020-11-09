@@ -26,15 +26,16 @@
             <th scope="col">Acciones</th>
             </tr>
         </thead>
+
         <tbody>
             <?php foreach ($pedidos as $pedido): ?>
             <tr>
                 <th scope="row"><?= $this->Number->format($pedido->id) ?></th>
                 <td><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?></td>
                 <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td>
-                <td><?= $pedido->fecha_solicitud ?></td>
+                <td><?= h($pedido->fecha_solicitud) ?></td>
                 <td><?= ($pedido->has('estado') and !is_null($pedido->estado)) ? $pedido->estado->descripcion : '-' ?></td>
-                <td><?= $pedido->descripcion ?></td>
+                <td><?= h($pedido->descripcion) ?></td>
                 <td class="actions">
                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true)
                         { ?>    
@@ -45,8 +46,7 @@
                                 );
                             ?>
                         <?php } ?>    
-                        <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id'])))
-                        { ?>    
+                        <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['evaluar_pedido'] === true && ($pedido->estado_id == 1 || ($pedido->estado_id == 2 && $pedido->experto_id === $auth['User']['id']))) { ?>    
                             <?php
                                 echo $this->Html->link(
                                     '', 
@@ -55,8 +55,7 @@
                                 );
                             ?>
                         <?php } ?>
-                        <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id'])))
-                            { ?>    
+                        <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['eliminar_pedido'] === true && ($pedido->estado_id < 3) && (is_null($pedido->experto_id) || ($pedido->experto_id === $auth['User']['id']))) { ?>    
                             <?php
                                 echo $this->Html->link('', 
                                     array('controller' => 'Pedidos', 'action' => 'delete', $pedido->id), 

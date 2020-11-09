@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use \Cake\Http\Response;
 use Cake\Datasource\ConnectionManager;
+use \Datetime;
 
 /**
  * Images Controller
@@ -46,6 +47,17 @@ class ImagesController extends AppController
         }else{
             $end_date = $hoy;
         }
+            
+        $time1 = strtotime($start_date);
+        $time2 = strtotime($end_date);
+
+        if($time1>$time2){
+
+            $start_date = $end_date;
+
+            $this->Flash->error(__('Fecha Desde debe ser anterior o igual a la Fecha Hasta.'));
+            
+        }
 
         $this->paginate ['conditions'] = [
                 'DATE(images.fecha_hora_imagen) <= ' => $end_date,
@@ -54,7 +66,15 @@ class ImagesController extends AppController
 
         $images = $this->paginate($this->Images);
 
+        $date = new DateTime($start_date);
+        $start = $date->format('d/m/Y');
+
+        $date = new DateTime($end_date);
+        $end = $date->format('d/m/Y');
+
         $this->set(compact('images'));
+        $this->set('end_date', $end);
+        $this->set('start_date', $start);
     }
 
     /**
@@ -97,7 +117,7 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    /*public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $image = $this->Images->get($id);
@@ -108,7 +128,7 @@ class ImagesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
+    }*/
 
     /**
      * Metodo Ejecutar
@@ -123,7 +143,11 @@ class ImagesController extends AppController
 
         // ejecuto screipt de descarga
         //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
-        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages.py', $salida, $return);
+
+        //$comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImages2.py';
+        //exec($comando, $salida, $return);
+
+        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages2.py', $salida, $return);
 
         if (!$return) {
 

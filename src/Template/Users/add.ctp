@@ -24,8 +24,20 @@ $this->assign('title', 'Nuevo usuario');
                     <?php echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'id' => 'rol', 'label' => false, 'class'=>'form-control mt-2']); ?>
                 </div>
                 <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente </label>
-                <div class="col-sm-8">
-                    <?php echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'disabled' => true, 'label' => false, 'class'=>'form-control mt-2']); ?>
+                <div id="cliente_div" class="col-sm-8">
+                    <?php 
+                          echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'disabled' => true, 'label' => false, 'class'=>'form-control mt-2']);
+                          echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']); 
+                        ?>
+                </div>
+                <div class="col-sm-1">
+                    <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
+                            'type' => 'button',
+                            'class' => 'btn btn-primary',
+                            'id' => 'btn_limpiar',
+                            'title' => 'Quitar cliente',
+                            'style' => "display: none;"
+                        ]) ?>
                 </div>
                 <label for="email" id="email" class="col-sm-3 col-form-label mt-2">Email </label>
                 <div class="col-sm-8">
@@ -42,5 +54,4 @@ $this->assign('title', 'Nuevo usuario');
         </div>
     </div>
 <?= $this->Form->end() ?>
-<?= $this->Html->script('search.js') ?>
 <?= $this->Html->script('enabled-disabled.js') ?>

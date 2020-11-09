@@ -38,14 +38,14 @@
 
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle', 'title' => 'Restaurar usuario')),
                         array('action' => 'activar', $user->id),
-                        array('escape'=>false, 'confirm' => __('¿Seguro quiere restaurar el Usuario #{0}?', $user->id))
+                        array('escape'=>false, 'confirm' => __('¿Está seguro que desea restaurar el usuario {0}?', $user->username))
                         );
 
                     }else{
                         
                         echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar usuario')),
                         array('action' => 'delete', $user->id),
-                        array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el Usuario #{0}?', $user->id))
+                        array('escape'=>false, 'confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username))
                         );
                     }
                     ?>

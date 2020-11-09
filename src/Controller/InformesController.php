@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use \Datetime;
 
 /**
  * Informes Controller
@@ -53,6 +54,7 @@ class InformesController extends AppController
      */
     public function index($start_date = null, $end_date = null)
     {
+
         $start_date = $this->request->query('start_date');
         $end_date = $this->request->query('end_date');
 
@@ -70,6 +72,17 @@ class InformesController extends AppController
         }else{
             $end_date = $hoy;
         }
+            
+        $time1 = strtotime($start_date);
+        $time2 = strtotime($end_date);
+
+        if($time1>$time2){
+
+            $start_date = $end_date;
+
+            $this->Flash->error(__('Fecha Desde debe ser anterior o igual a la Fecha Hasta.'));
+            
+        }
 
         $this->paginate ['conditions'] = [
                 'DATE(informes.fecha_hora_informe) <= ' =>  $end_date,
@@ -78,7 +91,15 @@ class InformesController extends AppController
 
         $informes = $this->paginate($this->Informes);
 
+        $date = new DateTime($start_date);
+        $start = $date->format('d/m/Y');
+
+        $date = new DateTime($end_date);
+        $end = $date->format('d/m/Y');
+        
         $this->set(compact('informes'));
+        $this->set('end_date', $end);
+        $this->set('start_date', $start);
     }
 
     /**

@@ -1,10 +1,18 @@
-<legend><?= __('Datos del pedido') ?></legend>
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Pedido $pedido
+ */
+$this->assign('title', 'Detalle del pedido Nº ' . $pedido->id);
+?>
+
+<legend><?php echo 'Datos del pedido Nº ' . $pedido->id ?></legend>
 <table class="table table-sm table-hover">
   <tbody>
     <tr>
       <th scope="row">Cliente</th>
       <td>
-        <?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?>
+        <?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $pedido->cliente->name : '-' ?>
       </td>
     </tr>
     <tr>
@@ -69,16 +77,28 @@
     </tr>
   </tbody>
 </table>
+<legend>Imágenes relacionadas</legend>
 
-<div>
-    <legend>Imágenes relacionadas</legend>
+<div class="ml-5 mr-5 mb-6 mt-5">
+  <div class="row card-columns">
     <?php if (!empty($pedido->images)){ ?>
-        <?php foreach ($pedido->images as $images): ?>
-            <div class="card">
-                <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['fullBase' => true]); ?>
-            </div>
-        <?php endforeach; ?>
+
+      <?php foreach ($pedido->images as $images): ?>
+
+          <div class="card col-sm-3" style='width:70%;'>
+
+              <?= $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, [ 'class'=>'card-img-top mt-3', 'fullBase' => true]); ?>
+              
+              <div class="card-body">
+                  <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
+              </div>
+
+          </div>
+
+      <?php endforeach; ?>
+
     <?php }else{
-        echo '<p>¡No existen registros para el periodo solicitado!</p>';
+      echo '<p>¡No existen registros para el periodo solicitado!</p>';
     }?>
+  </div>
 </div>

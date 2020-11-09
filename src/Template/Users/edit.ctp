@@ -22,9 +22,21 @@ $this->assign('title', 'Usuarios - Modificar usuario');
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'id' => 'rol', 'label' => false,'class'=>'form-control mt-2']); ?>
                 </div>
-                <label for="nombre" id="nombre" class="col-sm-3 col-form-label mt-2">Nombre</label>
+                <label for="nombre" id="nombre" class="col-sm-3 col-form-label mt-2">Cliente</label>
                 <div class="col-sm-8">
-                    <?php echo $this->Form->control('cliente.name', [ 'div' => false, 'id' => 's' , 'autocomplete' => 'off','label' => false, 'class'=>'form-control mt-2']); ?>
+                    <?php echo $this->Form->control('cliente.name', [ 'div' => false, 'id' => 's' , 'autocomplete' => 'off','label' => false, 'class'=>'form-control mt-2']);
+                          echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']); 
+                        ?>
+                </div>
+                <div class="col-sm-1">
+                    <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
+                            'type' => 'button',
+                            'class' => 'btn btn-primary',
+                            'id' => 'btn_limpiar',
+                            'title' => 'Quitar cliente',
+                            'style' => "display: none;"
+                        ]) ?>
+                </div>
                 </div>
             </div>
             <div class="form-group row mt-4">

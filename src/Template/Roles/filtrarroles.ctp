@@ -40,14 +40,14 @@
 
                       echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-check-circle eliminar', 'title' => 'Restaurar rol')),
                         array('action' => 'activar', $role->id),
-                        array('escape'=>false, 'confirm' => __('¿Seguro quiere restaurar el Rol #{0}?', $role->id))
+                        array('escape'=>false, 'confirm' => __('¿Está seguro que desea restaurar el rol {0}?', $role->name))
                       );
 
                     }else{
 
                       echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash eliminar', 'title' => 'Eliminar rol')),
                         array('action' => 'delete', $role->id),
-                        array('escape'=>false, 'confirm' => __('¿Seguro quiere borrar el Rol #{0}?', $role->id))
+                        array('escape'=>false, 'confirm' => __('¿Está seguro que desea eliminar el rol {0}?', $role->name))
                       );
 
                     }

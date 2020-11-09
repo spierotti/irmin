@@ -14,7 +14,7 @@ $this->assign('title', 'Nuevo pedido');
                 <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
                 <div id="cliente_div" class="col-sm-8">
                     <?php
-                        echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2', 'title' => 'Ingrese nombre o CUIT/DNI del cliente']);
+                        echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2', 'placeholder' => 'Ingrese nombre o CUIT/DNI del cliente']);
                         echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']);
                     ?>
                 </div>
@@ -37,6 +37,7 @@ $this->assign('title', 'Nuevo pedido');
                         'type' => 'text',
                         'placeholder' => 'Fecha desde',
                         'readonly' => 'readonly',
+                        'id' => 'fecha_inicio',
                         'class'=>'form-control mt-2',
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
