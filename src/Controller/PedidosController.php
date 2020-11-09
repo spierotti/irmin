@@ -219,17 +219,20 @@ class PedidosController extends AppController
 
             }
 
+
+            if (strlen($this->request->data['cliente_id']) > 0){
             
-            $this->Clientes = TableRegistry::get('Clientes');
+                $this->Clientes = TableRegistry::get('Clientes');
 
-            $c = $this->Clientes->get($cliente);
+                $c = $this->Clientes->get($cliente);
 
-            $s = $c->name . " ( " . $c->cuit . " ) ";
+                $s = $c->name . " ( " . $c->cuit . " ) ";
 
-            $this->request->data['cliente'] = $s;
-            $this->request->data['cliente_id'] = $c->id;
+                $this->request->data['cliente'] = $s;
+                $this->request->data['cliente_id'] = $c->id;
 
-            $this->set($this->request->data);
+                $this->set($this->request->data);
+            }
 
         }else{
 
