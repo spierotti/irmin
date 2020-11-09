@@ -50,7 +50,7 @@ $this->assign('title', 'Usuarios - Modificar usuario');
                         $this->Form->button('Volver', 
                         array('type' => 'button',
                         'class' => 'btn btn-primary ml-3 mt-2',
-                        'onclick' => 'location.href=\'/users\'')
+                        'onclick' => 'location.href=\'../\'')
                     ); ?>
                 </div>
             </div>

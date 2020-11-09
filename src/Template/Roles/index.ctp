@@ -66,7 +66,7 @@ $this->assign('title', 'Roles');
                           array('escape'=>false)
                           );
                       ?>
-                      <a href="./roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
+                      <a href="../roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Modificar rol"></i></a>
                       <?php
 
                           if ($role->borrado){
@@ -101,7 +101,7 @@ $this->assign('title', 'Roles');
       </nav>
 
     <?php }else{
-      echo '<p>¡No existen registros para el periodo solicitado!</p>';
+      echo '<p>¡No existen registros disponibles para mostrar!</p>';
     }?>
         
       </div>

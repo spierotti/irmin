@@ -68,9 +68,9 @@ $this->assign('title', 'Clientes');
                     <td><?= h($cliente->celular) ?></td>
                     <td><?= h($cliente->domicilio) ?></td>
                     <td>
-                      <a href="./clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
+                      <a href="../clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
 
-                      <a href="./clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
+                      <a href="../clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Modificar cliente"></i></a>
                       
                       <?php
                         if ($cliente->borrado){
@@ -112,7 +112,7 @@ $this->assign('title', 'Clientes');
 
         <?php }else{
 
-            echo '<p>¡No existen registros para el periodo solicitado!</p>';
+            echo '<p>¡No existen registros disponibles para mostrar!</p>';
         }?>
 
         </div>

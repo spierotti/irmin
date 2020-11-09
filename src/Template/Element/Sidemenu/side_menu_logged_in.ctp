@@ -7,15 +7,11 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <i class="fa fa-bars fa-2x"></i>
                     </button>
-                    <a class="navbar-brand" href="/users/home"><i class="fa fa-home fa-2x"></i></a>
+                    <a class="navbar-brand" href="../users/home"><i class="fa fa-home fa-2x"></i></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="child-menu"><a href="/users/home">Home </a></li>
-                        <?php if (!isset($auth['User']['role_id']))
-                        { ?>
-                            <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
-                        <?php } ?>
                         <!--Mi cuenta - Mobile -->
                         <?php if (isset($auth['User']['role_id']))
                         { ?>
@@ -28,7 +24,7 @@
                                 <?php 
                                 } else
                                     { ?>
-                                        <li><?= $this->Html->link(__('Editar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
+                                        <li><?= $this->Html->link(__('Modificar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
                                 <?php } ?>
                                 <li><?= $this->Html->link(__('Cambiar Contraseña'), ['controller' => 'Users', 'action' => 'changePassword']) ?></li>
                             </ul>
@@ -106,10 +102,10 @@
                                 <?php if($this->view == 'view' && $this->name == "Clientes") { ?>
 
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>
@@ -177,7 +173,7 @@
                                 <?php if($this->view == 'view' && $this->name == "Users")
                                 { ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_usuario'] === true)){ ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $user->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
@@ -188,14 +184,14 @@
                         </li>
                         <?php } ?>
                         <!--Fin usuarios-->
-                        <li class="child-menu"><?= $this->Html->link(__('Nuestra empresa'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
+                        <li class="child-menu"><?= $this->Html->link(__('Quiénes somos'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
 
                         <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'contacto']) ?></li>
 
-                        <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
                         <!--LOGOUT-->
                         <?php if (isset($auth['User']['role_id']) )
                         { ?>
+                        <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda']) ?></li>
                         <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
                         <?php } ?>
                     </ul>
@@ -217,7 +213,6 @@
                     <?php if (!isset($auth['User']['role_id']))
                     { ?>
                         <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'login']) ?> </li>
-					    <li class="child-menu"><?= $this->Html->link(__('Recuperar Contraseña'), ['controller' => 'Users','action' => 'forgotPassword']) ?></li>
                     <?php } else {?>
                         <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'home']) ?> </li>
                     <?php } ?>
@@ -233,7 +228,7 @@
                                 <?php 
                                 } else
                                     { ?>
-                                        <li><?= $this->Html->link(__('Editar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
+                                        <li><?= $this->Html->link(__('Modificar Perfil'), ['controller' => 'Users', 'action' => 'editPerfil']) ?></li>
                                 <?php } ?>
                                 <li><?= $this->Html->link(__('Cambiar Contraseña'), ['controller' => 'Users', 'action' => 'changePassword']) ?></li>
                             </ul>
@@ -329,10 +324,10 @@
                                     <?php } ?>
 
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_cliente'] === true)) { ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $cliente->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar cliente'), ['action' => 'edit', $cliente->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_cliente'] === true)) { ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar cliente'), ['action' => 'delete', $cliente->id], ['confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name)]) ?> </li>
                                     <?php } ?>
 
                                 <?php } ?>
@@ -405,7 +400,7 @@
                                 <?php if($this->view == 'view' && $this->name == "Users")
                                 { ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['modificar_usuario'] === true)){ ?>
-                                        <li><?= $this->Html->link(__('Modificar'), ['action' => 'edit', $user->id]) ?> </li>
+                                        <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
                                         <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
@@ -418,7 +413,7 @@
                     <?php } ?>
                     <!--FIN USUARIOS-->
 
-                    <li class="child-menu"><?= $this->Html->link(__('Nuestra empresa'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
+                    <li class="child-menu"><?= $this->Html->link(__('Quiénes somos'), ['controller' => 'Pages', 'action' => 'nuestra_empresa']) ?></li>
 
                     <li class="child-menu"><?= $this->Html->link(__('Contacto'), ['controller' => 'Pages', 'action' => 'contacto']) ?></li>
 

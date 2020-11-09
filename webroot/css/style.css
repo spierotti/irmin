@@ -2292,3 +2292,41 @@ RESPONSIVE
 .ui-datepicker-next:before {
   content: "\f101";
 }
+
+.botonera{
+    display: flex;
+    width: 100%;
+}
+
+.botonera .rapido{
+    width: 98%;
+}
+
+.cliente{
+    color: blue;
+    font-style: italic;
+}
+
+.centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.roles-usuarios-relacionados
+{
+    height: 100px;
+    overflow-y: auto;
+}
+
+.centro {
+    text-align: center;
+}
+
+.izquierda {
+    text-align: left;
+}
+
+.calendario {
+    background-color: white !important;
+}
