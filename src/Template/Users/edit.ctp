@@ -23,7 +23,7 @@ $this->assign('title', 'Usuarios - Modificar usuario');
                     <?php echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'id' => 'rol', 'label' => false,'class'=>'form-control mt-2']); ?>
                 </div>
                 <label for="nombre" id="nombre" class="col-sm-3 col-form-label mt-2">Cliente</label>
-                <div class="col-sm-8">
+                <div id="cliente_div"  class="col-sm-8">
                     <?php echo $this->Form->control('cliente.name', [ 'div' => false, 'id' => 's' , 'autocomplete' => 'off','label' => false, 'class'=>'form-control mt-2']);
                           echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']); 
                         ?>
@@ -57,4 +57,4 @@ $this->assign('title', 'Usuarios - Modificar usuario');
         </div>
     </div>
 <?= $this->Form->end() ?>
-<?= $this->Html->script('enabled-disabled.js') ?>
+<?= $this->Html->script('edit-usr-cliente.js') ?>

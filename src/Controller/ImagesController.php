@@ -144,10 +144,11 @@ class ImagesController extends AppController
         // ejecuto screipt de descarga
         //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
 
-        //$comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImages2.py';
-        //exec($comando, $salida, $return);
+        $comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImages2.py';
 
-        exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages2.py', $salida, $return);
+        exec($comando, $salida, $return);
+
+        //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\Project_Irmin\Irmin_DownloadImages2.py', $salida, $return);
 
         if (!$return) {
 
@@ -159,13 +160,14 @@ class ImagesController extends AppController
             $row = $stmt->fetch('assoc');
 
             //$string = implode("\n", $row['salida']);
-            $string = implode("\n", $salida);
+            //$string = implode("\n", $salida);
 
             $respuesta = $respuesta->withType('application/json')->withStringBody(
                 json_encode(
                         [
                             'fecha_hora_actualizacion' => $row['fecha_hora_actualizacion'],
-                            'salida' => $string
+                            'salida' => $row['salida']
+                            //'salida' => $string
                         ]
                 )
             );

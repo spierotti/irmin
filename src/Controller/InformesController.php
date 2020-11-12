@@ -111,8 +111,16 @@ class InformesController extends AppController
      */
     public function view($id = null)
     {
+
         $informe = $this->Informes->get($id, [
             'contain' => ['Images']
+        ]);
+
+        $this->viewBuilder()->options([
+            'pdfConfig' => [
+                'orientation' => 'portrait',
+                'filename' => 'Informe_' . $id . '.pdf'
+            ]
         ]);
 
         $this->set('informe', $informe);

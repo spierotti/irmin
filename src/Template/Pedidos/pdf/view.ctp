@@ -80,9 +80,9 @@ $this->assign('title', 'Detalle del pedido Nº ' . $pedido->id);
 <legend>Imágenes relacionadas</legend>
 
 <div class="ml-5 mr-5 mb-6 mt-5">
-  <div class="row card-columns">
     <?php if (!empty($pedido->images)){ ?>
 
+      <div class="row card-columns">
       <?php foreach ($pedido->images as $images): ?>
 
           <div class="card col-sm-3" style='width:70%;'>

@@ -54,4 +54,4 @@ $this->assign('title', 'Nuevo usuario');
         </div>
     </div>
 <?= $this->Form->end() ?>
-<?= $this->Html->script('enabled-disabled.js') ?>
+<?= $this->Html->script('add-usr-cliente.js') ?>

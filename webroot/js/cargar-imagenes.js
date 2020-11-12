@@ -14,8 +14,13 @@ $(document).ready(function(){
                 url:"http://localhost/irmin/images/ejecutar",
                 success:function(data) {
                     enproceso = false;
-                    actualizar_pantalla(data['fecha_hora_actualizacion'],data['salida']);
-                    alert('¡El proceso ha fnalizado!')
+                    if (data['fecha_hora_actualizacion'] == null){
+                        actualizar_pantalla("-","-");
+                        alert(data['error']); 
+                    }else{
+                        actualizar_pantalla(data['fecha_hora_actualizacion'],data['salida']);
+                        alert('¡El proceso ha fnalizado!')
+                    }
                 }, 
                 error:function(data) {
                    enproceso = false;

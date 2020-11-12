@@ -135,19 +135,18 @@ class PedidosController extends AppController
         if ($this->request->is('post')) {
 
             if ($this->request->data['cliente_id']!=0){
-            
+
                 if (strlen($this->request->data['fecha_inicio']) > 0 ) {
-        
+
                     if (strlen($this->request->data['fecha_fin']) > 0 ){
 
                         $time1 = strtotime($this->request->data['fecha_inicio']);
                         $time2 = strtotime($this->request->data['fecha_fin']);
 
-                        if($time1<=$time2){
+                        if(!($time1>$time2)){
 
                             $start_date = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],3,2) . "-" . substr($this->request->data['fecha_inicio'],0, 2); 
                             $end_date = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],3,2) . "-" . substr($this->request->data['fecha_fin'],0, 2);
-
 
                             // BUSCO IMAGENES PARA EL INTERVALO DE FECHAS DEFINIDAS
                             $query = $this->Pedidos->Images->find('all')->where([
@@ -159,25 +158,10 @@ class PedidosController extends AppController
                                 'DATE(Images.fecha_hora_imagen) <= ' => $end_date
                             ]);
 
-                            // CARGO EL PEDIDO CON LOS DATOS QUE VIENEN DE LA VIEW
-                            /*$pedido = $this->Pedidos->patchEntity($pedido, [
-                                'cliente_id' => $this->request->data['cliente_id'],
-                                'estado_id' => 1,
-                                'fecha_solicitud' => date('Y-m-d H:i:s'),
-                                //'fecha_inicio' => $this->request->data['fecha_inicio'],
-                                'fecha_inicio' => substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2),
-                                //'fecha_fin' => $this->request->data['fecha_fin'],
-                                'fecha_fin' => substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2),
-                                'descripcion' => $this->request->data['descripcion'],
-                                'images' => array()
-                            ]);*/
-
                             $pedido->cliente_id = $this->request->data['cliente_id'];
                             $pedido->estado_id = 1;
                             $pedido->fecha_inicio = $start_date;
                             $pedido->fecha_fin = $end_date;
-                            //$pedido->fecha_inicio = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],0, 2) . "-" . substr($this->request->data['fecha_inicio'],3,2);
-                            //$pedido->fecha_fin = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],0, 2) . "-" . substr($this->request->data['fecha_fin'],3,2);
                             $pedido->fecha_solicitud = date('Y-m-d H:i:s');
                             $pedido->descripcion = $this->request->data['descripcion'];
                             $pedido->images = array();
@@ -189,6 +173,7 @@ class PedidosController extends AppController
                             }
 
                             if ($this->Pedidos->save($pedido)) {
+
                                 $this->Flash->success(__('Pedido creado con Exito.'));
                                 return $this->redirect(['action' => 'index']);
                             }
@@ -219,8 +204,11 @@ class PedidosController extends AppController
 
             }
 
+            /*if (strlen($this->request->data['cliente_id']) > 0){
 
-            if (strlen($this->request->data['cliente_id']) > 0){
+                debug("14");
+
+                $cliente = $this->request->data['cliente_id'];
             
                 $this->Clientes = TableRegistry::get('Clientes');
 
@@ -231,8 +219,18 @@ class PedidosController extends AppController
                 $this->request->data['cliente'] = $s;
                 $this->request->data['cliente_id'] = $c->id;
 
+                // esto genera quilombo
                 $this->set($this->request->data);
-            }
+
+                return $this->redirect([
+                    'controller' => 'Pedidos',
+                    'action' => 'add',
+                    '?' => [
+                        'cliente_id' => $this->request->data['cliente_id'],
+                        'cliente' => $this->request->data['cliente']
+                    ]
+                ]);
+            }*/
 
         }else{
 

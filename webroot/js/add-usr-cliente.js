@@ -25,8 +25,7 @@ $(document).ready(function () {
         source: function(request, response) {
             $.ajax({
                 //url: "http://localhost/irmin/clientes/buscarclientes",
-                url: "<?php echo $this->Url->build([ 'controller' => 'Clientes', 'action' => 'buscarclientes']); ?>",
-                //url: "../clientes/buscarclientes",
+                url: "../clientes/buscarclientes",
                 data: {
                     term: request.term
                 },

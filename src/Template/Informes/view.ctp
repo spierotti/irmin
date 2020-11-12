@@ -17,18 +17,10 @@ $this->assign('title', 'Informe número '.h($informe->id));
         <td><?= h($informe->fecha_hora_informe) ?></td>
     </tr>
 </table>
-<div class="col-sm-2">
-    <?=
-        $this->Form->button('Volver', 
-        array('type' => 'button',
-        'class' => 'btn btn-primary mt-3 ml-2',
-        'onclick' => 'location.href=\'../\'')
-    ); ?>
-</div>
 
-<?php if (!empty($informe->images)): ?>
+<legend>Imágenes relacionadas</legend>
+<?php if (!empty($informe->images)) { ?>
     <div class="related ml-2">
-        <legend>Imágenes relacionadas</legend>
         <?php foreach ($informe->images as $images): ?>
             <div class="row card-columns">
                 <div class="card col-sm-3">
@@ -45,4 +37,16 @@ $this->assign('title', 'Informe número '.h($informe->id));
             </div>
         <?php endforeach; ?>
     </div>
-<?php endif; ?>
+
+<?php }else{
+        echo '<div class="row ml-5"><p>¡No existen imágenes para el periodo solicitado!</p></div>';
+    }?>
+
+<div class="col-sm-2">
+    <?=
+        $this->Form->button('Volver', 
+        array('type' => 'button',
+        'class' => 'btn btn-primary mt-3 ml-2',
+        'onclick' => 'location.href=\'../\'')
+    ); ?>
+</div>

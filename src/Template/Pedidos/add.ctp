@@ -14,8 +14,24 @@ $this->assign('title', 'Nuevo pedido');
                 <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
                 <div id="cliente_div" class="col-sm-8">
                     <?php
-                        echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2', 'placeholder' => 'Ingrese nombre o CUIT/DNI del cliente']);
-                        echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']);
+                        echo $this->Form->control('cliente', 
+                        [
+                            'div' => false, 
+                            'id' => 's', 
+                            'autocomplete' => 'off', 
+                            'label' => false, 
+                            'class'=>'form-control mt-2', 
+                            'placeholder' => 'Ingrese nombre o CUIT/DNI del cliente',
+                            //'value' => (!empty($this->request->query['cliente'])) ? $this->request->query['cliente'] : ""
+                            ]);
+                        echo $this->Form->control('cliente_id', 
+                        [
+                            'type' => 'hidden', 
+                            'id' => 'c_id', 
+                            'label' => false, 
+                            'class'=>'form-control mt-2',
+                            //'value' => (!empty($this->request->query['cliente_id'])) ? $this->request->query['cliente_id'] : ""
+                            ]);
                     ?>
                 </div>
                 <div class="col-sm-1">
@@ -41,7 +57,7 @@ $this->assign('title', 'Nuevo pedido');
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : "",
+                        //'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : "",
                         'autocomplete' => 'off'
                     ]) ?>
 
@@ -60,7 +76,7 @@ $this->assign('title', 'Nuevo pedido');
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        'value' => (!empty($this->request->query['fecha_fin'])) ? $this->request->query['fecha_fin'] : "",
+                        //'value' => (!empty($this->request->query['fecha_fin'])) ? $this->request->query['fecha_fin'] : "",
                         'autocomplete' => 'off'
                         ])
                     ?>
