@@ -1,5 +1,6 @@
 <?php
 $this->assign('title', 'Home');
+use Cake\Routing\Router;
 ?>
 
 <style>
@@ -19,15 +20,22 @@ $this->assign('title', 'Home');
             <div class="col-sm-10 mb-5 mr-2">
             <?php echo $this->Html->image('irmin-logo-nombre-chico.jpg',['width'=>'200', 'height'=>'150'])?>
                 <legend>Acciones rápidas</legend>
-                <div class="botonera">
-                    <button onclick="window.location.href = '../pedidos/add';" class="btn btn-primary mt-4 rapido">Nuevo pedido</button>
-                </div>
-                <div class="botonera">
-                    <button onclick="window.location.href = '../clientes/add';" class="btn btn-primary mt-4 rapido">Nuevo cliente</button>
-                </div>
-                <div class="botonera">
-                    <button onclick="window.location.href = '../images';" class="btn btn-primary mt-4 rapido">Descargar imágenes </button>
-                </div>
+
+                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_pedido'] === true)) {?>
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'add'))?>'" class="btn btn-primary mt-4 rapido">Nuevo pedido</button>
+                    </div>
+                <?php } ?>
+                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nuevo_cliente'] === true)) {?>
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Clientes', 'action'=>'add'))?>'" class="btn btn-primary mt-4 rapido">Nuevo cliente</button>
+                    </div>
+                <?php } ?>
+                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Images', 'action'=>'add'))?>'" class="btn btn-primary mt-4 rapido">Descargar imágenes </button>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <div class="col-sm-4 ml-4">

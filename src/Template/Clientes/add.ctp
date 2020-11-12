@@ -24,7 +24,7 @@ $this->assign('title', 'Agregar nuevo cliente');
                             ]
                         ); ?>
                 </div>
-                <label for="cuit" id="cuit" class="col-sm-3 col-form-label mt-2">Cuit</label>
+                <label for="cuit" id="cuit" class="col-sm-3 col-form-label mt-2">CUIT / DNI</label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control( 'cuit',
                         [

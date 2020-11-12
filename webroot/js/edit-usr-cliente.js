@@ -1,11 +1,31 @@
 $(document).ready(function () {
 
-    //$("#btn_limpiar").
-    //document.getElementById("btn_limpiar").style.display = "none";
+    if ($("#rol").val() == 4) {
 
-    if ($("#c_id").val().length > 0 && $("#c_id").val() > 0 &&  $("#s").val().length > 0){
-        $( "#s" ).prop( "disabled", true );
+        $("#s").prop("disabled", false);
+
+    } else {
+
+        $("#s").prop("disabled", true);
+
     }
+
+    $(document).on('change','#rol',function(){
+        if ($(this).val() == 4) {
+
+            $("#s").prop("disabled", false);
+
+        } else {
+
+            $("#s").val("");
+            $("#c_id").val("");
+            $("#s").prop("disabled", true);
+            $("#cliente_div").removeClass("col-sm-6");
+            $("#cliente_div").addClass("col-sm-8");
+            document.getElementById("btn_limpiar").style.display = "none";
+
+        }
+    });
 
     $("#s").autocomplete({
         minLength: 2,
@@ -20,7 +40,7 @@ $(document).ready(function () {
         source: function(request, response) {
             $.ajax({
                 //url: "http://localhost/irmin/clientes/buscarclientes",
-                url: "./clientes/buscarclientes",
+                url: "../../clientes/buscarclientes",
                 data: {
                     term: request.term
                 },
@@ -34,7 +54,11 @@ $(document).ready(function () {
                             cuit: el.cuit
                         };
                     }));
-                }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                  }
             });
         },
         open: function () {
@@ -42,7 +66,7 @@ $(document).ready(function () {
             if (!$('#add-cliente').length) {
                 // Add it
                 //$('<li id="add-cliente"><a href="http://localhost/irmin/clientes/add">Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
-                $('<li id="add-cliente"><a href="./clientes/add"> - Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
+                $('<li id="add-cliente"><a href="../clientes/add"> - Nuevo Cliente.. </a></li>').appendTo('ul.ui-autocomplete');
             }
         }
     }).data("ui-autocomplete")._renderItem = function(ul, item){
@@ -64,13 +88,4 @@ $(document).ready(function () {
         $("#cliente_div").addClass("col-sm-8");
         document.getElementById("btn_limpiar").style.display = "none";
     });
-    
-    /*$("#fecha_inicio").keypress(function (e) {
-        //if the letter is not digit then display error and don't type anything
-        //if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-           //display error message
-           //$("#errmsg").html("Digits Only").show().fadeOut("slow");
-                  return false;
-       //}
-      });*/
 });

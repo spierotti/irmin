@@ -82,15 +82,16 @@ $this->assign('title', 'Clientes');
                           
                         }else{     
 
-                          echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
+                          echo $this->Form->postLink(
+                            $this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Eliminar cliente')),
                             array('action' => 'delete', $cliente['id']),
                             array('escape'=>false, 'confirm' => __('¿Está seguro que desea eliminar el cliente {0}?', $cliente->name))
                           ); 
 
-                          echo $this->Html->link('',
-                            ['controller' => 'Pedidos', 'action' => 'add', $cliente->id],
-                            ['class' => 'fa fa-plus-square ml-1', 'title' => 'Realizar pedido'],
-                            ['confirm' => '¿Desea realizar un pedido para este cliente?']
+                          echo $this->Html->link(
+                            '',
+                            array('controller' => 'Pedidos', 'action' => 'add', $cliente->id),
+                            array('class' => 'fa fa-plus-square ml-1', 'title' => 'Realizar pedido', 'escape'=>false, 'confirm' => __('¿Desea realizar un pedido para el cliente {0}?', $cliente->name))
                           );
                         }
                       ?>

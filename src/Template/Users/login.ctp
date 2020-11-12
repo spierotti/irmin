@@ -26,19 +26,16 @@ $this->assign('title', 'Iniciar sesión');
                         ?>
                     </div>
                 </div>
+                    
+                <div class="form-group col-sm-12 row">
+                    <?= $this->Html->link(__('¿Olvidaste tu contraseña? Click aquí...'), ['controller' => 'Users', 'action' => 'forgot_password']) ?>
+                </div>
+
                 <div class="form-group col-sm-12 row">
                         <div class="col-sm-5 mt-2">
                             <?= $this->Form->submit('Ingresar', [
                                 'class' => 'btn btn-primary mt-2 botonera'
                             ]) ?>
-                        </div>
-                    
-                        <div class="col-sm-7 mt-2">
-                            <?= $this->Form->submit('Recuperar Contraseña', 
-                            array('type' => 'button',
-                            'class' => 'btn btn-primary mt-2 botonera',
-                            'onclick' => 'location.href=\'../users/forgot_password\'')
-                            ) ?>
                         </div>
                 </div>
             </div>

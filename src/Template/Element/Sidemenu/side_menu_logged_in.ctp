@@ -291,6 +291,12 @@
                                     { ?>    
                                     <li><?= $this->Html->link(__('Buscar informe'), ['controller' => 'Informes', 'action' => 'buscarinforme']) ?> </li>
                                 <?php } ?>
+                                <?php if($this->view == 'view' && $this->name == "Informes") { ?> 
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                        { ?>
+                                        <li><?= $this->Html->link(__('Exportar PDF'), ['action' => 'view', $informe->id, '_ext' => 'pdf', 'target' => '_blank']); ?></li>
+                                    <?php } ?>
+                                <?php } ?>
                             </ul>
                         </div>
                     </li>
