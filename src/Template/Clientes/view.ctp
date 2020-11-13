@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Cliente $cliente
  */
 $this->assign('title', 'Datos del cliente');
+use Cake\Routing\Router;
 ?>
 
 <legend>Datos del cliente</legend>
@@ -37,11 +38,6 @@ $this->assign('title', 'Datos del cliente');
     </tbody>
   </table>
   <div class="col-sm-2">
-    <?=
-        $this->Form->button('Volver', 
-        array('type' => 'button',
-        'class' => 'btn btn-primary mt-3 ml-2',
-        'onclick' => 'location.href=\'../\'')
-    ); ?>
+    <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Clientes', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
   </div>
 </div>

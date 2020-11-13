@@ -110,7 +110,7 @@ Router::scope('/pedidos', function (RouteBuilder $routes) {
     $routes->connect('/add/*', ['controller' => 'Pedidos', 'action' => 'add']);
     $routes->connect('/filtrarpedidos/*', ['controller' => 'Pedidos', 'action' => 'filtrarpedidos']);
     $routes->setExtensions('pdf');
-    $routes->connect('/pedidos/view/*', ['controller' => 'Pedidos', 'action' => 'view']);
+    $routes->connect('/view/*', ['controller' => 'Pedidos', 'action' => 'view']);
     $routes->connect('/informes/view/*', ['controller' => 'Informes', 'action' => 'view']);
     $routes->fallbacks('InflectedRoute');
 });

@@ -72,6 +72,7 @@ $this->assign('title', 'Nuevo pedido');
                         'type' => 'text',
                         'placeholder' => 'Fecha hasta',
                         'readonly' => 'readonly',
+                        'id' => 'fecha_fin',
                         'class'=>'form-control mt-2 calendario',
                         //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',

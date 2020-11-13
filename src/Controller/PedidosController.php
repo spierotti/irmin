@@ -143,7 +143,7 @@ class PedidosController extends AppController
                         $time1 = strtotime($this->request->data['fecha_inicio']);
                         $time2 = strtotime($this->request->data['fecha_fin']);
 
-                        if(!($time1>$time2)){
+                        if($time1<=$time2){
 
                             $start_date = substr($this->request->data['fecha_inicio'],6,4) . "-" . substr($this->request->data['fecha_inicio'],3,2) . "-" . substr($this->request->data['fecha_inicio'],0, 2); 
                             $end_date = substr($this->request->data['fecha_fin'],6,4) . "-" . substr($this->request->data['fecha_fin'],3,2) . "-" . substr($this->request->data['fecha_fin'],0, 2);
@@ -300,14 +300,14 @@ class PedidosController extends AppController
             $pedido->fecha_evaluacion = date('Y-m-d H:i:s');
             $pedido->estado_id = 3;
 
-           if ($this->Pedidos->save($pedido)) {
+            if ($this->Pedidos->save($pedido)) {
 
-               $this->Flash->success(__('Pedido actualizado con Exito.'));
+                $this->Flash->success(__('Pedido actualizado con Exito.'));
 
-               return $this->redirect(['action' => 'index']);
-           }
+                return $this->redirect(['action' => 'index']);
+            }
 
-           $this->Flash->error(__('Error al actualizar el Pedido.'));
+            $this->Flash->error(__('Error al actualizar el Pedido.'));
 
         }else{
 

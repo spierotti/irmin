@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Role $role
  */
 $this->assign('title', 'Modificar rol');
+use Cake\Routing\Router;
 
 ?>
 
@@ -103,13 +104,9 @@ $this->assign('title', 'Modificar rol');
                       'class' => 'btn btn-primary mt-4'
                   ]) ?>
               </div>
+              
               <div class="ml-3">
-                  <?=
-                      $this->Form->button('Volver', 
-                      array('type' => 'button',
-                      'class' => 'btn btn-primary mt-4 ml-3',
-                      'onclick' => 'location.href=\'../\'')
-                  ); ?>
+                  <button type='button' onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Roles', 'action'=>'index'))?>'" class="btn btn-primary mt-4 ml-3">Cancelar</button>
               </div>
           </div>
       </div>

@@ -33,9 +33,22 @@
             <td><?= h($cliente->celular) ?></td>
             <td><?= h($cliente->domicilio) ?></td>
             <td>
-              <a href="./clientes/view/<?= $cliente->id?>"><i class="fa fa-user" title="Ver cliente"></i></a>
+                      
+              <?php
+                echo $this->Html->link(
+                    '',
+                    array('controller' => 'Clientes', 'action' => 'view', $cliente->id),
+                    array('class' => 'fa fa-user', 'title' => 'Ver cliente', 'escape'=>false)
+                  );
+              ?>
 
-              <a href="./clientes/edit/<?= $cliente->id?>"><i class="fa fa-pencil" title="Editar cliente"></i></a>
+              <?php
+                echo $this->Html->link(
+                    '',
+                    array('controller' => 'Clientes', 'action' => 'edit', $cliente->id),
+                    array('class' => 'fa fa-pencil', 'title' => 'Ver cliente', 'escape'=>false)
+                  );
+              ?>
               
               <?php
                 if ($cliente->borrado){

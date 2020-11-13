@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Image $image
  */
 $this->assign('title', 'Imágenes');
+use Cake\Routing\Router;
 ?>
 
 <div class="images view large-9 medium-8 columns content">
@@ -23,5 +24,8 @@ $this->assign('title', 'Imágenes');
             </tr>
         </table>
         <?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo')); ?>
+    </div>
+    <div class="col-sm-2">
+      <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Images', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
     </div>
 </div>

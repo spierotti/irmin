@@ -27,13 +27,23 @@
             <th scope="row"><?= h($role->name) ?></th>
             <td><?= h($role->descripcion) ?></td>
             <td>
-              <?php
-                      echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver detalles')),
-                      array('action' => 'view', $role->id),
-                      array('escape'=>false)
+              
+                  <?php
+                      echo $this->Html->link(
+                          '',
+                          array('controller' => 'Roles', 'action' => 'view', $role->id),
+                          array('class' => 'fa fa-eye', 'title' => 'Ver rol', 'escape'=>false)
                       );
                   ?>
-                  <a href="./roles/edit/<?= $role->id?>"><i class="fa fa-pencil" title="Editar rol"></i></a>
+
+                  <?php
+                      echo $this->Html->link(
+                          '',
+                          array('controller' => 'Roles', 'action' => 'edit', $role->id),
+                          array('class' => 'fa fa-pencil', 'title' => 'Modificar rol', 'escape'=>false)
+                      );
+                  ?>
+                  
                   <?php
 
                     if ($role->borrado){

@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Cliente $cliente
  */
 $this->assign('title', 'Modificar cliente');
+use Cake\Routing\Router;
 ?>
 
 <!--<div class="clientes form large-9 medium-8 columns content mt-5">-->
@@ -45,12 +46,7 @@ $this->assign('title', 'Modificar cliente');
                     ]) ?>
                 </div>
                 <div class="ml-3 mt-2">
-                    <?=
-                        $this->Form->button('Volver', 
-                        array('type' => 'button',
-                        'class' => 'btn btn-primary',
-                        'onclick' => 'location.href=\'../\'')
-                    ); ?>
+                    <button type="button" onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Clientes', 'action'=>'index'))?>'" class="btn btn-primary ">Cancelar</button>
                 </div>
             </div>
         </div>

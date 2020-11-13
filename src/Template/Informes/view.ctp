@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Informe $informe
  */
 $this->assign('title', 'Informe número '.h($informe->id));
+use Cake\Routing\Router;
 ?>
 
 <legend>Informe número <?= h($informe->id) ?></legend>
@@ -42,11 +43,11 @@ $this->assign('title', 'Informe número '.h($informe->id));
         echo '<div class="row ml-5"><p>¡No existen imágenes para el periodo solicitado!</p></div>';
     }?>
 
-<div class="col-sm-2">
-    <?=
-        $this->Form->button('Volver', 
-        array('type' => 'button',
-        'class' => 'btn btn-primary mt-3 ml-2',
-        'onclick' => 'location.href=\'../\'')
-    ); ?>
+<div div class="row">
+    <div class="col-sm-2">
+        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Informes', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
+    </div>
+    <div class="col-sm-2">
+        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Informes', 'action'=>'view', $informe->id, '_ext' => 'pdf', 'target' => '_blank'))?>'" class="btn btn-primary mt-4">Exportar PDF</button>
+    </div>
 </div>

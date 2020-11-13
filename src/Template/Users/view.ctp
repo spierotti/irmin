@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Datos del usuario');
+use Cake\Routing\Router;
 ?>
 
 <div class="users view large-9 medium-8 columns content">
@@ -37,11 +38,6 @@ $this->assign('title', 'Datos del usuario');
         </tbody>
     </table>
     <div class="col-sm-3 ml-3">
-        <?=
-            $this->Form->button('Volver', 
-            array('type' => 'button',
-            'class' => 'btn btn-primary ml-3 mt-2',
-            'onclick' => 'location.href=\'../\'')
-        ); ?>
+        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Users', 'action'=>'index'))?>'" class="btn btn-primary  ml-3 mt-2">Volver</button>
     </div>
 </div>
