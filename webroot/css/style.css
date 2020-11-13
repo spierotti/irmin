@@ -2340,3 +2340,8 @@ RESPONSIVE
     color: blue;
     font-weight: bold;
 }
+
+.justificado {
+    text-align: justify;
+    text-justify: inter-word;
+  }
