@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Pedido $pedido
  */
 $this->assign('title', 'Detalle del pedido');
+use Cake\Routing\Router;
 ?>
 
 <legend>Datos del pedido</legend>
@@ -100,6 +101,11 @@ $this->assign('title', 'Detalle del pedido');
     }?>
   </div>
 </div>
-<div>
-    <button onclick="window.location.href = '../';" class="btn btn-primary mt-4">Volver</button>
+<div class="row">
+    <div class="col-sm-2">
+      <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
+    </div>
+    <div class="col-sm-2">
+      <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'view', $pedido->id, '_ext' => 'pdf', 'target' => '_blank'))?>'" class="btn btn-primary mt-4">Exportar PDF</button>
+    </div>
 </div>

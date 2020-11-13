@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Usuarios - Modificar usuario');
+use Cake\Routing\Router;
 ?>
 <?= $this->Form->create($user) ?>
     <div class="row justify-content-center">
@@ -46,12 +47,7 @@ $this->assign('title', 'Usuarios - Modificar usuario');
                     ]) ?>
                 </div>
                 <div class="col-sm-3 ml-3">
-                    <?=
-                        $this->Form->button('Volver', 
-                        array('type' => 'button',
-                        'class' => 'btn btn-primary ml-3 mt-2',
-                        'onclick' => 'location.href=\'../\'')
-                    ); ?>
+                    <button type='button' onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Users', 'action'=>'index'))?>'" class="btn btn-primary ml-3 mt-2">Cancelar</button>
                 </div>
             </div>
         </div>

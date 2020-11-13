@@ -79,7 +79,7 @@ $this->assign('title', 'Informes');
                         <td class="actions">
                             <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true) { 
                                     echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver informe')),
-                                    array('action' => 'view', $informe->id),
+                                    array('controller' => 'Informes', 'action' => 'view', $informe->id),
                                     array('escape'=>false)
                                     );
                             } ?>

@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Perfil de usuario');
+use Cake\Routing\Router;
 ?>
 
 <legend>Datos del usuario</legend>
@@ -33,3 +34,4 @@ $this->assign('title', 'Perfil de usuario');
         </tbody>
     </table>
 </div>
+<button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Users', 'action'=>'home'))?>'" class="btn btn-primary  ml-3 mt-2">Volver</button>

@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Pedido $pedido
  */
 $this->assign('title', 'Evaluar pedido');
+use Cake\Routing\Router;
 ?>
 
 <legend>Evaluar Pedido</legend>
@@ -76,12 +77,7 @@ $this->assign('title', 'Evaluar pedido');
                         ]) ?>
                     </div>
                     <div class="col-sm-2 ml-3">
-                        <?=
-                            $this->Form->button('Cancelar', 
-                            array('type' => 'button',
-                            'class' => 'btn btn-primary mt-3 ml-3',
-                            'onclick' => 'location.href=\'../\'')
-                        ); ?>
+                        <button type="button" onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-3 ml-3">Cancelar</button>
                     </div>
                 </div>
             </div>

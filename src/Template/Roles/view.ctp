@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Role $role
  */
 $this->assign('title', 'Detalles del rol');
-
+use Cake\Routing\Router;
 ?>
 <div class="row justify-content-center">
     <div class="row col-sm-12">
@@ -121,12 +121,7 @@ $this->assign('title', 'Detalles del rol');
             </table>
         </div>
         <div class="ml-3 mt-2">
-            <?=
-                $this->Form->button('Volver', 
-                array('type' => 'button',
-                'class' => 'btn btn-primary',
-                'onclick' => 'location.href=\'../\'')
-            ); ?>
+            <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Roles', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
         </div>
     </div>
 </div>

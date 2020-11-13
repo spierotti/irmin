@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Modificar perfil');
+use Cake\Routing\Router;
 ?>
 <?= $this->Form->create($user) ?>
     <div class="col-sm-6">
@@ -39,12 +40,7 @@ $this->assign('title', 'Modificar perfil');
                     ]) ?>
                 </div>
                 <div class="col-sm">
-                    <?=
-                        $this->Form->button('Cancelar', 
-                        array('type' => 'button',
-                        'class' => 'btn btn-primary mt-3',
-                        'onclick' => 'location.href=\'../users/view_perfil\'')
-                    ); ?>
+                    <button type='button' onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Users', 'action'=>'view_perfil'))?>'" class="btn btn-primary mt-3">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -71,7 +71,7 @@ $this->assign('title', 'Pedidos');
                                         { ?>    
                                             <?php
                                                 echo $this->Form->postLink($this->Html->tag('i', '', array('class' => 'fa fa-eye', 'title' => 'Ver pedido')),
-                                                array('action' => 'view', $pedido->id),
+                                                array('controller' => 'Pedidos', 'action' => 'view', $pedido->id),
                                                 array('escape'=>false)
                                                 );
                                             ?>

@@ -168,11 +168,11 @@ class PedidosTable extends Table
             ->requirePresence('descripcion', 'create')
             ->notEmptyString('descripcion');
 
-        /*$validator
-            ->scalar('conclusion')
-            ->maxLength('conclusion', 255)
-            ->requirePresence('conclusion', 'create')
-            ->notEmptyString('conclusion');*/
+        $validator
+            //->scalar('conclusion')
+            //->maxLength('conclusion', 255)
+            ->requirePresence('conclusion', 'update');
+            //->notEmptyString('conclusion');
 
         return $validator;
     }

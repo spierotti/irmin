@@ -31,8 +31,22 @@
                 <td><?= h($user->email) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td>
-                    <a href="./users/view/<?= $user->id?>"><i class="fa fa-user" title="Ver usuario"></i></a>
-                    <a href="./users/edit/<?= $user->id?>"><i class="fa fa-pencil" title="Editar usuario"></i></a>
+                    <?php
+                        echo $this->Html->link(
+                            '',
+                            array('controller' => 'Users', 'action' => 'view', $user->id),
+                            array('class' => 'fa fa-user', 'title' => 'Ver cliente', 'escape'=>false)
+                        );
+                    ?>
+
+                    <?php
+                        echo $this->Html->link(
+                            '',
+                            array('controller' => 'Users', 'action' => 'edit', $user->id),
+                            array('class' => 'fa fa-pencil', 'title' => 'Modificar cliente', 'escape'=>false)
+                        );
+                    ?>
+                    
                     <?php
                     if($user->borrado){
 

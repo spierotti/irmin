@@ -139,7 +139,7 @@ class ClientesController extends AppController
 
             } else {
 
-                $this->Flash->error(__('¡Ese CUIT / DNI ya se está registrado!'));
+                $this->Flash->error(__('¡Ese CUIT / DNI ya está registrado!'));
 
             }
         }
