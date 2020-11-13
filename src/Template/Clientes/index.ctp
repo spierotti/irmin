@@ -81,7 +81,7 @@ $this->assign('title', 'Clientes');
                         echo $this->Html->link(
                             '',
                             array('controller' => 'Clientes', 'action' => 'edit', $cliente->id),
-                            array('class' => 'fa fa-pencil', 'title' => 'Ver cliente', 'escape'=>false)
+                            array('class' => 'fa fa-pencil', 'title' => 'Editar cliente', 'escape'=>false)
                           );
                       ?>
                       

@@ -72,7 +72,7 @@ $this->assign('title', 'Usuarios');
                                 echo $this->Html->link(
                                     '',
                                     array('controller' => 'Users', 'action' => 'view', $user->id),
-                                    array('class' => 'fa fa-user', 'title' => 'Ver cliente', 'escape'=>false)
+                                    array('class' => 'fa fa-user', 'title' => 'Ver usuario', 'escape'=>false)
                                 );
                             ?>
 
@@ -80,7 +80,7 @@ $this->assign('title', 'Usuarios');
                                 echo $this->Html->link(
                                     '',
                                     array('controller' => 'Users', 'action' => 'edit', $user->id),
-                                    array('class' => 'fa fa-pencil', 'title' => 'Modificar cliente', 'escape'=>false)
+                                    array('class' => 'fa fa-pencil', 'title' => 'Editar usuario', 'escape'=>false)
                                 );
                             ?>
                             <?php
