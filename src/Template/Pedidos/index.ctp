@@ -89,7 +89,7 @@ $this->assign('title', 'Pedidos');
                                             <?php
                                             echo $this->Html->link('', 
                                                 array('controller' => 'Pedidos', 'action' => 'delete', $pedido->id), 
-                                                array('class' => 'fa fa-trash', 'title' => 'Cancelar pedido')
+                                                array('class' => 'fa fa-trash', 'title' => 'Anular pedido')
                                             );
                                             ?>
                                 <?php } ?>

@@ -40,7 +40,7 @@
                       echo $this->Html->link(
                           '',
                           array('controller' => 'Roles', 'action' => 'edit', $role->id),
-                          array('class' => 'fa fa-pencil', 'title' => 'Modificar rol', 'escape'=>false)
+                          array('class' => 'fa fa-pencil', 'title' => 'Editar rol', 'escape'=>false)
                       );
                   ?>
                   
