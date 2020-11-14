@@ -5,12 +5,11 @@
  */
 $this->assign('title', 'Agregar rol');
 ?>
-<div class="row justify-content-center">
-    <?= $this->Form->create($role) ?>
-    <fieldset>
-      <div class="justify-content-center"> 
+<?= $this->Form->create($role) ?>
+  <div class="justify-content-center"> 
+        <div class="row col-sm-12">
         <legend class="ml-2">Agregar rol</legend>
-        <div class="row col-sm-10">
+        <div class="row col-sm-12">
             <label for="razonSocial" id="razonSocial" class="col-sm-2 col-form-label mt-2">Nombre </label>
             <div class="col-sm-9">
                 <?php
@@ -30,48 +29,48 @@ $this->assign('title', 'Agregar rol');
             </div>
         </div>
         <legend class="mt-2 ml-2"> Permisos </legend>
-        <div class="row col-sm-10 ml-2">
-            <table class="table table-sm">
+          <div class="row col-sm-10 ml-2">
+            <table class="table table-sm-12" width="100%">
               <thead>
-                <tr>
-                  <th scope="col">Categoría</th>
-                  <th scope="col">Consulta</th>
-                  <th scope="col">Alta</th>
-                  <th scope="col">Modificación</th>
-                  <th scope="col">Baja</th>
+                <tr class="centro">
+                  <th scope="col" width="20%" class="izquierda">Categoría</th>
+                  <th scope="col" width="20%">Consulta</th>
+                  <th scope="col" width="20%">Alta</th>
+                  <th scope="col" width="20%">Modificación</th>
+                  <th scope="col" width="20%">Baja</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">Pedidos</th>
+                <tr class="centro">
+                  <th scope="row" class="izquierda">Pedidos</th>
                   <td><?php echo $this->Form->control('ver_pedidos', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('nuevo_pedido', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('modificar_pedido',['label' => false] );  ?></td>
                   <td><?php echo $this->Form->control('eliminar_pedido', ['label' => false]); ?></td>
                 </tr>
-                <tr>
-                  <th scope="row">Clientes</th>
+                <tr class="centro">
+                  <th scope="row" class="izquierda">Clientes</th>
                   <td><?php echo $this->Form->control('ver_clientes', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('nuevo_cliente', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('modificar_cliente', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('eliminar_cliente', ['label' => false]); ?></td>
                 </tr>
-                <tr>
-                  <th scope="row">Imágenes</th>
+                <tr class="centro">
+                  <th scope="row" class="izquierda">Imágenes</th>
                   <td><?php echo $this->Form->control('ver_imagenes', ['label' => false]);  ?></td>
                   <td><?php echo $this->Form->control('nueva_imagen', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('modificar_imagen', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('eliminar_imagen', ['label' => false]); ?></td>
                 </tr>
-                <tr>
-                  <th scope="row">Roles</th>
+                <tr class="centro">
+                  <th scope="row" class="izquierda">Roles</th>
                   <td><?php echo $this->Form->control('ver_roles', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('nueva_rol', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('modificar_rol', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('eliminar_rol', ['label' => false]); ?></td>
                 </tr>
-                <tr>
-                  <th scope="row">Usuarios</th>
+                <tr class="centro">
+                  <th scope="row" class="izquierda">Usuarios</th>
                   <td><?php echo $this->Form->control('ver_usuarios', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('nueva_usuario', ['label' => false]); ?></td>
                   <td><?php echo $this->Form->control('modificar_usuario', ['label' => false]); ?></td>
@@ -80,24 +79,25 @@ $this->assign('title', 'Agregar rol');
                 </tr>
               </tbody>
             </table>
+          </div>
+
+        <div class="row col-sm-10 ml-2">
+          <legend class="mt-2 ml-2"> Otros permisos </legend>
+          <table>
+              <tbody>
+              <tr>
+                  <th scope="row">Evaluar pedidos</th>
+                  <td><div class="ml-2"><?php echo $this->Form->control('evaluar_pedido', ['label' => false]); ?></div></td>
+              </tr>
+              <tr>
+                  <th scope="row">Ver informes</th>
+                  <td><div class="ml-2"><?php echo $this->Form->control('ver_informes', ['label' => false]); ?></div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <legend class="mt-2 ml-2"> Otros permisos </legend>
-        <div class="row col-sm-10 ml-2">
-            <table>
-                <tbody>
-                <tr>
-                    <th scope="row">Evaluar pedidos</th>
-                    <td><div class="ml-2"><?php echo $this->Form->control('evaluar_pedido', ['label' => false]); ?></div></td>
-                </tr>
-                <tr>
-                    <th scope="row">Ver informes</th>
-                    <td><div class="ml-2"><?php echo $this->Form->control('ver_informes', ['label' => false]); ?></div></td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-        <div class="form-group row">
+        <div class="form-group row col-sm-10">
             <div class="col-sm-10">
                 <?= $this->Form->submit('Agregar rol', [
                     'class' => 'btn btn-primary mt-4 ml-2'
@@ -105,6 +105,7 @@ $this->assign('title', 'Agregar rol');
             </div>
         </div>
       </div>
-    </fieldset>
-    <?= $this->Form->end() ?>
-</div>
+  </div>
+
+<?= $this->Form->end() ?>
+

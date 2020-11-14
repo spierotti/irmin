@@ -9,7 +9,7 @@ use Cake\Routing\Router;
 <?= $this->Form->create($user) ?>
     <div class="col-sm-6">
         <div class="form-group row">
-            <legend class="ml-1">Modificar Usuario</legend>
+            <legend class="ml-1">Modificar mi perfil</legend>
             <label for="username" id="username" class="col-sm-4 col-form-label mt-2">Nombre de usuario </label>
             <div class="col-sm-8">
                 <?php
