@@ -8,8 +8,7 @@ $this->assign('title', 'Descarga de imágenes');
 
 <?php echo $this->element('Sidemenu\side_menu_logged_in', ['viewName' => 'Image']); ?>
 
-<div class="images form large-9 medium-8 columns content">
-
+<div class="col-sm-8">
     <legend>Descarga de Imagenes</legend>
 
     <table class="table table-hover">
