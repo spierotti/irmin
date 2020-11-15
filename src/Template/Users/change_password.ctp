@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Cambiar contraseña');
+use Cake\Routing\Router;
 ?>
 <?= $this->Form->create($user) ?>
     <div class="col-sm-6">
@@ -33,13 +34,8 @@ $this->assign('title', 'Cambiar contraseña');
                         'class' => 'btn btn-primary mt-3 ml-2'
                     ]); ?>
                 </div>
-                <div class="col-sm">
-                    <?=
-                        $this->Form->button('Cancelar', 
-                        array('type' => 'button',
-                        'class' => 'btn btn-primary mt-3 ml-2',
-                        'onclick' => 'location.href=\'../users/view_perfil\'')
-                    ); ?>
+                <div class="col-sm mt-2">
+                    <button type="button" onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Users', 'action'=>'home'))?>'" class="btn btn-primary  ml-3 mt-2">Volver</button>
                 </div>
             </div>
         </div>

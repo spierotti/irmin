@@ -24,7 +24,6 @@ use Cake\Routing\Router;
             </div>
             <div class="form-group row mt-3 ml-2">
                 <div class="col-sm">
-                    <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
                     <?= $this->Form->submit('Guardar cambios', [
                         'class' => 'btn btn-primary mt-3'
                     ]) ?>
