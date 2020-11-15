@@ -10,7 +10,7 @@ $this->assign('title', 'Nuevo usuario');
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <div class="form-group row">
-                <legend class="ml-1">Nuevo usuario</legend>
+                <legend class="ml-3">Nuevo usuario</legend>
                 <label for="nombreDeUsuario" id="nombreDeUsuario" class="col-sm-3 col-form-label mt-2">Nombre de usuario </label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('username', ['autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2']); ?>

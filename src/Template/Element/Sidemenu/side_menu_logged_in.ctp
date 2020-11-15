@@ -125,7 +125,7 @@
                                     <li><?= $this->Html->link(__('Ver imágenes'), ['controller' => 'Images', 'action' => 'index']) ?> </li>
                                 <?php } ?>
                                 <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['nueva_imagen'] === true)) { ?>
-                                    <li><?= $this->Html->link(__('Nueva imagen'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
+                                    <li><?= $this->Html->link(__('Descargar imágenes'), ['controller' => 'Images', 'action' => 'add']) ?> </li>
                                 <?php } ?>
                             </ul>
                         </li>

@@ -73,7 +73,7 @@ use Cake\Routing\Router;
                             'class' => 'btn btn-primary mt-4 ml-3'
                         ]) ?>
                     </div>
-                    <div class="col-sm-2 ml-3">
+                    <div class="col-sm-2 ml-3 mt-2">
                         <button type="button" onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-3 ml-3">Cancelar</button>
                     </div>
                 </div>
