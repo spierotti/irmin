@@ -64,9 +64,9 @@ $this->assign('title', 'Imágenes');
             <div class="col-sm-12">
                 <div class="row card-columns">
                     <?php foreach ($images as $image): ?>
-                        <div class="card col-sm-3">
+                        <div class="card col-sm-3 <?= $image->hay_actividad ? __('peligro') : __('sinPeligro'); ?> ">
                             <?=$this->Html->link(
-                                    $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),['class'=>'card-img-top mt-2']), 
+                                    $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo'),['class'=>'card-img-top mt-2', 'title' => $image->hay_actividad ? __('Hay condiciones de riesgo') : __('No hay condiciones de riesgo')]), 
                                     array('controller' => 'Images', 'action' => 'view', $image->id),
                                     array('escape' => false)
                                 );
