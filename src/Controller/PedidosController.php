@@ -140,8 +140,8 @@ class PedidosController extends AppController
 
                     if (strlen($this->request->data['fecha_fin']) > 0 ){
 
-                        $time1 = strtotime($this->request->data['fecha_inicio']);
-                        $time2 = strtotime($this->request->data['fecha_fin']);
+                        $time1 = strtotime(str_replace('/', '-', $this->request->data['fecha_inicio']));
+                        $time2 = strtotime(str_replace('/', '-', $this->request->data['fecha_fin']));
 
                         if($time1<=$time2){
 
@@ -200,13 +200,15 @@ class PedidosController extends AppController
 
             } else {
                     
-                $this->Flash->error(__('Debe seleccionar un cliente.'));
+                $this->Flash->error(__('Debe seleccionar un cliente válido.'));
 
             }
 
-            /*if (strlen($this->request->data['cliente_id']) > 0){
 
-                debug("14");
+
+            if (strlen($this->request->data['cliente_id']) > 0){
+
+                //debug("14");
 
                 $cliente = $this->request->data['cliente_id'];
             
@@ -217,10 +219,10 @@ class PedidosController extends AppController
                 $s = $c->name . " ( " . $c->cuit . " ) ";
 
                 $this->request->data['cliente'] = $s;
-                $this->request->data['cliente_id'] = $c->id;
+                //$this->request->data['cliente_id'] = $c->id;
 
                 // esto genera quilombo
-                $this->set($this->request->data);
+                /*$this->set($this->request->data);
 
                 return $this->redirect([
                     'controller' => 'Pedidos',
@@ -229,10 +231,10 @@ class PedidosController extends AppController
                         'cliente_id' => $this->request->data['cliente_id'],
                         'cliente' => $this->request->data['cliente']
                     ]
-                ]);
-            }*/
+                ]);*/
+            }
 
-        }else{
+        } else {
 
             if ($this->request->is('get') and !is_null($cliente)) {
 

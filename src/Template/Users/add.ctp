@@ -19,11 +19,11 @@ $this->assign('title', 'Nuevo usuario');
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('password', ['autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2']); ?>
                 </div>
-                <label for="rol" id="rol" class="col-sm-3 col-form-label mt-2">Rol </label>
+                <label for="rol" id="lblrol" class="col-sm-3 col-form-label mt-2">Rol </label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'id' => 'rol', 'label' => false, 'class'=>'form-control mt-2']); ?>
                 </div>
-                <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente </label>
+                <label for="cliente" id="lblcliente" class="col-sm-3 col-form-label mt-2">Cliente </label>
                 <div id="cliente_div" class="col-sm-8">
                     <?php 
                           echo $this->Form->control('cliente', ['div' => false, 'id' => 's', 'autocomplete' => 'off', 'disabled' => true, 'label' => false, 'class'=>'form-control mt-2']);

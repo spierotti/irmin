@@ -19,7 +19,7 @@ use Cake\Routing\Router;
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('email', ['autocomplete' => 'off', 'label' => false,'class'=>'form-control mt-2']); ?>
                 </div>
-                <label for="rol" id="rol" class="col-sm-3 col-form-label mt-2">Rol</label>
+                <label for="rol" id="lblrol" class="col-sm-3 col-form-label mt-2">Rol</label>
                 <div class="col-sm-8">
                     <?php echo $this->Form->control('role_id', ['type'=>'select','options' => $roles, 'id' => 'rol', 'label' => false,'class'=>'form-control mt-2']); ?>
                 </div>

@@ -147,16 +147,33 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuario creado con éxito.'));
-                return $this->redirect(['action' => 'index']);
+
+            $data = $this->request->getData();
+
+            if ($data['role_id'] != 4 || ($data['role_id'] == 4 && $data['cliente_id'] > 0)){
+
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                if ($this->Users->save($user)) {
+
+                    $this->Flash->success(__('Usuario creado con éxito.'));
+                    return $this->redirect(['action' => 'index']);
+
+                }
+
+                $this->Flash->error(__('Error al crear el usuario.'));
+
+            } else {
+
+                $this->Flash->error(__('Debe seleccionar un cliente válido para este usuario.'));
             }
-            $this->Flash->error(__('Error al crear el usuario.'));
         }
+
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);
+
         // Set tags to the view context
         $this->set('roles', $roles);
         $this->set(compact('user'));
@@ -229,13 +246,27 @@ class UsersController extends AppController
             'contain' => ['Clientes']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuario actualizado con éxito.'));
 
-                return $this->redirect(['action' => 'index']);
+            $data = $this->request->getData();
+
+            if ($data['role_id'] != 4 || ($data['role_id'] == 4 && $data['cliente_id'] > 0)){
+
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+
+                if ($this->Users->save($user)) {
+
+                    $this->Flash->success(__('Usuario actualizado con éxito.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+
+                $this->Flash->error(__('Error al actualizar el usuario.'));
+
+            }else{
+
+                $this->Flash->error(__('Cliente invalido.'));
+
             }
-            $this->Flash->error(__('Error al actualizar el usuario.'));
         }
         // Get a list of tags.
         $roles = $this->Users->Roles->find('list')->where(['roles.borrado =' => 0]);

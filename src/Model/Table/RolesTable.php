@@ -66,7 +66,8 @@ class RolesTable extends Table
         $validator
             ->scalar('descripcion')
             ->maxLength('descripcion', 255)
-            ->allowEmptyString('descripcion');
+            ->requirePresence('descripcion', 'create')
+            ->notEmptyString('descripcion');
 
         return $validator;
     }
