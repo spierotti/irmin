@@ -11,7 +11,7 @@ $this->assign('title', 'Nuevo pedido');
         <?= $this->Form->create($pedido) ?>
             <div class="form-group row">
                 <legend class="ml-3">Nuevo Pedido</legend>
-                <label for="cliente" id="cliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
+                <label for="cliente" id="lblcliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
                 <div id="cliente_div" class="col-sm-8">
                     <?php
                         echo $this->Form->control('cliente', 
