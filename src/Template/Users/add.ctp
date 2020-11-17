@@ -30,15 +30,13 @@ $this->assign('title', 'Nuevo usuario');
                           echo $this->Form->control('cliente_id', ['type' => 'hidden', 'id' => 'c_id', 'label' => false, 'class'=>'form-control mt-2']); 
                         ?>
                 </div>
-                <div class="col-sm-1">
-                    <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
-                            'type' => 'button',
-                            'class' => 'btn btn-primary',
-                            'id' => 'btn_limpiar',
-                            'title' => 'Quitar cliente',
-                            'style' => "display: none;"
-                        ]) ?>
-                </div>
+                <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
+                        'type' => 'button',
+                        'class' => 'btnCuadrado ml-2 mb-2 mr-5',
+                        'id' => 'btn_limpiar',
+                        'title' => 'Quitar cliente',
+                        'style' => "display: none;"
+                    ]) ?>
                 <label for="email" id="email" class="col-sm-3 col-form-label mt-2">Email </label>
                 <div class="col-sm-7">
                     <?php echo $this->Form->control('email', ['autocomplete' => 'off', 'label' => false, 'class'=>'form-control mt-2']); ?>
