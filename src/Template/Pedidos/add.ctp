@@ -10,7 +10,7 @@ $this->assign('title', 'Nuevo pedido');
     <div class="col-sm-8">
         <?= $this->Form->create($pedido) ?>
             <div class="form-group row">
-                <legend>Nuevo Pedido</legend>
+                <legend class="ml-3">Nuevo Pedido</legend>
                 <label for="cliente" id="lblcliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
                 <div id="cliente_div" class="col-sm-8">
                     <?php

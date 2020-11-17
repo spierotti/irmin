@@ -2345,3 +2345,7 @@ RESPONSIVE
     text-align: justify;
     text-justify: inter-word;
   }
+
+.peligro {
+    border-color: crimson;
+} 
