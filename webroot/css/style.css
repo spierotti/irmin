@@ -2349,3 +2349,9 @@ RESPONSIVE
 .peligro {
     border-color: crimson;
 } 
+
+.btnCuadrado {
+    background-color:#fff !important;
+    margin-top: 15px;
+    border: 0px;
+}
