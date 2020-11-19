@@ -13,7 +13,7 @@ use Cake\Routing\Router;
     <tr>
       <th scope="row">Cliente</th>
       <td>
-        <?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '-' ?>
+      <u class="cliente"><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id], ['class'=>'cliente']) : '-' ?></u>
       </td>
     </tr>
     <tr>
