@@ -22,6 +22,7 @@
             <th scope="col">Experto</th>
             <th scope="col">Fecha de solicitud</th>
             <th scope="col">Estado</th>
+            <th scope="col">Fecha de evaluación</th>
             <th scope="col">Descripción</th>
             <th scope="col">Acciones</th>
             </tr>
@@ -35,6 +36,7 @@
                 <td><?= ($pedido->has('user') and !is_null($pedido->user)) ? $this->Html->link($pedido->user->username, ['controller' => 'Users', 'action' => 'view', $pedido->user->id]) : '-' ?></td>
                 <td><?= h($pedido->fecha_solicitud) ?></td>
                 <td><?= ($pedido->has('estado') and !is_null($pedido->estado)) ? $pedido->estado->descripcion : '-' ?></td>
+                <td><?= h(($pedido->has('fecha_evaluacion') and !is_null($pedido->fecha_evaluacion)) ? $pedido->fecha_evaluacion : '-')?></td>
                 <td><?= h($pedido->descripcion) ?></td>
                 <td class="actions">
                     <?php if (isset($auth['User']['role_id']) && $auth['User']['role']['ver_pedidos'] === true)
