@@ -5,6 +5,7 @@
  */
 $this->assign('title', 'Imágenes');
 use Cake\Routing\Router;
+use Cake\I18n\Time;
 ?>
 
 <div class="images view large-9 medium-8 columns content">
@@ -12,7 +13,15 @@ use Cake\Routing\Router;
         <table class="table table-hover col-sm-9">
             <tr>
                 <th scope="row">Fecha y Hora de Captura</th>
-                <td><?= h($image->fecha_hora_imagen) ?></td>
+                <td><?= h($image->fecha_hora_imagen); ?></td>
+            </tr>
+            <tr>
+                <th scope="row">Fecha y Hora local</th>
+                <?php 
+                $date=new Time($image->fecha_hora_imagen);
+                date_sub($date,date_interval_create_from_date_string("3 hours"));
+                ?>
+                <td><?php echo date_format($date,'d/m/Y H:i'); ?></td>
             </tr>
             <tr>
                 <th scope="row">Fecha y Hora de Alta</th>
