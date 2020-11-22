@@ -220,7 +220,7 @@ class UsersController extends AppController
                     return $this->redirect(['controller' => 'Users', 'action' => 'home']);
                 }
                 //error al loguearse
-                $this->Flash->error(__('¡Email o Contraseña Icorrectas!'));
+                $this->Flash->error(__('¡Email o contraseña incorrectas!'));
             }
         }
     }

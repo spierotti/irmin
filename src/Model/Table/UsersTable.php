@@ -114,7 +114,7 @@ class UsersTable extends Table
             ->notEmptyString('nuevo_password');
 
         $validator
-            ->sameAs('repetir_nuevo_password', 'nuevo_password', '¡La nueva contraseña no coicide!');
+            ->sameAs('repetir_nuevo_password', 'nuevo_password', '¡La nueva contraseña no coincide!');
 
         return $validator;
     }    
@@ -132,7 +132,7 @@ class UsersTable extends Table
             ->notEmptyString('password');
 
         $validator
-            ->sameAs('repetir_nuevo_password', 'password', '¡La nueva contraseña no coicide!');
+            ->sameAs('repetir_nuevo_password', 'password', '¡La nueva contraseña no coincide!');
 
         return $validator;
     }
