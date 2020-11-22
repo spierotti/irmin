@@ -176,7 +176,7 @@
                                         <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar usuario'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                                 <!--Fin de ¿QUé hace esto?-->
@@ -409,7 +409,7 @@
                                         <li><?= $this->Html->link(__('Modificar usuario'), ['action' => 'edit', $user->id]) ?> </li>
                                     <?php } ?>
                                     <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['eliminar_usuario'] === true)){ ?>
-                                        <li><?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
+                                        <li><?= $this->Form->postLink(__('Eliminar usuario'), ['action' => 'delete', $user->id], ['confirm' => __('¿Está seguro que desea eliminar el usuario {0}?', $user->username)]) ?> </li>
                                     <?php } ?>
                                 <?php } ?>
                                 <!--Fin de ¿QUé hace esto?-->
