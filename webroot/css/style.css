@@ -2355,3 +2355,36 @@ RESPONSIVE
     margin-top: 15px;
     border: 0px;
 }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+
+  .success {
+    padding: 20px;
+    background-color:#4CAF50;
+    color: white;
+  }
+
+  .warning {
+    padding: 20px;
+    background-color:#ff9800;
+    color: white;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
