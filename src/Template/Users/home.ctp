@@ -40,6 +40,22 @@ use Cake\Routing\Router;
                         </div>
                     <?php } ?>
 
+
+                <?php } ?>
+                
+                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['id'] === 4)) { ?>
+                    
+                    <legend>Acciones rápidas</legend>
+
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver pedidos </button>
+                    </div>
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'buscarpedido'))?>'" class="btn btn-primary mt-4 rapido">Buscar pedido </button>
+                    </div>
+                    <div class="botonera">
+                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Informes', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver informes </button>
+                    </div>
                 <?php } ?>
                 
             </div>

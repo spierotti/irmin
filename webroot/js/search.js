@@ -3,8 +3,17 @@ $(document).ready(function () {
     //$("#btn_limpiar").
     //document.getElementById("btn_limpiar").style.display = "none";
 
+    var getUrl = window.location;
+    var cant = getUrl.pathname.split('/');
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
     if ($("#c_id").val().length > 0 && $("#c_id").val() > 0 &&  $("#s").val().length > 0){
         $( "#s" ).prop( "disabled", true );
+        if (cant.length == 4) {
+            $("#cliente_div").removeClass("col-sm-8");
+            $("#cliente_div").addClass("col-sm-6");
+            document.getElementById("btn_limpiar").style.display = "block";
+        }
     }
 
     $("#s").autocomplete({
@@ -20,7 +29,7 @@ $(document).ready(function () {
         source: function(request, response) {
             $.ajax({
                 //url: "http://localhost/irmin/clientes/buscarclientes",
-                url: "./clientes/buscarclientes",
+                url: baseUrl + "/clientes/buscarclientes",
                 data: {
                     term: request.term
                 },
