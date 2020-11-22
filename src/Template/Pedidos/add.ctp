@@ -34,15 +34,13 @@ $this->assign('title', 'Nuevo pedido');
                             ]);
                     ?>
                 </div>
-                <div class="col-sm-1">
-                    <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
-                            'type' => 'button',
-                            'class' => 'btn btn-primary',
-                            'id' => 'btn_limpiar',
-                            'title' => 'Quitar cliente',
-                            'style' => "display: none;"
-                        ]) ?>
-                </div>
+                <?= $this->Form->button($this->Html->tag('i', '', array('class' => 'fa fa-trash', 'title' => 'Quitar cliente')), [
+                        'type' => 'button',
+                        'class' => 'btnCuadrado ml-2 mb-3 mr-5',
+                        'id' => 'btn_limpiar',
+                        'title' => 'Quitar cliente',
+                        'style' => "display: none;"
+                    ]) ?>
                 <label for="fechaInicio" id="fechaInicio" class="col-sm-3 col-form-label mt-2">Fechas</label>
                 <div class="col-sm-4">
                     <?php 

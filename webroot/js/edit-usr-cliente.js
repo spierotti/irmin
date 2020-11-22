@@ -21,7 +21,7 @@ $(document).ready(function () {
             $("#c_id").val("");
             $("#s").prop("disabled", true);
             $("#cliente_div").removeClass("col-sm-6");
-            $("#cliente_div").addClass("col-sm-8");
+            $("#cliente_div").addClass("col-sm-7");
             document.getElementById("btn_limpiar").style.display = "none";
 
         }
@@ -31,7 +31,7 @@ $(document).ready(function () {
         minLength: 2,
         select: function(event, ui){
             $("#s").val(ui.item.label);
-            $("#cliente_div").removeClass("col-sm-8");
+            $("#cliente_div").removeClass("col-sm-7");
             $("#cliente_div").addClass("col-sm-6");
             $("#c_id").val(ui.item.id);
             $( "#s" ).prop( "disabled", true );
@@ -85,7 +85,7 @@ $(document).ready(function () {
             $( "#s" ).prop( "disabled", false );
         }
         $("#cliente_div").removeClass("col-sm-6");
-        $("#cliente_div").addClass("col-sm-8");
+        $("#cliente_div").addClass("col-sm-7");
         document.getElementById("btn_limpiar").style.display = "none";
     });
 });
