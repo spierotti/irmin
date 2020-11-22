@@ -11,7 +11,7 @@ $(document).ready(function () {
         $( "#s" ).prop( "disabled", true );
         if (cant.length == 4) {
             $("#cliente_div").removeClass("col-sm-8");
-            $("#cliente_div").addClass("col-sm-6");
+            $("#cliente_div").addClass("col-sm-7");
             document.getElementById("btn_limpiar").style.display = "block";
         }
     }
@@ -21,7 +21,7 @@ $(document).ready(function () {
         select: function(event, ui){
             $("#s").val(ui.item.label);
             $("#cliente_div").removeClass("col-sm-8");
-            $("#cliente_div").addClass("col-sm-6");
+            $("#cliente_div").addClass("col-sm-7");
             $("#c_id").val(ui.item.id);
             $( "#s" ).prop( "disabled", true );
             document.getElementById("btn_limpiar").style.display = "block";
@@ -69,7 +69,7 @@ $(document).ready(function () {
         if ($('#s').prop('disabled') == true) {
             $( "#s" ).prop( "disabled", false );
         }
-        $("#cliente_div").removeClass("col-sm-6");
+        $("#cliente_div").removeClass("col-sm-7");
         $("#cliente_div").addClass("col-sm-8");
         document.getElementById("btn_limpiar").style.display = "none";
     });
