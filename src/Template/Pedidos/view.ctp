@@ -5,6 +5,10 @@
  */
 $this->assign('title', 'Detalle del pedido');
 use Cake\Routing\Router;
+
+$offset = 180; //número de segundos que le dejarás cachear 
+header("Cache-Control: max-age=".$offset.", must-revalidate");
+header("Pragma: cache"); 
 ?>
 
 <legend>Datos del pedido</legend>

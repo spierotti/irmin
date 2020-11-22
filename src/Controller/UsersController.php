@@ -546,10 +546,14 @@ class UsersController extends AppController
      * 
      * ABRE EL ARCHIVO .PDF CON EL MANUAL DE USUARIO
      */
-    public function ayuda()
+    public function ayuda($id = null)
     {
         //$response = $this->response->withFile('D:\Archivos de programa\appserv\www\test2\webroot\files\pdf\jai1_0_1-guide.pdf');
-        $response = $this->response->withFile(WWW_ROOT . 'files\pdf\manual.pdf');
+        if ($id == 4) {
+            $response = $this->response->withFile(WWW_ROOT . 'files\pdf\manual_cliente.pdf');
+        } else {
+            $response = $this->response->withFile(WWW_ROOT . 'files\pdf\manual.pdf');
+        }
         return $response;
     }
 }

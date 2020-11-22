@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+    if ($("#rol").val() == 4) {
+
+        $("#s").prop("disabled", false);
+
+    } else {
+
+        $("#s").prop("disabled", true);
+
+    }
+
     $(document).on('change','#rol',function(){
         if ($(this).val() == 4) {
 
@@ -7,7 +17,12 @@ $(document).ready(function () {
 
         } else {
 
+            $("#s").val("");
+            $("#c_id").val("");
             $("#s").prop("disabled", true);
+            $("#cliente_div").removeClass("col-sm-6");
+            $("#cliente_div").addClass("col-sm-7");
+            document.getElementById("btn_limpiar").style.display = "none";
 
         }
     });

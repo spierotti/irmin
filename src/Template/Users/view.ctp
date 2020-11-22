@@ -23,10 +23,12 @@ use Cake\Routing\Router;
                 <th scope="row"><?= __('Rol') ?></th>
                 <td><?= $user['role']['name'] ?></td>
             </tr>
-            <tr>
-                <th scope="row"><?= __('Cliente Asociado') ?></th>
-                <td><?= $user['cliente']['name'] . " (" . $user['cliente']['id'] . ")" ?></td>
-            </tr>
+            <?php if ($user['cliente']['id'] > 0) { ?>
+                <tr>
+                    <th scope="row"><?= __('Cliente Asociado') ?></th>
+                    <td><?= $user['cliente']['name'] . " (" . $user['cliente']['cuit'] . ")" ?></td>
+                </tr>
+            <?php } ?>
             <tr>
                 <th scope="row"><?= __('Fecha Creación') ?></th>
                 <td><?= h($user->created) ?></td>

@@ -8,6 +8,7 @@ use Cake\Routing\Router;
 use Cake\I18n\Time;
 ?>
 
+
 <div class="images view large-9 medium-8 columns content">
     <div style="overflow-x:auto;">
         <table class="table table-hover col-sm-9">
@@ -35,6 +36,6 @@ use Cake\I18n\Time;
         <?= $this->Html->image('../files/images/photo/' . $image->get('photo_dir') . '/' . $image->get('photo')); ?>
     </div>
     <div class="col-sm-2">
-      <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Images', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
+      <button type="submit" onclick="history.go(-1)" class="btn btn-primary mt-4 rapido">Volver</button>
     </div>
 </div>
