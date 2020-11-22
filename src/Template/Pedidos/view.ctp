@@ -82,29 +82,31 @@ header("Pragma: cache");
     </tr>
   </tbody>
 </table>
-
-<div class="row justify-content-center ml-5">
-  <legend>Imágenes relacionadas</legend>
-  <div class="row card-columns">
-    <?php if (!empty($pedido->images)){ ?>
-      <?php foreach ($pedido->images as $images): ?>
-          <div class="card col-sm-3">
-              <?= $this->Html->link(
-                        $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']),
-                        array('controller' => 'Images', 'action' => 'view', $images->id),
-                        array('escape' => false)
-                  );
-              ?>
-              <div class="card-body">
-                  <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
-              </div>
-          </div>
-      <?php endforeach; ?>
-    <?php }else{
-      echo '<p>¡No existen registros para el periodo solicitado!</p>';
-    }?>
+<div class="col-sm-12">
+  <div class="row justify-content-center ml-5">
+    <legend>Imágenes relacionadas</legend>
+    <div class="row card-columns">
+      <?php if (!empty($pedido->images)){ ?>
+        <?php foreach ($pedido->images as $images): ?>
+            <div class="card col-sm-3">
+                <?= $this->Html->link(
+                          $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']),
+                          array('controller' => 'Images', 'action' => 'view', $images->id),
+                          array('escape' => false)
+                    );
+                ?>
+                <div class="card-body">
+                    <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h6>
+                </div>
+            </div>
+        <?php endforeach; ?>
+      <?php }else{
+        echo '<p>¡No existen registros para el periodo solicitado!</p>';
+      }?>
+    </div>
   </div>
 </div>
+
 <div class="row">
     <div class="col-sm-2">
       <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Volver</button>
