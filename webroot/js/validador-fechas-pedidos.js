@@ -1,7 +1,7 @@
 function validarFechas()
 {
-    var fechaD = document.forms["buscarInforme"]["fecha_inicio"].value;
-    var fechaH = document.forms["buscarInforme"]["fecha_fin"].value;
+    var fechaD = document.forms["nuevoPedido"]["fecha_inicio"].value;
+    var fechaH = document.forms["nuevoPedido"]["fecha_fin"].value;
 
     var diaDesde = fechaD[0] + fechaD[1];
     var diaHasta = fechaH[0] + fechaH[1];

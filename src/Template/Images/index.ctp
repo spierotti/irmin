@@ -8,7 +8,7 @@ $this->assign('title', 'Imágenes');
 
 <div class="col-sm-12 justify-content-center mt-1">
     <legend>Imágenes</legend> 
-    <?= $this->Form->create('Images', ['type' => 'get']); ?>
+    <?= $this->Form->create('Images', ['type' => 'get', 'name'=>'verImagenes']); ?>
         <div class="form-group row">
            <label for="image" id="image" class="col-form-label mt-3 ml-3">Fecha Desde</label>
            <div class="col-sm-2">
@@ -19,7 +19,8 @@ $this->assign('title', 'Imágenes');
                       'readonly' => 'readonly',
                       'data-toggle' => 'datepicker',
                       'value' => $start_date, 
-                      'autocomplete' => 'off'
+                      'autocomplete' => 'off',
+                      'id' => 'fecha_inicio'
                   ]); 
                ?>
            </div>
@@ -32,14 +33,16 @@ $this->assign('title', 'Imágenes');
                       'readonly' => 'readonly',
                       'data-toggle' => 'datepicker',
                       'value' => $end_date,
-                      'autocomplete' => 'off'
+                      'autocomplete' => 'off',
+                      'id' => 'fecha_fin'
                   ]);
                 ?>
            </div>
           
             <div class="col-sm-3 mt-2 ml-2">
                 <?= $this->Form->submit('Buscar', [
-                        'class' => 'btn btn-primary'
+                        'class' => 'btn btn-primary',
+                        'onclick'=>'validarFechas()'
                     ]) ?>
             </div>
         </div>
@@ -93,3 +96,4 @@ $this->assign('title', 'Imágenes');
     </div>
 </div>
 <?= $this->Html->script('filtrar-imagen.js') ?>
+<?= $this->Html->script('validador-fechas-images.js') ?>

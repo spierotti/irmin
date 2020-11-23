@@ -8,7 +8,7 @@ $this->assign('title', 'Nuevo pedido');
 
 <div class="row justify-content-center">
     <div class="col-sm-8">
-        <?= $this->Form->create($pedido) ?>
+        <?= $this->Form->create($pedido,['name'=>'nuevoPedido']) ?>
             <div class="form-group row">
                 <legend class="ml-3">Nuevo Pedido</legend>
                 <label for="cliente" id="lblcliente" class="col-sm-3 col-form-label mt-2">Cliente</label>
@@ -21,16 +21,14 @@ $this->assign('title', 'Nuevo pedido');
                             'autocomplete' => 'off', 
                             'label' => false, 
                             'class'=>'form-control mt-2', 
-                            'placeholder' => 'Ingrese nombre o CUIT/DNI del cliente',
-                            //'value' => (!empty($this->request->query['cliente'])) ? $this->request->query['cliente'] : ""
+                            'placeholder' => 'Ingrese nombre o CUIT/DNI del cliente'
                             ]);
                         echo $this->Form->control('cliente_id', 
                         [
                             'type' => 'hidden', 
                             'id' => 'c_id', 
                             'label' => false, 
-                            'class'=>'form-control mt-2',
-                            //'value' => (!empty($this->request->query['cliente_id'])) ? $this->request->query['cliente_id'] : ""
+                            'class'=>'form-control mt-2'
                             ]);
                     ?>
                 </div>
@@ -43,39 +41,26 @@ $this->assign('title', 'Nuevo pedido');
                     ]) ?>
                 <label for="fechaInicio" id="fechaInicio" class="col-sm-3 col-form-label mt-2">Fechas</label>
                 <div class="col-sm-4">
-                    <?php 
-                        //echo $this->Form->control('fecha_inicio',['label' => false]); 
-                    ?>
                     <?php echo $this->Form->control('fecha_inicio', [
                         'type' => 'text',
                         'placeholder' => 'Fecha desde',
                         'readonly' => 'readonly',
                         'id' => 'fecha_inicio',
                         'class'=>'form-control mt-2 calendario',
-                        //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        //'value' => (!empty($this->request->query['fecha_inicio'])) ? $this->request->query['fecha_inicio'] : "",
                         'autocomplete' => 'off'
                     ]) ?>
-
                 </div>
-                <!--<label for="fechaFin" id="fechaFin" class="col-sm-3 col-form-label mt-2">Fecha de fin</label>-->
                 <div class="col-sm-4">
-                    <?php 
-                        //echo $this->Form->control('fecha_fin',['label' => false]); 
-                    ?>
-
                     <?php echo $this->Form->control('fecha_fin', [
                         'type' => 'text',
                         'placeholder' => 'Fecha hasta',
                         'readonly' => 'readonly',
                         'id' => 'fecha_fin',
                         'class'=>'form-control mt-2 calendario',
-                        //'class' => 'datetimepicker',
                         'data-toggle' => 'datepicker',
                         'label' => false,
-                        //'value' => (!empty($this->request->query['fecha_fin'])) ? $this->request->query['fecha_fin'] : "",
                         'autocomplete' => 'off'
                         ])
                     ?>
@@ -95,11 +80,13 @@ $this->assign('title', 'Nuevo pedido');
             <div class="form-group row">
                 <div class="col-sm-10">
                     <?= $this->Form->submit('Registrar pedido', [
-                        'class' => 'btn btn-primary'
+                        'class' => 'btn btn-primary',
+                        'onclick'=>'validarFechas()'
                     ]) ?>
                 </div>
             </div>
         <?= $this->Form->end() ?>
     </div>
 <?= $this->Html->script('search.js') ?>
+<?= $this->Html->script('validador-fechas-pedidos.js') ?>
 </div>

@@ -21,7 +21,7 @@ $this->assign('title', 'Informes');
                         'data-toggle' => 'datepicker',
                         'value' => $start_date, 
                         'autocomplete' => 'off',
-                        'id' => 'fDesde'
+                        'id' => 'fecha_inicio'
                         ]); 
                     ?>
                 </div>
@@ -35,7 +35,7 @@ $this->assign('title', 'Informes');
                         'data-toggle' => 'datepicker',
                         'value' => $end_date, 
                         'autocomplete' => 'off',
-                        'id' => 'fHasta'
+                        'id' => 'fecha_fin'
                         ]); 
                     ?>
                 </div>
