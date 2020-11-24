@@ -18,30 +18,30 @@ use Cake\Routing\Router;
         <td><?= h($informe->fecha_hora_informe) ?></td>
     </tr>
 </table>
-
-<legend>Imágenes relacionadas</legend>
-<?php if (!empty($informe->images)) { ?>
-    <div class="related ml-2">
-        <?php foreach ($informe->images as $images): ?>
-            <div class="row card-columns">
-                <div class="card col-sm-3">
-                    <?= $this->Html->link(
-                            $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']), 
-                            array('controller' => 'Images', 'action' => 'view', $images->id),
-                            array('escape' => false)
-                        );
-                    ?>
-                    <div class="card-body">
-                        <div class="card-title"><?= h($images->fecha_hora_imagen) ?></div>
+<div class="col-sm-12">
+    <div class="row justify-content-center ml-5">
+        <legend>Imágenes relacionadas</legend>
+        <div class="row card-columns">
+            <?php if (!empty($informe->images)) { ?>
+                <?php foreach ($informe->images as $images): ?>
+                    <div class="card col-sm-3">
+                        <?= $this->Html->link(
+                                $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']), 
+                                array('controller' => 'Images', 'action' => 'view', $images->id),
+                                array('escape' => false)
+                            );
+                        ?>
+                        <div class="card-body">
+                            <div class="card-title"><?= h($images->fecha_hora_imagen) ?></div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php }else{
+                    echo '<div class="row ml-5"><p>¡No existen imágenes para el periodo solicitado!</p></div>';
+                }?>
+        </div>
     </div>
-
-<?php }else{
-        echo '<div class="row ml-5"><p>¡No existen imágenes para el periodo solicitado!</p></div>';
-    }?>
+</div>
 
 <div div class="row">
     <div class="col-sm-2">
