@@ -40,6 +40,10 @@ class InformesController extends AppController
             {
                 return true;
             }
+            elseif($this->request->action == 'buscarinforme' and $user['role']['ver_pedidos'] == true)
+            {
+                return true;
+            }
 
             return false;
         }
