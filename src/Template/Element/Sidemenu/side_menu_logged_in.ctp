@@ -191,7 +191,7 @@
                         <!--LOGOUT-->
                         <?php if (isset($auth['User']['role_id']) )
                         { ?>
-                        <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda', 'target' => '_blank']) ?></li>
+                        <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda', $auth['User']['role_id']], ['target' => '_blank']) ?></li>
                         <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
                         <?php } ?>
                     </ul>
@@ -427,7 +427,7 @@
                     <?php if (isset($auth['User']['role_id']) )
                     { ?>
                     
-                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda', $auth['User']['role_id']]) ?></li>
+                    <li class="child-menu"><?= $this->Html->link(__('Ayuda'), ['controller' => 'Users', 'action' => 'ayuda', $auth['User']['role_id']], ['target' => '_blank']) ?></li>
                         
                     <li class="child-menu"><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
 

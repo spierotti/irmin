@@ -42,7 +42,7 @@ def checkDaily(mydb):
         #New Informe
         datetimeNow = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
         fecha_hora_informe = created = modified = datetimeNow
-        descripcion = str(body)
+        descripcion = "Fecha: " + today_body + " - En el dia " + yesterday_body + " se han encontrado " + str(mycursor.rowcount) + " imagenes con condiciones predisponentes para la caida de granizo."
         sql = "INSERT INTO informes (fecha_hora_informe, descripcion, created, modified) VALUES (%s, %s, %s, %s)"
         val = (fecha_hora_informe, descripcion, created, modified)
         mycursor = mydb.cursor()
