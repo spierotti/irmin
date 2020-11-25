@@ -24,6 +24,42 @@ class ImagesController extends AppController
     ];
 
     /**
+     * Is Authorized Method
+     * 
+     */
+    public function isAuthorized($user)
+    {
+
+        if(isset($user['role']) and $user['role']['id'] > 1)
+        {
+            if($this->request->action == 'index' and $user['role']['ver_imagenes'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'view' and ($user['role']['ver_imagenes'] == true or ($user['role']['id'] == 4 and $user['cliente_id'] > 0)))
+            {
+                return true;
+            }
+            elseif($this->request->action == 'add' and $user['role']['nueva_imagen'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'ejecutar' and $user['role']['nueva_imagen'] == true)
+            {
+                return true;
+            }
+            elseif($this->request->action == 'getProgreso' and $user['role']['nueva_imagen'] == true)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        return parent::isAuthorized($user);
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
