@@ -17,7 +17,11 @@ header("Pragma: cache");
     <tr>
       <th scope="row">Cliente</th>
       <td>
-      <u class="cliente"><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id], ['class'=>'cliente']) : '-' ?></u>
+        <?php if ($auth['User']['role_id'] != 4) { ?>
+          <u class="cliente"><?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $this->Html->link($pedido->cliente->name, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id], ['class'=>'cliente']) : '-' ?></u>
+        <?php } else { ?>
+          <?= ($pedido->has('cliente') and !is_null($pedido->cliente)) ? $pedido->cliente->name : '-' ?></u>
+        <?php } ?>
       </td>
     </tr>
     <tr>

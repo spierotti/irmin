@@ -62,12 +62,12 @@ $(document).ready(function(){
                     actualizar_barra_progreso(porcentaje); 
 
                     if (porcentaje < 100){
-                        setTimeout(get_progreso,1000);
+                        setTimeout(get_progreso,10000);
                     }
                 }
             }, 
             error: function(data) {
-               setTimeout(get_progreso,1000)
+               setTimeout(get_progreso,10000)
             }
         });
     }
