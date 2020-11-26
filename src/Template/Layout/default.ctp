@@ -36,15 +36,17 @@ $cakeDescription = 'Irmin ';
     'datepicker.min',
     'style',
     'jquery-ui',
-    'jquery-ui.min',
+    'jquery-ui.min'
     ]); ?>
 
     <?= $this->Html->script([
         'jquery-3.4.1.min.js',
         'bootstrap.min.js',
         'datepicker.js',
-        'jquery-ui.min.js'
+        'jquery-ui.min.js',
+        'alerts.js'
     ]) ?>
+
   
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
