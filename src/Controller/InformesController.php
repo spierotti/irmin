@@ -32,15 +32,15 @@ class InformesController extends AppController
 
         if(isset($user['role']) and $user['role']['id'] > 1)
         {
-            if($this->request->action == 'index' and $user['role']['ver_pedidos'] == true)
+            if($this->request->action == 'index' and $user['role']['ver_informes'] == true)
             {
                 return true;
             }
-            elseif($this->request->action == 'view' and $user['role']['ver_pedidos'] == true)
+            elseif($this->request->action == 'view' and $user['role']['ver_informes'] == true)
             {
                 return true;
             }
-            elseif($this->request->action == 'buscarinforme' and $user['role']['ver_pedidos'] == true)
+            elseif($this->request->action == 'buscarinforme' and $user['role']['ver_informes'] == true)
             {
                 return true;
             }
