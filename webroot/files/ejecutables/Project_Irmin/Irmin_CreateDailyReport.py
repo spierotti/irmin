@@ -16,7 +16,7 @@ def checkDaily(mydb):
     today = date.today()
     time_from = ' 00:00:00'
     time_to = ' 23:59:59'
-    yesterday = today - timedelta(days=1)
+    yesterday = today - timedelta(days=2)
     today_body = str(today.day) + "/" + str(today.month) + "/" + str(today.year)
     yesterday_body = str(yesterday.day) + "/" + str(yesterday.month) + "/" + str(yesterday.year)
     yesterday_from = str(yesterday) + time_from
@@ -79,7 +79,7 @@ def checkDaily(mydb):
 def sendEmail(body):
     yag = yagmail.SMTP('proyecto.irmin@gmail.com', 'Proyectoirmin123')
     subject = 'Reporte Diario: ' + datetime.now().strftime("%d%m%Y")
-    yag.send('donnelly.nicolas@gmail.com', subject, body)
+    yag.send('santiagopierotti@gmail.com', subject, body)
 
 #Code
 main()

@@ -26,7 +26,9 @@ def downloadImagesMain(mydb):
 
     #NameUrl
     ##MainPath
-    mainPath = 'http://estaticos.smn.gob.ar/vmsr/satelite/TOP_C13_ARG_ALTA_'
+    #mainPath = 'http://estaticos.smn.gob.ar/vmsr/satelite/TOP_C13_ARG_ALTA_'
+    #mainPath = '/Users/nicolas.donnelly/Project_Irmin/Local/'
+    mainPath = '/xampp/htdocs/irmin/webroot/files/images/photo/origen/'
 
     ##Date
     date = datetime.utcnow().strftime("%Y%m%d")
@@ -45,7 +47,6 @@ def downloadImagesMain(mydb):
 
     #Insert NewUpdate    
     datetimeNow = datetime.utcnow()
-    #fecha_hora_actualizacion = datetimeNow.strftime('%Y-%m-%d %H:%M:%S')
     fecha_hora_actualizacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     salida = ""
     completado = 0
@@ -108,9 +109,11 @@ def downloadImagesMain(mydb):
                 url = mainPath + nameImage
 
                 try:
-                    #localPath = '/Users/nicolas.donnelly/Project_Irmin/Images/' + nameImage
+                    #localPath = '/Users/nicolas.donnelly/Project_Irmin/Images2/' + nameImage
                     localPath = '/xampp/htdocs/irmin/webroot/files/images/photo/Images/' + nameImage
-                    urllib.request.urlretrieve(url, localPath)
+                    #urllib.request.urlretrieve(url, localPath)
+                    #shutil.move(url, localPath)
+                    os.rename(url, localPath)
                     resp = 1    
                 except:
                     if segOK != '':
@@ -145,7 +148,7 @@ def downloadImagesMain(mydb):
                         photo_dir = 'Images' #localPath
                         created = datetime.now()
                         modified = created
-                        #copyI2DB(mydb, fecha_hora, photo, photo_dir, hay_actividad, created, modified)
+                        copyI2DB(mydb, fecha_hora, photo, photo_dir, hay_actividad, created, modified)
                 s = s + 1
 
             minCont = minCont + 1

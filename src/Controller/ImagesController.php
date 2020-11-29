@@ -180,7 +180,8 @@ class ImagesController extends AppController
         // ejecuto screipt de descarga
         //exec('C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe C:\Users\User\Desktop\prueba\prueba.py', $salida, $return);
 
-        $comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImages2.py';
+        //$comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImages2.py';
+        $comando = 'C:\Users\User\AppData\Local\Programs\Python\Python38\python.exe ' . WWW_ROOT . 'files\ejecutables\Project_Irmin\Irmin_DownloadImagesLocal.py';
 
         exec($comando, $salida, $return);
 
