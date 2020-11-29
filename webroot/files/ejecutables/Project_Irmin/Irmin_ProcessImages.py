@@ -7,7 +7,7 @@ def open_image(path):
 
 def compareImage(coloursList):
     [red, green, blue] = coloursList
-    coloursImage = open_image('/Users/nicolas.donnelly/Project_Irmin/Images/Colors.jpg')  
+    coloursImage = open_image('/xampp/htdocs/irmin/webroot/files/ejecutables/Project_Irmin/Images/Colors.jpg')  
     pixeles = coloursImage.load()
     
     # x between 140-220

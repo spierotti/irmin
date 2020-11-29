@@ -99,7 +99,8 @@ def downloadImagesMain(mydb):
                 url = mainPath + nameImage
 
                 try:
-                    localPath = '/Users/nicolas.donnelly/Project_Irmin/Images/' + nameImage
+                    #localPath = '/Users/nicolas.donnelly/Project_Irmin/Images/' + nameImage
+                    localPath = '/xampp/htdocs/irmin/webroot/files/images/photo/Images/' + nameImage
                     urllib.request.urlretrieve(url, localPath)
                     resp = 1    
                 except:
