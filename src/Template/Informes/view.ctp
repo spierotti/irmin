@@ -24,9 +24,9 @@ use Cake\Routing\Router;
         <div class="row card-columns">
             <?php if (!empty($informe->images)) { ?>
                 <?php foreach ($informe->images as $images): ?>
-                    <div class="card col-sm-3">
+                    <div class="card col-sm-3 <?= $images->hay_actividad ? __('peligro') : __('sinPeligro'); ?>">
                         <?= $this->Html->link(
-                                $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2']), 
+                                $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-2','title' => $images->hay_actividad ? __('Hay condiciones de riesgo') : __('No hay condiciones de riesgo')]), 
                                 array('controller' => 'Images', 'action' => 'view', $images->id),
                                 array('escape' => false)
                             );

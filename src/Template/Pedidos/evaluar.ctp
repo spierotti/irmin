@@ -39,15 +39,15 @@ use Cake\Routing\Router;
         <div class="row card-columns">
             <?php if (!empty($pedido->images)){ ?>
                 <?php foreach ($pedido->images as $images): ?>
-                    <div class="card col-sm-3">
+                    <div class="card col-sm-3 <?= $images->hay_actividad ? __('peligro') : __('sinPeligro'); ?>">
                         <?= $this->Html->link(
-                            $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-1']), 
+                            $this->Html->image('../files/images/photo/' . $images->photo_dir . '/' . $images->photo, ['class'=>'card-img-top mt-1','title' => $images->hay_actividad ? __('Hay condiciones de riesgo') : __('No hay condiciones de riesgo')]), 
                             array('controller' => 'Images', 'action' => 'view', $images->id),
                             array('escape' => false)
                         ); 
                         ?>
                         <div class="card-body">
-                            <h6 class="card-title"><?= h($images->created) ?></h5>
+                            <h6 class="card-title"><?= h($images->fecha_hora_imagen) ?></h5>
                         </div>
                     </div>
                 <?php endforeach; ?>
