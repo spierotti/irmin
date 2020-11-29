@@ -47,15 +47,21 @@ use Cake\Routing\Router;
                     
                     <legend>Acciones rápidas</legend>
 
-                    <div class="botonera">
-                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver pedidos </button>
-                    </div>
-                    <div class="botonera">
-                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'buscarpedido'))?>'" class="btn btn-primary mt-4 rapido">Buscar pedido </button>
-                    </div>
-                    <div class="botonera">
-                        <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Informes', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver informes </button>
-                    </div>
+                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)) { ?>
+                        <div class="botonera">
+                            <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver pedidos </button>
+                        </div>
+                    <?php } ?> 
+                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true)) { ?>
+                        <div class="botonera">
+                            <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Pedidos', 'action'=>'buscarpedido'))?>'" class="btn btn-primary mt-4 rapido">Buscar pedido </button>
+                        </div>
+                    <?php } ?>    
+                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true)) { ?>
+                        <div class="botonera">
+                            <button onclick="window.location.href = '<?php echo Router::url(array('controller'=>'Informes', 'action'=>'index'))?>'" class="btn btn-primary mt-4 rapido">Ver informes </button>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
                 
             </div>

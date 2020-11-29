@@ -68,13 +68,13 @@
 
                         <!--Informes mobile-->
                         <?php 
-                        if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true || $auth['User']['role']['modificar_pedido'] === true || $auth['User']['role']['nuevo_pedido'] === true || $auth['User']['role']['eliminar_pedido'] === true || $auth['User']['role']['evaluar_pedido'] === true))
+                        if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true))
                         { ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informes </a>
                             <?php } ?>
                             <ul class="dropdown-menu">
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true))
                                     { ?>    
                                     <li><?= $this->Html->link(__('Ver informes'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
@@ -277,22 +277,23 @@
 
                     <!--INFORME-->
                     <?php 
-                    if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true || $auth['User']['role']['modificar_pedido'] === true || $auth['User']['role']['nuevo_pedido'] === true || $auth['User']['role']['eliminar_pedido'] === true || $auth['User']['role']['evaluar_pedido'] === true))
+                    if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true ))
+                    /*if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true || $auth['User']['role']['modificar_pedido'] === true || $auth['User']['role']['nuevo_pedido'] === true || $auth['User']['role']['eliminar_pedido'] === true || $auth['User']['role']['evaluar_pedido'] === true))*/
                     { ?>
                     <li class="child-menu"><a href="#">Informes<i class="fa fa-angle-right"></i></a>
                     <?php } ?>    
                         <div class="sub-menu-wrapper">
                             <ul class="sub-menu center-content">
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true))
                                     { ?>    
                                     <li><?= $this->Html->link(__('Ver informes'), ['controller' => 'Informes', 'action' => 'index']) ?> </li>
                                 <?php } ?>
-                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true))
                                     { ?>    
                                     <li><?= $this->Html->link(__('Buscar informe'), ['controller' => 'Informes', 'action' => 'buscarinforme']) ?> </li>
                                 <?php } ?>
                                 <?php if($this->view == 'view' && $this->name == "Informes") { ?> 
-                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_pedidos'] === true))
+                                    <?php if (isset($auth['User']['role_id']) && ($auth['User']['role']['ver_informes'] === true))
                                         { ?>
                                         <li><?= $this->Html->link(__('Exportar PDF'), ['action' => 'view', $informe->id, '_ext' => 'pdf', 'target' => '_blank']); ?></li>
                                     <?php } ?>
